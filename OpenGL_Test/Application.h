@@ -7,9 +7,6 @@
 #include "Log.h"
 #include "FrameTimer.h"
 
-#define DEFAULT_WIDTH 900
-#define DEFAULT_HEIGHT 900
-
 class Application
 {
 public:
@@ -20,8 +17,6 @@ public:
 
 private:
 	GLFWwindow* m_window = nullptr;
-	const uint32_t m_width  = DEFAULT_WIDTH;
-	const uint32_t m_height = DEFAULT_HEIGHT;
 	FrameTimer ft;
 
 	Game game;

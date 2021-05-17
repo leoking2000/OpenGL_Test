@@ -1,6 +1,9 @@
 #pragma once
 #include <cinttypes>
 
+#define WIDTH 900
+#define HEIGHT 900
+
 namespace graphics
 {
 	struct Color

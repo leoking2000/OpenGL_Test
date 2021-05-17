@@ -38,14 +38,14 @@ void Game::Draw()
 	{
 		for (int x = (int)xPos - 100; x < (int)xPos + 100; x++)
 		{
-			if (y >= 0 && y < canvas->GetHeight() && x >= 0 && x < canvas->GetWidth())
+			if (y >= 0 && y < WIDTH && x >= 0 && x < HEIGHT)
 			{
 				canvas->PutPixel(x, y, { 0, 100, 10 });
 			}
 		}
 	}
 
-	if (yPos >= 0 && yPos < canvas->GetHeight() && xPos >= 0 && xPos < canvas->GetWidth())
+	if (yPos >= 0 && yPos < WIDTH && xPos >= 0 && xPos < HEIGHT)
 	{
 		canvas->DrawLine((uint32_t)xPos, (uint32_t)yPos, 450, 450, { 255, 0, 0 });
 	}

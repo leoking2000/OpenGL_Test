@@ -4,7 +4,7 @@
 
 Application::Application()
 	:
-	m_canvas(DEFAULT_WIDTH, DEFAULT_HEIGHT, { 0, 0, 100 })
+	m_canvas(WIDTH, HEIGHT, { 0, 0, 0 })
 {
 }
 
@@ -27,7 +27,7 @@ bool Application::Init()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Creating a Window.
-	m_window = glfwCreateWindow(m_width, m_height, "OpenGL test", NULL, NULL);
+	m_window = glfwCreateWindow(WIDTH, HEIGHT, "OpenGL test", NULL, NULL);
 	if (!m_window)
 	{
 		Logger::LogError("Window creation failed.");
@@ -49,7 +49,7 @@ bool Application::Init()
 	glfwSwapInterval(1);
 
 	// Tell OpenGL how big is the window
-	glCall(glViewport(0, 0, m_width, m_height));
+	glCall(glViewport(0, 0, WIDTH, HEIGHT));
 
 	game.Init(&m_canvas, m_window);
 
@@ -117,7 +117,7 @@ void Application::InitCanvas()
 	glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
 	glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 
-	glCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, m_width, m_height, 0, GL_RGB, GL_UNSIGNED_BYTE, m_canvas.__GetData()));
+	glCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, WIDTH, HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, m_canvas.__GetData()));
 
 	// VERTEX ARRAY OBJECT
 	glCall(glGenVertexArrays(1, &m_VAO_Canvas));
@@ -167,7 +167,7 @@ void Application::RenderCanvas()
 {
 	// Update canvas texture
 	glCall(glBindTexture(GL_TEXTURE_2D, m_CanvasTexture));
-	glCall(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_width, m_height, GL_RGB, GL_UNSIGNED_BYTE, m_canvas.__GetData()));
+	glCall(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, WIDTH, HEIGHT, GL_RGB, GL_UNSIGNED_BYTE, m_canvas.__GetData()));
 
 	glCall(int location = glGetUniformLocation(m_CanvasShader, "u_Tex"));
 	if (location != -1)
