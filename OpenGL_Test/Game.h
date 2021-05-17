@@ -1,6 +1,8 @@
 #pragma once
-#include "Canvas.h"
 #include <GLFW/glfw3.h>
+#include "Canvas.h"
+#include "math.h"
+
 
 class Game
 {
