@@ -5,8 +5,6 @@ template<typename T>
 class Vector3D_t : public Vector2D_t<T>
 {
 public:
-	T x = (T)0;
-	T y = (T)0;
 	T z = (T)0;
 public:
 	Vector3D_t() = default;
@@ -50,6 +48,7 @@ public:
 	}
 
 	void RotateZ(double radians);
+
 	T GetLengthSq() const;
 	T GetLength() const;
 	T GetDistanceSq(const Vector3D_t<T>& vec) const;
