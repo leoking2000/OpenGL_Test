@@ -1,3 +1,4 @@
 # OpenGL_Test
 
-This repo is for me learning OpenGL
+this is for 3D Programming Fundamentals on youtube.
+https://www.youtube.com/watch?v=uehGqieEbus
