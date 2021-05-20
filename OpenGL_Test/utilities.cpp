@@ -12,6 +12,9 @@
 
 #include "Log.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb/stb_image.h>
+
 uint32_t CompileShader(const char* source, uint32_t type)
 {
 	glClearError();

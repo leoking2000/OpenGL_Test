@@ -31,9 +31,6 @@
     <Filter Include="Game\Source Files">
       <UniqueIdentifier>{463e875b-4d1d-4fcc-b8a4-3c44d9aca1a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\math">
-      <UniqueIdentifier>{d127b601-ba41-4cdb-96d8-db8d92318798}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,15 +73,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Game\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math.h">
-      <Filter>Core\math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Core\math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Core\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
