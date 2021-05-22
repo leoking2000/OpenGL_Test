@@ -161,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Canvas.h" />
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />

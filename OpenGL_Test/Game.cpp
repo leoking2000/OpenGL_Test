@@ -4,6 +4,8 @@ void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 {
 	gfx.Init(in_canvas);
 	window = in_window;
+
+	cube.Translate(glm::vec3(0.0f, 0.0f, 1.5f));
 }
 
 Game::Game()
@@ -18,7 +20,7 @@ Game::~Game()
 
 void Game::Update(float dt)
 {
-	float speed = 1;
+	float speed = 2;
 
 	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 	{
@@ -45,6 +47,25 @@ void Game::Update(float dt)
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
 	{
 		cube.RotateZ(-speed * dt);
+	}
+
+	// fordward 
+	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+	{
+		cube.Translate(glm::vec3(0.0f, 0.0f, speed) * dt);
+	}
+	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+	{
+		cube.Translate(-glm::vec3(0.0f, 0.0f, speed) * dt);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+	{
+		cube.Translate(glm::vec3(speed, 0.0f, 0.0f) * dt);
+	}
+	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
+	{
+		cube.Translate(-glm::vec3(speed, 0.0f, 0.0f) * dt);
 	}
 }
 

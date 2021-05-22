@@ -27,13 +27,6 @@ void graphics::Graphics::DrawWireframeTriangle(const glm::vec3& a, const glm::ve
 
 void graphics::Graphics::DrawMesh(Mesh a)
 {
-	std::vector<glm::uvec2> t_v;
-
-	for (auto& v : a.vartices)
-	{
-		t_v.emplace_back(NDC_To_Canvas(v.pos));
-	}
-
 	for (int i = 0; i < a.indices.size(); i += 3)
 	{
 		glm::vec3& vec0 = a.vartices[a.indices[i]].pos;
@@ -48,7 +41,7 @@ void graphics::Graphics::DrawMesh(Mesh a)
 
 		if (glm::dot(normal, vec0) > 0.0f) continue;
 
-        DrawTriangle(vec0, vec1, vec2, a.vartices[a.indices[i+1]].color);
+        DrawTriangle(vec0, vec1, vec2, a.vartices[a.indices[i]].color);
 	}
 }
 

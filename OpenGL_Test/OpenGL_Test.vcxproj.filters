@@ -86,6 +86,9 @@
     <ClInclude Include="Mesh.h">
       <Filter>Game\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">
