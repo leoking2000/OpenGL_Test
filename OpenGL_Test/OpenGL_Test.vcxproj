@@ -152,8 +152,10 @@
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +163,9 @@
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,10 +1,11 @@
 #pragma once
 #include <GLFW/glfw3.h>
-#include "Canvas.h"
+#include "Graphics.h"
 
 class Game
 {
 public:
+	Game();
 	~Game();
 
 	void Init(graphics::Canvas* in_canvas, GLFWwindow* in_window);
@@ -13,11 +14,12 @@ public:
 	void Draw();
 
 private:
-	graphics::Canvas* canvas;
+	graphics::Graphics gfx;
 	GLFWwindow* window;
 private:
 	// Game Data
 	float xPos = 450;
 	float yPos = 450;
+	Mesh cube;
 };
 

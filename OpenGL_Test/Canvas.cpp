@@ -48,13 +48,8 @@ graphics::Color graphics::Canvas::GetPixel(uint32_t x, uint32_t y)
 	return m_data[y * m_width + x];
 }
 
-void graphics::Canvas::DrawLine(uint32_t x0, uint32_t y0, uint32_t x1, uint32_t y1, const Color& c)
+void graphics::Canvas::DrawLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, const Color& c)
 {
-	assert(x0 < m_width);
-	assert(y0 < m_height);
-	assert(x1 < m_width);
-	assert(y1 < m_height);
-
 	const float dy = (float)y1 - (float)y0;
 	const float dx = (float)x1 - (float)x0;
 	const float steps = std::max(std::abs(dy), std::abs(dx));
@@ -70,7 +65,10 @@ void graphics::Canvas::DrawLine(uint32_t x0, uint32_t y0, uint32_t x1, uint32_t 
 		x += x_inclese;
 		y += y_inclese;
 
-		PutPixel((uint32_t)x, (uint32_t)y, c);
+		if (x >= 0 && x < WIDTH && y >= 0 && y < WIDTH)
+		{
+			PutPixel((uint32_t)x, (uint32_t)y, c);
+		}	
 	}
 }
 

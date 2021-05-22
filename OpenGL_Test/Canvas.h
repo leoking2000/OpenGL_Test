@@ -20,7 +20,7 @@ namespace graphics
 		void Clear();
 		void PutPixel(uint32_t x, uint32_t y, const Color& c);
 		Color GetPixel(uint32_t x, uint32_t y);
-		void DrawLine(uint32_t x0, uint32_t y0, uint32_t x1, uint32_t y1, const Color& c);
+		void DrawLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, const Color& c);
 		uint32_t GetWidth();
 		uint32_t GetHeight();
 
