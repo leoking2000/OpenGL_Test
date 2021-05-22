@@ -1,16 +1,11 @@
 #pragma once
-#include <cinttypes>
+#include "Colors.h"
 
 #define WIDTH 900
 #define HEIGHT 900
 
 namespace graphics
 {
-	struct Color
-	{
-		uint8_t r, g, b;
-	};
-
 	class Canvas
 	{
 	public:
