@@ -5,7 +5,7 @@ void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 	gfx.Init(in_canvas);
 	window = in_window;
 
-	cube.Translate(glm::vec3(0.0f, 0.0f, 1.5f));
+	cubetransform.Translate(glm::vec3(0.0f, 0.0f, 1.5f));
 }
 
 Game::Game()
@@ -20,56 +20,56 @@ Game::~Game()
 
 void Game::Update(float dt)
 {
-	float speed = 2;
+	float speed = 3;
 
 	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 	{
-		cube.RotateX(speed * dt);
+		cubetransform.RotateX(speed * dt);
 	}
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		cube.RotateX(-speed * dt);
+		cubetransform.RotateX(-speed * dt);
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
-		cube.RotateY(speed * dt);
+		cubetransform.RotateY(speed * dt);
 	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		cube.RotateY(-speed * dt);
+		cubetransform.RotateY(-speed * dt);
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
 	{
-		cube.RotateZ(speed * dt);
+		cubetransform.RotateZ(speed * dt);
 	}
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
 	{
-		cube.RotateZ(-speed * dt);
+		cubetransform.RotateZ(-speed * dt);
 	}
 
 	// fordward 
-	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 	{
-		cube.Translate(glm::vec3(0.0f, 0.0f, speed) * dt);
+		cubetransform.Translate(glm::vec3(0.0f, 0.0f, speed) * dt);
 	}
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 	{
-		cube.Translate(-glm::vec3(0.0f, 0.0f, speed) * dt);
+		cubetransform.Translate(-glm::vec3(0.0f, 0.0f, speed) * dt);
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
 	{
-		cube.Translate(glm::vec3(speed, 0.0f, 0.0f) * dt);
+		cubetransform.Translate(glm::vec3(speed, 0.0f, 0.0f) * dt);
 	}
-	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
 	{
-		cube.Translate(-glm::vec3(speed, 0.0f, 0.0f) * dt);
+		cubetransform.Translate(-glm::vec3(speed, 0.0f, 0.0f) * dt);
 	}
 }
 
 void Game::Draw()
 {
-	gfx.DrawMesh(cube.GetTransformMesh());
+	gfx.DrawMesh(cube.GetTransformMesh(cubetransform));
 }

@@ -21,5 +21,6 @@ private:
 	float xPos = 450;
 	float yPos = 450;
 	Mesh cube;
+	Transform cubetransform = {};
 };
 

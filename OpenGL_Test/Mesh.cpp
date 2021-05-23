@@ -2,18 +2,6 @@
 #include <glm/mat3x3.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-constexpr float PI = 3.14159265f;
-constexpr double PI_D = 3.1415926535897932;
-
-template<typename T>
-inline T wrap_angle(T theta)
-{
-    const T modded = fmod(theta, (T)2.0 * (T)PI_D);
-    return (modded > (T)PI_D) ?
-        (modded - (T)2.0 * (T)PI_D) :
-        modded;
-}
-
 Mesh Mesh::MakeCube(float size)
 {
     Mesh cube;
@@ -117,10 +105,17 @@ Mesh Mesh::MakeCube(float size)
     return cube;
 }
 
-Mesh Mesh::GetTransformMesh()
+Mesh Mesh::GetTransformMesh(const Transform& transform)
 {
     Mesh out = *this; // copy
 
+    out.TransformMesh(transform);
+
+    return out;
+}
+
+void Mesh::TransformMesh(const Transform& transform)
+{
     float sin = std::sinf(transform.rot.z);
     float cos = std::cosf(transform.rot.z);
     float rZ[9] = { cos, -sin, 0.0f,
@@ -141,32 +136,10 @@ Mesh Mesh::GetTransformMesh()
 
     glm::mat3x3 rotation = glm::make_mat3x3(rZ) * glm::make_mat3x3(rX) * glm::make_mat3x3(rY);
 
-    for (auto& v : out.vartices)
+    for (auto& v : vartices)
     {
         glm::vec3 result = v.pos * rotation;
         v.pos = result;
         v.pos += transform.pos;
     }
-
-    return out;
-}
-
-void Mesh::RotateZ(float rad)
-{
-    transform.rot.z = wrap_angle(transform.rot.z + rad);
-}
-
-void Mesh::RotateX(float rad)
-{
-    transform.rot.x = wrap_angle(transform.rot.x + rad);
-}
-
-void Mesh::RotateY(float rad)
-{
-    transform.rot.y = wrap_angle(transform.rot.y + rad);
-}
-
-void Mesh::Translate(const glm::vec3& offset)
-{
-    transform.pos += offset;
 }

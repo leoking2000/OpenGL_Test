@@ -26,7 +26,6 @@ namespace graphics
 		void DrawMesh(Mesh a);
 
 		static glm::ivec2 NDC_To_Canvas(const glm::vec3& vec);
-
 	private:
 		Canvas* canvas;
 	};
