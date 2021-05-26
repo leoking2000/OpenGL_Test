@@ -8,9 +8,6 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{9647cc29-b925-4a0c-808e-fd4dbe741840}</UniqueIdentifier>
     </Filter>
-    <Filter Include="log">
-      <UniqueIdentifier>{63def1f7-4adb-47ba-ba3f-7dc631b7c9d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{64e44868-6fa0-41c7-b161-e7e1829ff198}</UniqueIdentifier>
     </Filter>
@@ -31,13 +28,34 @@
     <Filter Include="Game\Source Files">
       <UniqueIdentifier>{463e875b-4d1d-4fcc-b8a4-3c44d9aca1a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{ad16ae1d-adc6-4fcc-a362-d41137c59c20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\log">
+      <UniqueIdentifier>{63def1f7-4adb-47ba-ba3f-7dc631b7c9d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Header Files">
+      <UniqueIdentifier>{45a1a8f7-7586-48e2-a6a4-9c9b6c043b61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source Files">
+      <UniqueIdentifier>{e538e3c6-bfff-4e96-a6ac-eb6102227a7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\data structures">
+      <UniqueIdentifier>{0ad880ab-c717-44d3-9a1e-a9b595a4e23d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\data structures\Header Files">
+      <UniqueIdentifier>{2d5f1fb8-4cef-450c-b5c8-5358230f8826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\data structures\Source Files">
+      <UniqueIdentifier>{b46cb449-242a-478e-9e5f-9ccb39d17ab1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Log.cpp">
-      <Filter>log</Filter>
+      <Filter>Core\log</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>Core\Source Files</Filter>
@@ -55,18 +73,24 @@
       <Filter>Game\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Graphics.cpp">
-      <Filter>Game\Source Files</Filter>
+      <Filter>Engine\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Game\Source Files</Filter>
+    <ClCompile Include="math.cpp">
+      <Filter>Engine\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>Game\Source Files</Filter>
+      <Filter>Engine\data structures\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Make_Shape.cpp">
+      <Filter>Engine\data structures\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\data structures\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log.h">
-      <Filter>log</Filter>
+      <Filter>Core\log</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Core\Header Files</Filter>
@@ -83,17 +107,29 @@
     <ClInclude Include="Game.h">
       <Filter>Game\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Game\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Game\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Colors.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="math.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Game\Header Files</Filter>
+      <Filter>Engine\data structures\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Make_Shape.h">
+      <Filter>Engine\data structures\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Engine\data structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex_types.h">
+      <Filter>Engine\data structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\data structures\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

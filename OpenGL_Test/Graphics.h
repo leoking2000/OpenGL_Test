@@ -22,8 +22,11 @@ namespace graphics
 		void DrawLine(const glm::vec3& a, const glm::vec3& b, const Color& c);
 		void DrawWireframeTriangle(const glm::vec3& a, const glm::vec3& b, const glm::vec3& c, const Color& color);
 		void DrawTriangle(glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, const Color& c);
+		void DrawTriangle(TexVertex p0, TexVertex p1, TexVertex p2);
 
-		void DrawMesh(Mesh a);
+		void DrawMesh(Mesh<Vertex> a);
+
+		void DrawMeshTex(Mesh<TexVertex> a);
 
 		static glm::ivec2 NDC_To_Canvas(const glm::vec3& vec);
 	private:

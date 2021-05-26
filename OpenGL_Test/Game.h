@@ -18,9 +18,10 @@ private:
 	GLFWwindow* window;
 private:
 	// Game Data
-	float xPos = 450;
-	float yPos = 450;
-	Mesh cube;
+	Texture wood;
+	Texture book;
+	Texture earth;
+	Mesh<TexVertex> cube;
 	Transform cubetransform = {};
 };
 
