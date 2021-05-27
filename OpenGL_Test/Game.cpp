@@ -11,7 +11,7 @@ void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 
 Game::Game()
 	:
-	wood("assets/wood.png"),
+	wood("assets/wood2.png"),
 	book("assets/book.png"),
 	earth("assets/earth.jpg"),
 	cube(MakeCubeTex(1, wood, wood, wood, wood, wood, wood))

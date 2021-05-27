@@ -24,7 +24,7 @@ int Texture::GetHeight() const
 
 void Texture::Load(const char* file_name)
 {
-	m_data = stbi_load(file_name, &m_width, &m_height, &m_bpp, 4);
+	m_data = stbi_load(file_name, &m_width, &m_height, &m_bpp, 0);
 	assert(m_data);
 }
 
