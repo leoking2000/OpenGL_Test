@@ -1,8 +1,7 @@
 #pragma once
-#include <glm/glm.hpp>
-#include <glm/ext.hpp>
 #include "Canvas.h"
 #include "Mesh.h"
+#include "Texture.h"
 
 
 namespace graphics
@@ -21,15 +20,14 @@ namespace graphics
 
 		void DrawLine(const glm::vec3& a, const glm::vec3& b, const Color& c);
 		void DrawWireframeTriangle(const glm::vec3& a, const glm::vec3& b, const glm::vec3& c, const Color& color);
-		void DrawTriangle(glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, const Color& c);
-		void DrawTriangle(TexVertex p0, TexVertex p1, TexVertex p2);
 
-		void DrawMesh(Mesh<Vertex> a);
+		void DrawTriangle(Vertex p0, Vertex p1, Vertex p2, const Texture& tex);
+		void DrawMesh(const Mesh& in, const Transform& transform, const Texture& tex);
 
-		void DrawMeshTex(Mesh<TexVertex> a);
-
-		static glm::ivec2 NDC_To_Canvas(const glm::vec3& vec);
+		
 	private:
+		static glm::ivec2 NDC_To_Canvas(const glm::vec3& vec);
+		static void NDC_To_Canvas2(glm::vec3& vec);
 		Canvas* canvas;
 	};
 }

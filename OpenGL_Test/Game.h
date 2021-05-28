@@ -18,10 +18,8 @@ private:
 	GLFWwindow* window;
 private:
 	// Game Data
-	Texture wood;
-	Texture book;
-	Texture earth;
-	Mesh<TexVertex> cube;
-	Transform cubetransform = {};
+	graphics::Texture wood;
+	graphics::Mesh cube;
+	graphics::Transform cubetransform = {};
 };
 

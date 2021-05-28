@@ -12,9 +12,7 @@ void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 Game::Game()
 	:
 	wood("assets/wood2.png"),
-	book("assets/book.png"),
-	earth("assets/earth.jpg"),
-	cube(MakeCubeTex(1, wood, wood, wood, wood, wood, wood))
+	cube(graphics::MakeCube(1))
 {
 }
 
@@ -75,5 +73,5 @@ void Game::Update(float dt)
 
 void Game::Draw()
 {
-	gfx.DrawMeshTex(cube.GetTransformMesh(cubetransform));
+	gfx.DrawMesh(cube, cubetransform, wood);
 }

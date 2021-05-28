@@ -1,33 +1,23 @@
 #include "Transform.h"
+#include "math.h"
 
-constexpr float PI = 3.14159265f;
-constexpr double PI_D = 3.1415926535897932;
 
-template<typename T>
-inline T wrap_angle(T theta)
+void graphics::Transform::RotateZ(float rad)
 {
-    const T modded = fmod(theta, (T)2.0 * (T)PI_D);
-    return (modded > (T)PI_D) ?
-        (modded - (T)2.0 * (T)PI_D) :
-        modded;
+    rot.z = Math::wrap_angle(rot.z + rad);
 }
 
-void Transform::RotateZ(float rad)
+void graphics::Transform::RotateX(float rad)
 {
-    rot.z = wrap_angle(rot.z + rad);
+    rot.x = Math::wrap_angle(rot.x + rad);
 }
 
-void Transform::RotateX(float rad)
+void graphics::Transform::RotateY(float rad)
 {
-    rot.x = wrap_angle(rot.x + rad);
+    rot.y = Math::wrap_angle(rot.y + rad);
 }
 
-void Transform::RotateY(float rad)
-{
-    rot.y = wrap_angle(rot.y + rad);
-}
-
-void Transform::Translate(const glm::vec3& offset)
+void graphics::Transform::Translate(const glm::vec3& offset)
 {
     pos += offset;
 }
