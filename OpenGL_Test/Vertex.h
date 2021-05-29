@@ -22,6 +22,7 @@ namespace graphics
 
 		Vertex& operator/=(const Vertex& rhs);
 		Vertex operator/(const Vertex& rhs) const;
+		Vertex operator/(float rhs) const;
 
 		glm::vec3 pos;
 		glm::vec2 texCord;

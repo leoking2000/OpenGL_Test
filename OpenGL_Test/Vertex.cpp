@@ -69,3 +69,8 @@ graphics::Vertex graphics::Vertex::operator/(const graphics::Vertex& rhs) const
 {
     return Vertex(*this) /= rhs;
 }
+
+graphics::Vertex graphics::Vertex::operator/(float rhs) const
+{
+    return Vertex(pos / rhs, texCord / rhs);
+}

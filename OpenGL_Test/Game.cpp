@@ -1,19 +1,22 @@
 #include "Game.h"
 #include "Make_Shape.h"
 
+Game::Game()
+	:
+	wood("assets/wood.png"),
+	cube(graphics::MakeCube(1))
+{
+}
+
 void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 {
 	gfx.Init(in_canvas);
 	window = in_window;
 
 	cubetransform.Translate(glm::vec3(0.0f, 0.0f, 3.0f));
-}
 
-Game::Game()
-	:
-	wood("assets/wood2.png"),
-	cube(graphics::MakeCube(1))
-{
+	gfx.BindTransform(cubetransform);
+	gfx.BindTexture(wood);
 }
 
 Game::~Game()
@@ -73,5 +76,5 @@ void Game::Update(float dt)
 
 void Game::Draw()
 {
-	gfx.DrawMesh(cube, cubetransform, wood);
+	gfx.DrawMesh(cube);
 }
