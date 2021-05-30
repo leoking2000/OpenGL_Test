@@ -96,9 +96,9 @@ namespace graphics
 		// world -> view (perspective)
 		void PostProcessTriangleVertices(Vertex v0, Vertex v1, Vertex v2)
 		{
-			NDC_To_Canvas2(v0.pos);
-			NDC_To_Canvas2(v1.pos);
-			NDC_To_Canvas2(v2.pos);
+			NDC_To_Canvas2(v0);
+			NDC_To_Canvas2(v1);
+			NDC_To_Canvas2(v2);
 
 			DrawTriangle(v0, v1, v2);
 		}
@@ -210,9 +210,17 @@ namespace graphics
 				{
 					if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 					{
-						// perform texture lookup, clamp, and write pixel
-						graphics::Color c = effect.pixel_shader( iLine );
+						// recover interpolated z from interpolated 1/z
+						const float z = 1.0f / iLine.pos.z;
 
+						// recover interpolated attributes
+						// (wasted effort in multiplying pos (x,y,z) here, but
+						//  not a huge deal, not worth the code complication to fix) 
+						const Vertex attr = iLine * z;
+
+						// invoke pixel shader with interpolated vertex attributes	
+						graphics::Color c = effect.pixel_shader( attr );
+						// and use result to set the pixel color on the screen
 						canvas->PutPixel(x, y, c);
 					}
 				}
@@ -232,17 +240,29 @@ namespace graphics
 
 			return out;
 		}
-		static void NDC_To_Canvas2(glm::vec3& vec)
+		static void NDC_To_Canvas2(Vertex& vec)
 		{
 			const float xFactor = WIDTH / 2.0f;
 			const float yFactor = HEIGHT / 2.0f;
-			const float zFactor = 1.0f / vec.z;
+			const float zFactor = 1.0f / vec.pos.z;
 
-			float x = (vec.x * zFactor + 1) * xFactor;
-			float y = (-vec.y * zFactor + 1) * yFactor;
+			// divide all position components and attributes by z
+			// (we want to be interpolating our attributes in the
+			//  same space where the x,y interpolation is taking
+			//  place to prevent distortion)
+			vec *= zFactor;
 
-			vec.x = x;
-			vec.y = y;
+			// adjust position x,y from perspective normalized space
+			// to screen dimension space after perspective divide
+			float x = ( vec.pos.x + 1.0f)  * xFactor;
+			float y = (-vec.pos.y + 1.0f)  * yFactor;
+
+			vec.pos.x = x;
+			vec.pos.y = y;
+
+			// store 1/z in z (we will need the interpolated 1/z
+			// so that we can recover the attributes after interp.)
+			vec.pos.z = zFactor;
 		}
 	};
 }

@@ -3,6 +3,7 @@
 Game::Game()
 	:
 	wood("assets/wood2.png"),
+	wood_mc("assets/wood.png"),
 	cube(graphics::MakeCube_TextureEffect(1))
 {
 }
@@ -25,6 +26,20 @@ Game::~Game()
 void Game::Update(float dt)
 {
 	float speed = 3;
+
+	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+	{
+		if (minecraft)
+		{
+			gfx.effect.pixel_shader.BindTexture(wood);
+			minecraft = false;
+		}
+		else
+		{
+			gfx.effect.pixel_shader.BindTexture(wood_mc);
+			minecraft = true;
+		}
+	}
 
 	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 	{
