@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 #include "Graphics.h"
 
+#include "TextureEffect.h"
+
 class Game
 {
 public:
@@ -14,12 +16,12 @@ public:
 	void Draw();
 
 private:
-	graphics::Graphics gfx;
+	graphics::Graphics<graphics::TextureEffect> gfx;
 	GLFWwindow* window;
 private:
 	// Game Data
 	graphics::Texture wood;
-	graphics::Mesh cube;
+	graphics::Mesh<graphics::TextureEffect::Vertex> cube;
 	graphics::Transform cubetransform = {};
 };
 

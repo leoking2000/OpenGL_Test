@@ -5,9 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{9647cc29-b925-4a0c-808e-fd4dbe741840}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{64e44868-6fa0-41c7-b161-e7e1829ff198}</UniqueIdentifier>
     </Filter>
@@ -43,11 +40,11 @@
     <Filter Include="Engine\data structures">
       <UniqueIdentifier>{0ad880ab-c717-44d3-9a1e-a9b595a4e23d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\data structures\Header Files">
-      <UniqueIdentifier>{2d5f1fb8-4cef-450c-b5c8-5358230f8826}</UniqueIdentifier>
+    <Filter Include="Game\Effects">
+      <UniqueIdentifier>{f8f93223-8285-496b-ab89-b4e6517b2e71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\data structures\Source Files">
-      <UniqueIdentifier>{b46cb449-242a-478e-9e5f-9ccb39d17ab1}</UniqueIdentifier>
+    <Filter Include="Core\Shaders">
+      <UniqueIdentifier>{9647cc29-b925-4a0c-808e-fd4dbe741840}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,23 +69,14 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>Engine\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="math.cpp">
       <Filter>Engine\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Engine\data structures\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Make_Shape.cpp">
-      <Filter>Engine\data structures\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Engine\data structures\Source Files</Filter>
+      <Filter>Engine\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vertex.cpp">
-      <Filter>Engine\data structures\Source Files</Filter>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Engine\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,34 +98,34 @@
     <ClInclude Include="Game.h">
       <Filter>Game\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>Engine\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="math.h">
       <Filter>Engine\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Engine\data structures\Header Files</Filter>
+    <ClInclude Include="Colors.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Make_Shape.h">
-      <Filter>Engine\data structures\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Engine\data structures\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Engine\data structures\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Engine\data structures\Header Files</Filter>
+      <Filter>Engine\data structures</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>Engine\data structures\Header Files</Filter>
+      <Filter>Engine\data structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureEffect.h">
+      <Filter>Game\Effects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">
-      <Filter>Shaders</Filter>
+      <Filter>Core\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

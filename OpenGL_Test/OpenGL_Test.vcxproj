@@ -152,15 +152,12 @@
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Make_Shape.cpp" />
     <ClCompile Include="math.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="utilities.cpp" />
-    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -174,9 +171,9 @@
     <ClInclude Include="math.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureEffect.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="utilities.h" />
-    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

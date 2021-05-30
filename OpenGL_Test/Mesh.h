@@ -1,23 +1,17 @@
 #pragma once
 #include <vector>
-//#include <glm/glm.hpp>
-//#include <glm/ext.hpp>
-//#include <glm/mat3x3.hpp>
-//#include <glm/gtc/type_ptr.hpp>
-
-#include "Vertex.h"
+#include "math.h"
 #include "Transform.h"
-#include "Colors.h"
 
 namespace graphics
 {
     template<class V>
-    class _Mesh
+    class Mesh
     {
     public:
-        _Mesh<V> GetTransformMesh(const Transform& transform) const
+        Mesh<V> GetTransformMesh(const Transform& transform) const
         {
-            _Mesh<V> out = *this; // copy
+            Mesh<V> out = *this; // copy
 
             out.TransformMesh(transform);
 
@@ -57,7 +51,5 @@ namespace graphics
         std::vector<V> vartices;
         std::vector<uint64_t> indices;
     };
-
-    typedef _Mesh<Vertex> Mesh;
 }
 

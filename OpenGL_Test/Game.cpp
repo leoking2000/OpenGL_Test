@@ -1,10 +1,9 @@
 #include "Game.h"
-#include "Make_Shape.h"
 
 Game::Game()
 	:
-	wood("assets/wood.png"),
-	cube(graphics::MakeCube(1))
+	wood("assets/wood2.png"),
+	cube(graphics::MakeCube_TextureEffect(1))
 {
 }
 
@@ -16,7 +15,7 @@ void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 	cubetransform.Translate(glm::vec3(0.0f, 0.0f, 3.0f));
 
 	gfx.BindTransform(cubetransform);
-	gfx.BindTexture(wood);
+	gfx.effect.pixel_shader.BindTexture(wood);
 }
 
 Game::~Game()
