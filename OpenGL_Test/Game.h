@@ -1,8 +1,6 @@
 #pragma once
-#include <GLFW/glfw3.h>
-#include "Graphics.h"
-
-#include "TextureEffect.h"
+#include "Scene.h"
+#include <memory>
 
 class Game
 {
@@ -16,14 +14,11 @@ public:
 	void Draw();
 
 private:
-	graphics::Graphics<graphics::TextureEffect> gfx;
-	GLFWwindow* window;
-private:
 	// Game Data
-	bool minecraft = false;
-	graphics::Texture wood_mc;
-	graphics::Texture wood;
-	graphics::Mesh<graphics::TextureEffect::Vertex> cube;
-	graphics::Transform cubetransform = {};
+	std::vector<std::unique_ptr<Scene>> scenes;
+	int current_scene_index = 0;
+
+	bool tab_press = false;
+	GLFWwindow* window;
 };
 

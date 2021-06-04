@@ -46,6 +46,9 @@
     <Filter Include="Core\Shaders">
       <UniqueIdentifier>{9647cc29-b925-4a0c-808e-fd4dbe741840}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scenes">
+      <UniqueIdentifier>{22c4dea0-036b-4e19-b38f-6d702ab6965c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeWithTexture.cpp">
+      <Filter>Game\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +127,15 @@
     </ClInclude>
     <ClInclude Include="TextureEffect.h">
       <Filter>Game\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="InterColorEffect.h">
+      <Filter>Game\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeWithTexture.h">
+      <Filter>Game\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Game\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
