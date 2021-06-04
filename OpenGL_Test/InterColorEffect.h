@@ -95,7 +95,7 @@ namespace graphics
         public:
             Color operator()(const Vertex& vec)
             {
-                Color c = { vec.color.x * 255, vec.color.y * 255, vec.color.y * 255 };
+                Color c = { uint8_t(vec.color.x * 255.0f), uint8_t(vec.color.y * 255.0f), uint8_t(vec.color.z * 255.0f) };
 
                 return c;
             }
@@ -110,14 +110,14 @@ namespace graphics
 
         const float s = size / 2.0f;
 
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s, -s, -s},{1.0f, 1.0f, 1.0f} });
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s,  s, -s},{1.0f, 0.0f, 0.0f} });
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s,  s, -s},{0.0f, 1.0f, 0.0f} });
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s, -s, -s},{0.0f, 0.0f, 0.0f} });
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s,  s,  s},{1.0f, 1.0f, 0.5f} });
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s, -s,  s},{0.5f, 0.5f, 0.5f} });
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s,  s,  s},{0.0f, 0.2f, 0.0f} });
-        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s, -s,  s},{0.0f, 0.0f, 0.6f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s, -s, -s},{0.0f, 0.0f, 0.0f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s,  s, -s},{0.0f, 1.0f, 0.0f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s,  s, -s},{1.0f, 1.0f, 0.0f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s, -s, -s},{1.0f, 0.0f, 0.0f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s,  s,  s},{1.0f, 1.0f, 1.0f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ {  s, -s,  s},{1.0f, 0.0f, 1.0f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s,  s,  s},{0.0f, 1.0f, 1.0f} });
+        cube.vartices.emplace_back(InterColorEffect::Vertex{ { -s, -s,  s},{0.0f, 0.0f, 1.0f} });
 
         // Forward
         cube.indices.emplace_back(0);

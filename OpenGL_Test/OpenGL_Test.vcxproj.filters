@@ -137,6 +137,9 @@
     <ClInclude Include="Scene.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ZbufferTest.h">
+      <Filter>Game\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">
