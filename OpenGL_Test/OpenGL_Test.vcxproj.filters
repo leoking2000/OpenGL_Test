@@ -140,6 +140,9 @@
     <ClInclude Include="ZbufferTest.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="DefaultVertexShader.h">
+      <Filter>Game\Effects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">

@@ -23,12 +23,12 @@ public:
 
 		// cube 1
 		cubetransform[0].Translate({ 0.0f, 0.0f, 2.0f });
-		gfx_1.BindTransform(cubetransform[0]);
+		gfx_1.effect.vertex_shader.BindTransform(cubetransform[0]);
 		gfx_1.effect.pixel_shader.BindTexture(tex);
 
 		// cube 2
 		cubetransform[1].Translate({ 0.0f, 0.0f, 4.0f });
-		gfx_2.BindTransform(cubetransform[1]);
+		gfx_2.effect.vertex_shader.BindTransform(cubetransform[1]);
 	}
 
 	void Update(float dt) override

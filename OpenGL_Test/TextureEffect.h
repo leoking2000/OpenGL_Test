@@ -2,6 +2,7 @@
 #include "math.h"
 #include "Texture.h"
 #include "Make_Shape.h"
+#include "DefaultVertexShader.h"
 
 namespace graphics
 {
@@ -90,6 +91,7 @@ namespace graphics
             }
         };
     public:
+        typedef typename DefaultVertexShader<Vertex> VertexShader;
         class PixelShader
         {
         public:
@@ -119,6 +121,7 @@ namespace graphics
         };
     public:
         PixelShader pixel_shader;
+        VertexShader vertex_shader;
     };
 
     static Mesh<TextureEffect::Vertex> MakeCube_TextureEffect(float size)

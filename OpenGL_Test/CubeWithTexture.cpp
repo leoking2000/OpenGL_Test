@@ -13,7 +13,7 @@ void CubeWithTexture::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 	window = in_window;
 
 	cubetransform.Translate({ 0.0f, 0.0f, 2.0f });
-	gfx.BindTransform(cubetransform);
+	gfx.effect.vertex_shader.BindTransform(cubetransform);
 	gfx.effect.pixel_shader.BindTexture(tex);
 }
 

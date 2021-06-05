@@ -2,6 +2,7 @@
 #include "math.h"
 #include "Mesh.h"
 #include "Colors.h"
+#include "DefaultVertexShader.h"
 
 namespace graphics
 {
@@ -90,6 +91,7 @@ namespace graphics
             }
         };
     public:
+        typedef typename DefaultVertexShader<Vertex> VertexShader;
         class PixelShader
         {
         public:
@@ -102,6 +104,7 @@ namespace graphics
         };
     public:
         PixelShader pixel_shader;
+        VertexShader vertex_shader;
     };
 
     static Mesh<InterColorEffect::Vertex> MakeCube_InterColorEffect(float size)

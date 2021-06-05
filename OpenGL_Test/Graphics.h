@@ -2,6 +2,7 @@
 #include "Canvas.h"
 #include "Mesh.h"
 #include "math.h"
+#include <algorithm>
 
 namespace graphics
 {
@@ -21,6 +22,7 @@ namespace graphics
 	public:
 		Effect effect;
 		typedef typename Effect::Vertex Vertex;
+		typedef typename Effect::VertexShader::Output VSout;
 		typedef typename Mesh<Vertex> Mesh;
 	public:
 		// we need a pointer to the canvas in order to Draw
@@ -29,11 +31,6 @@ namespace graphics
 			canvas = a;
 		}
 
-		// it is used when we need to draw another object with another transform
-		void BindTransform(const Transform& in_transform)
-		{
-			transform = &in_transform;
-		}
 		void DrawMesh(const Mesh& in)
 		{
 			assert(canvas != nullptr);
@@ -65,17 +62,20 @@ namespace graphics
 		// model -> world (copy)
 		void ProcessVertices(const Mesh& in)
 		{
-			Mesh mesh = in.GetTransformMesh(*transform);
-			AssembleTriangles(mesh);
+			std::vector<VSout> vartices(in.vartices.size());
+
+			std::transform(in.vartices.begin(), in.vartices.end(), vartices.begin(), effect.vertex_shader);
+
+			AssembleTriangles(vartices, in.indices);
 		}
 		// assemble triagles using index list and does Backface Culling
-		void AssembleTriangles(Mesh& mesh)
+		void AssembleTriangles(std::vector<VSout>& vartices, const std::vector<uint64_t>& indices)
 		{
-			for (int i = 0; i < mesh.indices.size(); i += 3)
+			for (int i = 0; i < indices.size(); i += 3)
 			{
-				const glm::vec3& vec0 = mesh.vartices[mesh.indices[i]].pos;
-				const glm::vec3& vec1 = mesh.vartices[mesh.indices[i + 1]].pos;
-				const glm::vec3& vec2 = mesh.vartices[mesh.indices[i + 2]].pos;
+				const glm::vec3& vec0 = vartices[indices[i]].pos;
+				const glm::vec3& vec1 = vartices[indices[i + 1]].pos;
+				const glm::vec3& vec2 = vartices[indices[i + 2]].pos;
 
 				glm::vec3 lineA = vec1 + vec0;
 				glm::vec3 lineB = vec2 + vec0;
@@ -85,16 +85,16 @@ namespace graphics
 
 				if (glm::dot(normal, vec0) > 0.0f) continue;
 
-				ProcessTriangle(mesh.vartices[mesh.indices[i]], mesh.vartices[mesh.indices[i + 1]], mesh.vartices[mesh.indices[i + 2]]);
+				ProcessTriangle(vartices[indices[i]], vartices[indices[i + 1]], vartices[indices[i + 2]]);
 			}
 		}
 		// geometry shader???
-		void ProcessTriangle(Vertex& v0, Vertex& v1, Vertex& v2)
+		void ProcessTriangle(VSout& v0, VSout& v1, VSout& v2)
 		{
 			PostProcessTriangleVertices(v0, v1, v2);
 		}
 		// world -> view (perspective)
-		void PostProcessTriangleVertices(Vertex v0, Vertex v1, Vertex v2)
+		void PostProcessTriangleVertices(VSout v0, VSout v1, VSout v2)
 		{
 			NDC_To_Canvas2(v0);
 			NDC_To_Canvas2(v1);
@@ -103,7 +103,7 @@ namespace graphics
 			DrawTriangle(v0, v1, v2);
 		}
 		// wat this do?
-		void DrawTriangle(Vertex& v0, Vertex& v1, Vertex& v2)
+		void DrawTriangle(VSout& v0, VSout& v1, VSout& v2)
 		{
 			// sort by y
 			if (v1.pos.y < v0.pos.y) std::swap(v0, v1);
@@ -146,7 +146,7 @@ namespace graphics
 			}
 		}
 	private:
-		void DrawFlatTopTriangle(const Vertex& it0, const Vertex& it1, const Vertex& it2)
+		void DrawFlatTopTriangle(const VSout& it0, const VSout& it1, const VSout& it2)
 		{
 			// calulcate dVertex / dy
 			// change in interpolant for every 1 change in y
@@ -161,7 +161,7 @@ namespace graphics
 			DrawFlatTriangle(it0, it1, it2, dit0, dit1, itEdge1);
 		}
 
-		void DrawFlatBottomTriangle(const Vertex& it0, const Vertex& it1, const Vertex& it2)
+		void DrawFlatBottomTriangle(const VSout& it0, const VSout& it1, const VSout& it2)
 		{
 			// calulcate dVertex / dy
 			// change in interpolant for every 1 change in y
@@ -176,7 +176,7 @@ namespace graphics
 			DrawFlatTriangle(it0, it1, it2, dit0, dit1, itEdge1);
 		}
 
-		void DrawFlatTriangle(const Vertex& it0, const Vertex& it1, const Vertex& it2, const Vertex& dv0, const Vertex& dv1, Vertex itEdge1)
+		void DrawFlatTriangle(const VSout& it0, const VSout& it1, const VSout& it2, const VSout& dv0, const VSout& dv1, VSout itEdge1)
 		{
 			Vertex itEdge0 = it0;
 
@@ -244,7 +244,7 @@ namespace graphics
 
 			return out;
 		}
-		static void NDC_To_Canvas2(Vertex& vec)
+		static void NDC_To_Canvas2(VSout& vec)
 		{
 			const float xFactor = WIDTH / 2.0f;
 			const float yFactor = HEIGHT / 2.0f;
