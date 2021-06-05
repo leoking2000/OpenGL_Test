@@ -2,13 +2,15 @@
 #include <assert.h>
 #include <algorithm>
 #include <utility>
+#include <limits>
 
 graphics::Canvas::Canvas(uint32_t width, uint32_t height, const Color& clear_color)
 	:
 	m_clear_color(clear_color),
 	m_width(width),
 	m_height(height),
-	m_data(new Color[width * height])
+	m_data(new Color[width * height]),
+	z_buffer(new float[width * height])
 {
 	assert(m_width != 0);
 	assert(m_height != 0);
@@ -19,6 +21,7 @@ graphics::Canvas::Canvas(uint32_t width, uint32_t height, const Color& clear_col
 graphics::Canvas::~Canvas()
 {
 	delete m_data;
+	delete z_buffer;
 }
 
 void graphics::Canvas::Clear()
@@ -27,7 +30,8 @@ void graphics::Canvas::Clear()
 	{
 		for (uint32_t x = 0; x < m_width; x++)
 		{
-			PutPixel(x, y, m_clear_color);
+			m_data[y * m_width + x] = m_clear_color;
+			z_buffer[y * m_width + x] = std::numeric_limits<float>::max();
 		}
 	}
 }
@@ -38,6 +42,22 @@ void graphics::Canvas::PutPixel(uint32_t x, uint32_t y, const Color& c)
 	assert(y < m_height);
 
 	m_data[y * m_width + x] = c;
+}
+
+bool graphics::Canvas::Depth_TestSet(uint32_t x, uint32_t y, float z)
+{
+	assert(x < m_width);
+	assert(y < m_height);
+
+	const float old_z = z_buffer[y * m_width + x];
+
+	if (old_z > z)
+	{
+		z_buffer[y * m_width + x] = z;
+		return true;
+	}
+
+	return false;
 }
 
 graphics::Color graphics::Canvas::GetPixel(uint32_t x, uint32_t y)

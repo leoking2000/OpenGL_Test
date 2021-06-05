@@ -213,15 +213,19 @@ namespace graphics
 						// recover interpolated z from interpolated 1/z
 						const float z = 1.0f / iLine.pos.z;
 
-						// recover interpolated attributes
-						// (wasted effort in multiplying pos (x,y,z) here, but
-						//  not a huge deal, not worth the code complication to fix) 
-						const Vertex attr = iLine * z;
+						if (canvas->Depth_TestSet(x, y, z))
+						{
+							// recover interpolated attributes
+							// (wasted effort in multiplying pos (x,y,z) here, but
+							//  not a huge deal, not worth the code complication to fix) 
+							const Vertex attr = iLine * z;
 
-						// invoke pixel shader with interpolated vertex attributes	
-						graphics::Color c = effect.pixel_shader( attr );
-						// and use result to set the pixel color on the screen
-						canvas->PutPixel(x, y, c);
+							// invoke pixel shader with interpolated vertex attributes	
+							graphics::Color c = effect.pixel_shader(attr);
+							// and use result to set the pixel color on the screen
+							canvas->PutPixel(x, y, c);
+						}
+
 					}
 				}
 			}

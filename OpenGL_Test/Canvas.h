@@ -19,6 +19,8 @@ namespace graphics
 		uint32_t GetWidth();
 		uint32_t GetHeight();
 
+		bool Depth_TestSet(uint32_t x, uint32_t y, float z);
+
 		void SetClearColor(const Color& clear_color);
 
 
@@ -30,6 +32,7 @@ namespace graphics
 		uint32_t m_height;
 
 		Color* m_data = nullptr;
+		float* z_buffer = nullptr;
 	};
 }
 
