@@ -24,6 +24,7 @@ int graphics::Texture::GetHeight() const
 
 void graphics::Texture::Load(const char* file_name)
 {
+	delete m_data;
 	m_data = stbi_load(file_name, &m_width, &m_height, &m_bpp, 0);
 	assert(m_data);
 }
@@ -40,7 +41,4 @@ graphics::Color graphics::Texture::GetPixel(int x, int y) const
 	return { m_data[p], m_data[p + 1], m_data[p + 2] };
 }
 
-graphics::Color* graphics::Texture::__GetData()
-{
-	return nullptr;
-}
+

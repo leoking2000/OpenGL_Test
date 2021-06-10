@@ -16,8 +16,6 @@ namespace graphics
 
 		//void PutPixel(int x, int y, const graphics::Color& c);
 		graphics::Color GetPixel(int x, int y) const;
-
-		graphics::Color* __GetData();
 	private:
 		int m_width;
 		int m_height;
