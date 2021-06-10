@@ -23,6 +23,7 @@ namespace graphics
 		Effect effect;
 		typedef typename Effect::Vertex Vertex;
 		typedef typename Effect::VertexShader::Output VSout;
+		typedef typename Effect::GeometryShader::Output GSout;
 		typedef typename Mesh<Vertex> Mesh;
 	public:
 		// we need a pointer to the canvas in order to Draw
@@ -71,6 +72,8 @@ namespace graphics
 		// assemble triagles using index list and does Backface Culling
 		void AssembleTriangles(std::vector<VSout>& vartices, const std::vector<uint64_t>& indices)
 		{
+			int tri_id = 0;
+
 			for (int i = 0; i < indices.size(); i += 3)
 			{
 				const glm::vec3& vec0 = vartices[indices[i]].pos;
@@ -85,16 +88,20 @@ namespace graphics
 
 				if (glm::dot(normal, vec0) > 0.0f) continue;
 
-				ProcessTriangle(vartices[indices[i]], vartices[indices[i + 1]], vartices[indices[i + 2]]);
+				ProcessTriangle(vartices[indices[i]], vartices[indices[i + 1]], vartices[indices[i + 2]], tri_id);
+				tri_id++;
 			}
 		}
-		// geometry shader???
-		void ProcessTriangle(VSout& v0, VSout& v1, VSout& v2)
+		// geometry shader
+		void ProcessTriangle(VSout& v0, VSout& v1, VSout& v2, int tri_id)
 		{
-			PostProcessTriangleVertices(v0, v1, v2);
+
+			std::vector<GSout> tri = effect.geometry_shader(v0, v1, v2, tri_id);
+
+			PostProcessTriangleVertices(tri[0], tri[1], tri[2]);
 		}
 		// world -> view (perspective)
-		void PostProcessTriangleVertices(VSout v0, VSout v1, VSout v2)
+		void PostProcessTriangleVertices(GSout v0, GSout v1, GSout v2)
 		{
 			NDC_To_Canvas2(v0);
 			NDC_To_Canvas2(v1);
@@ -103,7 +110,7 @@ namespace graphics
 			DrawTriangle(v0, v1, v2);
 		}
 		// wat this do?
-		void DrawTriangle(VSout& v0, VSout& v1, VSout& v2)
+		void DrawTriangle(GSout& v0, GSout& v1, GSout& v2)
 		{
 			// sort by y
 			if (v1.pos.y < v0.pos.y) std::swap(v0, v1);
@@ -131,7 +138,7 @@ namespace graphics
 					(v1.pos.y - v0.pos.y) /
 					(v2.pos.y - v0.pos.y);
 
-				const Vertex vi = Math::Interpolate(v0, v2, alphaSplit);
+				const auto vi = Math::Interpolate(v0, v2, alphaSplit);
 
 				if (v1.pos.x < vi.pos.x) // major right
 				{
@@ -146,7 +153,7 @@ namespace graphics
 			}
 		}
 	private:
-		void DrawFlatTopTriangle(const VSout& it0, const VSout& it1, const VSout& it2)
+		void DrawFlatTopTriangle(const GSout& it0, const GSout& it1, const GSout& it2)
 		{
 			// calulcate dVertex / dy
 			// change in interpolant for every 1 change in y
@@ -161,7 +168,7 @@ namespace graphics
 			DrawFlatTriangle(it0, it1, it2, dit0, dit1, itEdge1);
 		}
 
-		void DrawFlatBottomTriangle(const VSout& it0, const VSout& it1, const VSout& it2)
+		void DrawFlatBottomTriangle(const GSout& it0, const GSout& it1, const GSout& it2)
 		{
 			// calulcate dVertex / dy
 			// change in interpolant for every 1 change in y
@@ -176,9 +183,9 @@ namespace graphics
 			DrawFlatTriangle(it0, it1, it2, dit0, dit1, itEdge1);
 		}
 
-		void DrawFlatTriangle(const VSout& it0, const VSout& it1, const VSout& it2, const VSout& dv0, const VSout& dv1, VSout itEdge1)
+		void DrawFlatTriangle(const GSout& it0, const GSout& it1, const GSout& it2, const GSout& dv0, const GSout& dv1, GSout itEdge1)
 		{
-			Vertex itEdge0 = it0;
+			auto itEdge0 = it0;
 
 			// calculate start and end scanlines
 			const int yStart = (int)ceil(it0.pos.y - 0.5f);
@@ -197,11 +204,11 @@ namespace graphics
 				// create scanline interpolant startpoint
 				// (some waste for interpolating x,y,z, but makes life easier not having
 				//  to split them off, and z will be needed in the future anyways...)
-				Vertex iLine = itEdge0;
+				auto iLine = itEdge0;
 
 				// calculate delta scanline interpolant / dx
 				const float dx = itEdge1.pos.x - itEdge0.pos.x;
-				const Vertex diLine = (itEdge1 - iLine) / dx;
+				const auto diLine = (itEdge1 - iLine) / dx;
 
 				// prestep scanline interpolant
 				iLine += diLine * (float(xStart) + 0.5f - itEdge0.pos.x);
@@ -218,7 +225,7 @@ namespace graphics
 							// recover interpolated attributes
 							// (wasted effort in multiplying pos (x,y,z) here, but
 							//  not a huge deal, not worth the code complication to fix) 
-							const Vertex attr = iLine * z;
+							const auto attr = iLine * z;
 
 							// invoke pixel shader with interpolated vertex attributes	
 							graphics::Color c = effect.pixel_shader(attr);
@@ -244,7 +251,7 @@ namespace graphics
 
 			return out;
 		}
-		static void NDC_To_Canvas2(VSout& vec)
+		static void NDC_To_Canvas2(GSout& vec)
 		{
 			const float xFactor = WIDTH / 2.0f;
 			const float yFactor = HEIGHT / 2.0f;

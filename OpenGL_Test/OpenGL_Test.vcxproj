@@ -169,6 +169,7 @@
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="DefaultGeometryShader.h" />
     <ClInclude Include="InterColorEffect.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Make_Shape.h" />

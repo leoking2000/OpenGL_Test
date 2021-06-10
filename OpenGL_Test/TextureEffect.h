@@ -2,7 +2,9 @@
 #include "math.h"
 #include "Texture.h"
 #include "Make_Shape.h"
+
 #include "DefaultVertexShader.h"
+#include "DefaultGeometryShader.h"
 
 namespace graphics
 {
@@ -92,10 +94,12 @@ namespace graphics
         };
     public:
         typedef typename DefaultVertexShader<Vertex> VertexShader;
+        typedef typename DefaultGeometryShader<Vertex> GeometryShader;
         class PixelShader
         {
         public:
-            Color operator()(const Vertex& vec)
+            template<class input>
+            Color operator()(const input& vec)
             {
                 Color c = texture->GetPixel((int)std::fmod(vec.texCord.x * tex_width + 0.5f, tex_xclamp),
                                             (int)std::fmod(vec.texCord.y * tex_height + 0.5f, tex_yclamp));
@@ -120,8 +124,9 @@ namespace graphics
             float tex_yclamp;
         };
     public:
-        PixelShader pixel_shader;
         VertexShader vertex_shader;
+        GeometryShader geometry_shader;
+        PixelShader pixel_shader;
     };
 
     static Mesh<TextureEffect::Vertex> MakeCube_TextureEffect(float size)

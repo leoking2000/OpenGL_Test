@@ -92,10 +92,12 @@ namespace graphics
         };
     public:
         typedef typename DefaultVertexShader<Vertex> VertexShader;
+        typedef typename DefaultGeometryShader<Vertex> GeometryShader;
         class PixelShader
         {
         public:
-            Color operator()(const Vertex& vec)
+            template<class input>
+            Color operator()(const input& vec)
             {
                 Color c = { uint8_t(vec.color.x * 255.0f), uint8_t(vec.color.y * 255.0f), uint8_t(vec.color.z * 255.0f) };
 
@@ -103,8 +105,9 @@ namespace graphics
             }
         };
     public:
-        PixelShader pixel_shader;
         VertexShader vertex_shader;
+        GeometryShader geometry_shader;
+        PixelShader pixel_shader;
     };
 
     static Mesh<InterColorEffect::Vertex> MakeCube_InterColorEffect(float size)
