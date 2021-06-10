@@ -176,6 +176,8 @@
     <ClInclude Include="math.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SolidCubeScene.h" />
+    <ClInclude Include="SolidGeometryEffect.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureEffect.h" />
     <ClInclude Include="Transform.h" />

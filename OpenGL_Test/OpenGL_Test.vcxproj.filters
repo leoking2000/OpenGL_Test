@@ -149,6 +149,12 @@
     <ClInclude Include="DefaultGeometryShader.h">
       <Filter>Game\Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="SolidGeometryEffect.h">
+      <Filter>Game\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidCubeScene.h">
+      <Filter>Game\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">

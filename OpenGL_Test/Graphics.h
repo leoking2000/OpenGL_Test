@@ -72,13 +72,15 @@ namespace graphics
 		// assemble triagles using index list and does Backface Culling
 		void AssembleTriangles(std::vector<VSout>& vartices, const std::vector<uint64_t>& indices)
 		{
-			int tri_id = 0;
+			const int end = indices.size() / 3;
 
-			for (int i = 0; i < indices.size(); i += 3)
+			for (int i = 0; i < end; i++)
 			{
-				const glm::vec3& vec0 = vartices[indices[i]].pos;
-				const glm::vec3& vec1 = vartices[indices[i + 1]].pos;
-				const glm::vec3& vec2 = vartices[indices[i + 2]].pos;
+				const int k = i * 3;
+
+				const glm::vec3& vec0 = vartices[indices[k]].pos;
+				const glm::vec3& vec1 = vartices[indices[k + 1]].pos;
+				const glm::vec3& vec2 = vartices[indices[k + 2]].pos;
 
 				glm::vec3 lineA = vec1 + vec0;
 				glm::vec3 lineB = vec2 + vec0;
@@ -88,8 +90,7 @@ namespace graphics
 
 				if (glm::dot(normal, vec0) > 0.0f) continue;
 
-				ProcessTriangle(vartices[indices[i]], vartices[indices[i + 1]], vartices[indices[i + 2]], tri_id);
-				tri_id++;
+				ProcessTriangle(vartices[indices[k]], vartices[indices[k + 1]], vartices[indices[k + 2]], i);
 			}
 		}
 		// geometry shader
