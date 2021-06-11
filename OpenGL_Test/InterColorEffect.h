@@ -3,6 +3,7 @@
 #include "Mesh.h"
 #include "Colors.h"
 #include "DefaultVertexShader.h"
+#include "DefaultGeometryShader.h"
 
 namespace graphics
 {
@@ -67,6 +68,12 @@ namespace graphics
             {
                 pos *= rhs;
                 color *= rhs;
+
+                return *this;
+            }
+            Vertex& operator*=(const glm::mat3x3& mat)
+            {
+                pos = pos * mat;
 
                 return *this;
             }

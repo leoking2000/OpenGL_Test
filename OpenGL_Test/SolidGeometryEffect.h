@@ -46,6 +46,12 @@ namespace graphics
 				pos *= rhs;
 				return *this;
 			}
+			Vertex& operator*=(const glm::mat3x3& mat)
+			{
+				pos = pos * mat;
+
+				return *this;
+			}
 			Vertex operator*(float rhs) const
 			{
 				return Vertex(*this) *= rhs;

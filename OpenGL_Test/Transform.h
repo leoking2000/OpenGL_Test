@@ -40,8 +40,7 @@ namespace graphics
             glm::mat3x3 rotation = glm::make_mat3x3(rZ) * glm::make_mat3x3(rX) * glm::make_mat3x3(rY);
               
 
-            glm::vec3 result = ver.pos * rotation;
-            ver.pos = result;
+            ver *= rotation;
             ver.pos += transform.pos;
         }
 	};

@@ -166,6 +166,7 @@
     <ClInclude Include="Colors.h" />
     <ClInclude Include="CubeWithTexture.h" />
     <ClInclude Include="DefaultVertexShader.h" />
+    <ClInclude Include="FlatShadingGS.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />

@@ -18,7 +18,6 @@ namespace graphics
 	{
 	private:
 		Canvas* canvas;
-		const Transform* transform = nullptr;
 	public:
 		Effect effect;
 		typedef typename Effect::Vertex Vertex;
@@ -34,9 +33,6 @@ namespace graphics
 
 		void DrawMesh(const Mesh& in)
 		{
-			assert(canvas != nullptr);
-			assert(transform != nullptr);
-
 			ProcessVertices(in);
 		}
 

@@ -1,4 +1,5 @@
 #pragma once
+#define GLM_GTX_rotate_vector
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
@@ -20,5 +21,11 @@ namespace Math
     T Interpolate(const T& a, const T& b, float alpha)
     {
         return a + (b - a) * alpha;
+    }
+
+    template<class T>
+    constexpr const T& clamp(const T& v, const T& lo, const T& hi)
+    {
+        return v < lo ? lo : hi < v ? hi : v;
     }
 }

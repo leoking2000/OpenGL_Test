@@ -155,6 +155,9 @@
     <ClInclude Include="SolidCubeScene.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="FlatShadingGS.h">
+      <Filter>Game\Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">

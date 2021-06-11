@@ -12,11 +12,10 @@ void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 {
 	window = in_window;
 
-	scenes.push_back(std::make_unique<ZbufferTest>());
-	scenes.push_back(std::make_unique<SolidCubeScene>());
 	scenes.push_back(std::make_unique<CubeWithTexture>("assets/wood.png"));
 	scenes.push_back(std::make_unique<CubeWithTexture>("assets/wood2.png"));
 	scenes.push_back(std::make_unique<CubeWithTexture>("assets/w2.jpg"));
+	scenes.push_back(std::make_unique<ZbufferTest>());
 
 	for (auto& scene : scenes)
 	{
