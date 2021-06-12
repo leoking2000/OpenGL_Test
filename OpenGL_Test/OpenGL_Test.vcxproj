@@ -157,6 +157,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="tiny_obj_loader.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="utilities.cpp" />
   </ItemGroup>
@@ -172,15 +173,18 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="DefaultGeometryShader.h" />
     <ClInclude Include="InterColorEffect.h" />
+    <ClInclude Include="LoadObjScene.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Make_Shape.h" />
     <ClInclude Include="math.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="OneColorEffect.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SolidCubeScene.h" />
     <ClInclude Include="SolidGeometryEffect.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureEffect.h" />
+    <ClInclude Include="tiny_obj_loader.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="utilities.h" />
     <ClInclude Include="ZbufferTest.h" />

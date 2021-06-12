@@ -109,34 +109,7 @@ namespace graphics
         };
     public:
         typedef typename DefaultVertexShader<Vertex> VertexShader;
-    public:
-        class GeometryShader
-        {
-        public:
-            typedef typename Vertex Output;
-        public:
-            std::vector<Output> operator()(Vertex& in0, Vertex& in1, Vertex& in2, size_t triangle_index) const
-            {
-
-                glm::vec3 light = diffuse * std::max(0.0f, -glm::dot(light_dir, in0.n));
-
-            
-                light.x = Math::clamp(light.x + ambient.x, 0.0f, 1.0f);
-                light.y = Math::clamp(light.y + ambient.y, 0.0f, 1.0f);
-                light.z = Math::clamp(light.z + ambient.z, 0.0f, 1.0f);
-        
-                in0.light = light;
-                in1.light = light;
-                in2.light = light;
-
-                return{ in0,in1,in2 };
-            }
-        public:
-            glm::vec3 light_dir{ 0.0f, 0.0f, 1.0f };
-
-            glm::vec3 diffuse{ 1.0f,1.0f,1.0f };
-            glm::vec3 ambient{ 0.1f,0.1f,0.1f };
-        };
+        typedef typename FlatShadingGS<Vertex> GeometryShader;
     public:
         class PixelShader
         {

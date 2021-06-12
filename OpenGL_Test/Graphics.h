@@ -78,8 +78,8 @@ namespace graphics
 				const glm::vec3& vec1 = vartices[indices[k + 1]].pos;
 				const glm::vec3& vec2 = vartices[indices[k + 2]].pos;
 
-				glm::vec3 lineA = vec1 + vec0;
-				glm::vec3 lineB = vec2 + vec0;
+				glm::vec3 lineA = vec1 - vec0;
+				glm::vec3 lineB = vec2 - vec0;
 				glm::vec3 normal = glm::cross(lineA, lineB);
 
 				normal = glm::normalize(normal);

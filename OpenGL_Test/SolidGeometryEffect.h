@@ -67,6 +67,7 @@ namespace graphics
 			}
 		public:
 			glm::vec3 pos;
+			glm::vec3 light{ 0.0f,0.0f,0.0f };
 		};
 		// default vs rotates and translates vertices
 		// does not touch attributes

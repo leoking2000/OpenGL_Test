@@ -87,6 +87,9 @@
     <ClCompile Include="CubeWithTexture.cpp">
       <Filter>Game\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="tiny_obj_loader.cpp">
+      <Filter>Engine\data structures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log.h">
@@ -157,6 +160,15 @@
     </ClInclude>
     <ClInclude Include="FlatShadingGS.h">
       <Filter>Game\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="tiny_obj_loader.h">
+      <Filter>Engine\data structures</Filter>
+    </ClInclude>
+    <ClInclude Include="OneColorEffect.h">
+      <Filter>Game\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadObjScene.h">
+      <Filter>Game\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
