@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "OneColorEffect.h"
+#include "GouraudShadingEffect.h"
 #include "Colors.h"
 
 class LoadObjScene : public Scene
@@ -8,7 +8,7 @@ class LoadObjScene : public Scene
 public:
 	LoadObjScene(const char* file)
 		:
-		cube(graphics::LoadObj<graphics::OneColorEffect::Vertex>(std::string(file)))
+		cube(graphics::LoadObjNormals<graphics::GouraudShadingEffect::Vertex>(std::string(file)))
 	{
 	}
 	void Init(graphics::Canvas* in_canvas, GLFWwindow* in_window) override
@@ -18,7 +18,6 @@ public:
 
 		cubetransform.Translate({ 0.0f, 0.0f, 5.0f });
 		gfx.effect.vertex_shader.BindTransform(cubetransform);
-		gfx.effect.pixel_shader.BindColor(graphics::Color{ 255u, 255u, 255u });
 	}
 
 	void Update(float dt) override
@@ -64,7 +63,7 @@ public:
 
 		if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
 		{
-			glm::vec3& vec = gfx.effect.geometry_shader.light_dir;
+			glm::vec3& vec = gfx.effect.vertex_shader.light_dir;
 			float z = cosf(speed * dt) * vec.z - sinf(speed * dt) * vec.x;
 			float x = sinf(speed * dt) * vec.z + cosf(speed * dt) * vec.x;
 
@@ -73,7 +72,7 @@ public:
 		}
 		if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 		{
-			glm::vec3& vec = gfx.effect.geometry_shader.light_dir;
+			glm::vec3& vec = gfx.effect.vertex_shader.light_dir;
 			float z = cosf(-speed * dt) * vec.z - sinf(-speed * dt) * vec.x;
 			float x = sinf(-speed * dt) * vec.z + cosf(-speed * dt) * vec.x;
 
@@ -89,8 +88,8 @@ public:
 	}
 
 private:
-	graphics::Graphics<graphics::OneColorEffect> gfx;
-	graphics::Mesh<graphics::OneColorEffect::Vertex> cube;
+	graphics::Graphics<graphics::GouraudShadingEffect> gfx;
+	graphics::Mesh<graphics::GouraudShadingEffect::Vertex> cube;
 	graphics::Transform cubetransform;
 	GLFWwindow* window;
 };

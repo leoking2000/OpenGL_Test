@@ -2,7 +2,6 @@
 
 #include "CubeWithTexture.h"
 #include "ZbufferTest.h"
-#include "SolidCubeScene.h"
 #include "LoadObjScene.h"
 
 Game::Game()

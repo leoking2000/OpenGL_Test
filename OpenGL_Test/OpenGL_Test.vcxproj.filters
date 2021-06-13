@@ -170,6 +170,12 @@
     <ClInclude Include="LoadObjScene.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="GouraudShadingVS.h">
+      <Filter>Game\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GouraudShadingEffect.h">
+      <Filter>Game\Effects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">

@@ -170,6 +170,8 @@
     <ClInclude Include="FlatShadingGS.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GouraudShadingEffect.h" />
+    <ClInclude Include="GouraudShadingVS.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="DefaultGeometryShader.h" />
     <ClInclude Include="InterColorEffect.h" />
