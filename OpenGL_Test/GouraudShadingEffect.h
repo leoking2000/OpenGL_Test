@@ -74,6 +74,7 @@ namespace graphics
                 pos = pos * mat;
                 n = n * mat;
 
+
                 return *this;
             }
             Vertex operator*(float rhs) const
@@ -100,13 +101,22 @@ namespace graphics
         class PixelShader
         {
         public:
-            template<class input>
-            Color operator()(const input& vec)
+            Color operator()(const VertexShader::Output& vec)
             {
-                Color c = { uint8_t(vec.color.x * 255.0f), uint8_t(vec.color.y * 255.0f), uint8_t(vec.color.z * 255.0f) };
+                Color c = color;
+
+                c.r = (uint8_t)Math::clamp(vec.color.x * (float)c.r, 0.0f, 255.0f);
+                c.g = (uint8_t)Math::clamp(vec.color.y * (float)c.g, 0.0f, 255.0f);
+                c.b = (uint8_t)Math::clamp(vec.color.z * (float)c.b, 0.0f, 255.0f);
 
                 return c;
             }
+            void BindColor(const Color& in_color)
+            {
+                color = in_color;
+            }
+        private:
+            Color color;
         };
     public:
         VertexShader vertex_shader;

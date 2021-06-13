@@ -101,7 +101,7 @@ public:
     }
     Output operator()(const Vertex& in) const
     {
-        Vertex trasformed = in;
+        Vertex trasformed(in.pos, in.n);
         graphics::Transform::TransformVertex(trasformed, *transform);
 
         glm::vec3 light = diffuse * std::max(0.0f, -glm::dot(light_dir, trasformed.n));
@@ -109,7 +109,7 @@ public:
         light.y = Math::clamp(light.y + ambient.y, 0.0f, 1.0f);
         light.z = Math::clamp(light.z + ambient.z, 0.0f, 1.0f);
 
-        Output out(trasformed.pos, trasformed.n);
+        Output out(trasformed.pos, light);
 
         return out;
     }

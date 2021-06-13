@@ -18,6 +18,7 @@ public:
 
 		cubetransform.Translate({ 0.0f, 0.0f, 5.0f });
 		gfx.effect.vertex_shader.BindTransform(cubetransform);
+		gfx.effect.pixel_shader.BindColor(Colors::Red);
 	}
 
 	void Update(float dt) override
