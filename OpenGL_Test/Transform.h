@@ -9,6 +9,7 @@ namespace graphics
 	public:
 		glm::vec3 pos;
 		glm::vec3 rot;
+        float scale = 1.0f;
 	public:
 		void RotateZ(float rad);
 		void RotateX(float rad);
@@ -39,7 +40,7 @@ namespace graphics
 
             glm::mat3x3 rotation = glm::make_mat3x3(rZ) * glm::make_mat3x3(rX) * glm::make_mat3x3(rY);
               
-
+            ver *= transform.scale;
             ver *= rotation;
             ver.pos += transform.pos;
         }

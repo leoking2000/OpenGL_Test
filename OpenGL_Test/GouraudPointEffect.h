@@ -3,18 +3,18 @@
 #include "Mesh.h"
 
 #include "DefaultGeometryShader.h"
-#include "GouraudShadingVS.h"
+#include "GouraudPointVS.h"
 #include "VertexPN.h"
 
 
 namespace graphics
 {
-    class GouraudShadingEffect
+    class GouraudPointEffect
     {
     public:
         typedef VertexPN Vertex;
     public:
-        typedef typename GouraudShadingVS<Vertex> VertexShader;
+        typedef typename GouraudPointVS<Vertex> VertexShader;
         typedef typename DefaultGeometryShader<VertexShader::Output> GeometryShader;
         class PixelShader
         {

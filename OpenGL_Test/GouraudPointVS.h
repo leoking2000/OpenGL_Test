@@ -5,10 +5,12 @@
 #include "VertexPC.h"
 
 template<class Vertex>
-class GouraudShadingVS
+class GouraudPointVS
 {
 public:
     typedef VertexPC Output;
+public:
+    glm::vec3 light_Pos{ 0.0f, 0.0f, 1.0f };
 public:
     void BindTransform(graphics::Transform& transform_in)
     {
@@ -19,7 +21,13 @@ public:
         Vertex trasformed(in.pos, in.n);
         graphics::Transform::TransformVertex(trasformed, *transform);
 
-        glm::vec3 light = diffuse * std::max(0.0f, -glm::dot(light_dir, trasformed.n));
+        const glm::vec3 delta = light_Pos - trasformed.pos;
+        const float     dist  = glm::length(delta);
+        const glm::vec3 dir   = glm::normalize(delta);
+
+        const float i = 1.0f / (A * dist * dist + B * dist + C);
+
+        glm::vec3 light = diffuse * i * std::max(0.0f, glm::dot(dir, trasformed.n));
         light.x = Math::clamp(light.x + ambient.x, 0.0f, 1.0f);
         light.y = Math::clamp(light.y + ambient.y, 0.0f, 1.0f);
         light.z = Math::clamp(light.z + ambient.z, 0.0f, 1.0f);
@@ -29,10 +37,11 @@ public:
         return out;
     }
 public:
-    glm::vec3 light_dir{ 0.0f, 0.0f, 1.0f };
-
     glm::vec3 diffuse{ 1.0f,1.0f,1.0f };
     glm::vec3 ambient{ 0.1f,0.1f,0.1f };
+    float A = 1.0f; //2.619f;
+    float B = 1.0f; //1.0f;
+    float C = 1.0f; //0.382f;
 private:
     graphics::Transform* transform;
 };

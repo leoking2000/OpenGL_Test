@@ -40,17 +40,20 @@
     <Filter Include="Engine\data structures">
       <UniqueIdentifier>{0ad880ab-c717-44d3-9a1e-a9b595a4e23d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Effects">
-      <UniqueIdentifier>{f8f93223-8285-496b-ab89-b4e6517b2e71}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Shaders">
       <UniqueIdentifier>{9647cc29-b925-4a0c-808e-fd4dbe741840}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Scenes">
       <UniqueIdentifier>{22c4dea0-036b-4e19-b38f-6d702ab6965c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Shaders">
+    <Filter Include="Engine\Effects">
+      <UniqueIdentifier>{f8f93223-8285-496b-ab89-b4e6517b2e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Shaders">
       <UniqueIdentifier>{9fa69722-82a1-48bc-bcc2-8e84ca52f3ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Vertexs">
+      <UniqueIdentifier>{991e8b1b-f0f2-4e4f-a808-bcf0f31a503b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +86,6 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Engine\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeWithTexture.cpp">
-      <Filter>Game\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="tiny_obj_loader.cpp">
       <Filter>Engine\data structures</Filter>
@@ -132,49 +132,64 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="TextureEffect.h">
-      <Filter>Game\Effects</Filter>
+      <Filter>Engine\Effects</Filter>
     </ClInclude>
     <ClInclude Include="InterColorEffect.h">
-      <Filter>Game\Effects</Filter>
+      <Filter>Engine\Effects</Filter>
     </ClInclude>
     <ClInclude Include="CubeWithTexture.h">
-      <Filter>Game\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="ZbufferTest.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="DefaultVertexShader.h">
-      <Filter>Game\Shaders</Filter>
+      <Filter>Engine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="DefaultGeometryShader.h">
-      <Filter>Game\Shaders</Filter>
+      <Filter>Engine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="SolidGeometryEffect.h">
-      <Filter>Game\Effects</Filter>
+      <Filter>Engine\Effects</Filter>
     </ClInclude>
     <ClInclude Include="SolidCubeScene.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="FlatShadingGS.h">
-      <Filter>Game\Shaders</Filter>
+      <Filter>Engine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="tiny_obj_loader.h">
       <Filter>Engine\data structures</Filter>
     </ClInclude>
     <ClInclude Include="OneColorEffect.h">
-      <Filter>Game\Effects</Filter>
+      <Filter>Engine\Effects</Filter>
     </ClInclude>
     <ClInclude Include="LoadObjScene.h">
       <Filter>Game\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="GouraudShadingVS.h">
-      <Filter>Game\Shaders</Filter>
+      <Filter>Engine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="GouraudShadingEffect.h">
-      <Filter>Game\Effects</Filter>
+      <Filter>Engine\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Game\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexP.h">
+      <Filter>Engine\Vertexs</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexPN.h">
+      <Filter>Engine\Vertexs</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexPC.h">
+      <Filter>Engine\Vertexs</Filter>
+    </ClInclude>
+    <ClInclude Include="GouraudPointVS.h">
+      <Filter>Engine\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="GouraudPointEffect.h">
+      <Filter>Engine\Effects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

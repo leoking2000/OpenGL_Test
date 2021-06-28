@@ -150,7 +150,6 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Canvas.cpp" />
-    <ClCompile Include="CubeWithTexture.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Log.cpp" />
@@ -170,6 +169,8 @@
     <ClInclude Include="FlatShadingGS.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GouraudPointEffect.h" />
+    <ClInclude Include="GouraudPointVS.h" />
     <ClInclude Include="GouraudShadingEffect.h" />
     <ClInclude Include="GouraudShadingVS.h" />
     <ClInclude Include="Graphics.h" />
@@ -189,6 +190,9 @@
     <ClInclude Include="tiny_obj_loader.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="utilities.h" />
+    <ClInclude Include="VertexP.h" />
+    <ClInclude Include="VertexPC.h" />
+    <ClInclude Include="VertexPN.h" />
     <ClInclude Include="ZbufferTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
