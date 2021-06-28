@@ -34,7 +34,6 @@ public:
     VertexPN& operator+=(const VertexPN& rhs)
     {
         pos += rhs.pos;
-        n += rhs.n;
 
         return *this;
     }
@@ -46,7 +45,6 @@ public:
     VertexPN& operator-=(const VertexPN& rhs)
     {
         pos -= rhs.pos;
-        n -= rhs.n;
 
         return *this;
     }
@@ -58,7 +56,6 @@ public:
     VertexPN& operator*=(float rhs)
     {
         pos *= rhs;
-        n *= rhs;
 
         return *this;
     }
@@ -78,13 +75,12 @@ public:
     VertexPN& operator/=(float rhs)
     {
         pos /= rhs;
-        n /= rhs;
 
         return *this;
     }
     VertexPN operator/(float rhs) const
     {
-        VertexPN out(pos / rhs, n / rhs);
+        VertexPN out(pos / rhs);
 
         return out;
     }
