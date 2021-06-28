@@ -19,10 +19,10 @@ public:
         n = glm::vec3(0.0f, 0.0f, 0.0f);
     }
 
-    VertexPN(glm::vec3 in_pos, glm::vec3 tex)
+    VertexPN(glm::vec3 in_pos, glm::vec3 norm)
     {
         pos = in_pos;
-        n = tex;
+        n = norm;
     }
 
     VertexPN(const glm::vec3& in_pos, const VertexPN& other)
@@ -34,6 +34,7 @@ public:
     VertexPN& operator+=(const VertexPN& rhs)
     {
         pos += rhs.pos;
+        n += rhs.n;
 
         return *this;
     }
@@ -45,6 +46,7 @@ public:
     VertexPN& operator-=(const VertexPN& rhs)
     {
         pos -= rhs.pos;
+        n -= rhs.n;
 
         return *this;
     }
@@ -56,6 +58,7 @@ public:
     VertexPN& operator*=(float rhs)
     {
         pos *= rhs;
+        n *= rhs;
 
         return *this;
     }
@@ -75,12 +78,13 @@ public:
     VertexPN& operator/=(float rhs)
     {
         pos /= rhs;
+        n /= rhs;
 
         return *this;
     }
     VertexPN operator/(float rhs) const
     {
-        VertexPN out(pos / rhs);
+        VertexPN out(pos / rhs, n / rhs);
 
         return out;
     }

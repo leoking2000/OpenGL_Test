@@ -191,6 +191,9 @@
     <ClInclude Include="GouraudPointEffect.h">
       <Filter>Engine\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="PhongPointEffect.h">
+      <Filter>Engine\Effects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="canvas.shader">
