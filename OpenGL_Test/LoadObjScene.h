@@ -7,10 +7,11 @@
 class LoadObjScene : public Scene
 {
 public:
-	LoadObjScene(const char* file)
+	LoadObjScene(const char* file, float scale)
 		:
 		mesh(graphics::LoadObjNormals<graphics::PhongPointEffect::Vertex>(std::string(file))),
-		sphere(graphics::LoadObj<graphics::OneColorEffect::Vertex>("assets/ccw_sphere.obj"))
+		sphere(graphics::LoadObj<graphics::OneColorEffect::Vertex>("assets/ccw_sphere.obj")),
+		scale(scale)
 	{
 	}
 	void Init(graphics::Canvas* in_canvas, GLFWwindow* in_window) override
@@ -20,6 +21,7 @@ public:
 		window = in_window;
 
 		meshtransform.Translate({ 0.0f, 0.0f, 3.0f });
+		meshtransform.scale = scale;
 		gfx.effect.vertex_shader.BindTransform(meshtransform);
 		gfx.effect.pixel_shader.BindColor(Colors::Gray);
 
@@ -32,7 +34,7 @@ public:
 
 	void Update(float dt) override
 	{
-		float speed = 3.0f;
+		float speed = 1.0f;
 
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 		{
@@ -139,6 +141,7 @@ private:
 	graphics::Mesh<graphics::OneColorEffect::Vertex> sphere;
 	graphics::Transform spheretransform;
 
+	float scale = 1.0f;
 
 	GLFWwindow* window;
 };

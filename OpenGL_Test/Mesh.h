@@ -7,6 +7,7 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include "Log.h"
 #include "tiny_obj_loader.h"
 
 namespace graphics
@@ -115,6 +116,7 @@ namespace graphics
 	static Mesh<V> LoadObjNormals(const std::string& filename)
 	{
 		Mesh<V> tl;
+		Logger::LogInfo(("Loading " + filename).c_str());
 
 		// check first line of file to see if CCW winding comment exists
 		bool isCCW = false;
@@ -205,7 +207,7 @@ namespace graphics
 				std::swap(tl.indices.back(), *std::prev(tl.indices.end(), 2));
 			}
 		}
-
+		Logger::LogInfo("OK!");
 		return tl;
 	}
 }

@@ -140,13 +140,18 @@ namespace graphics
                 const glm::vec3 delta = light_Pos - vec.worldPos;
                 const float     dist = glm::length(delta);
                 const glm::vec3 dir = glm::normalize(delta);
+                const glm::vec3 surf_norm = glm::normalize(vec.n);
 
                 const float i = 1.0f / (A * dist * dist + B * dist + C);
+                glm::vec3 light = diffuse * i * std::max(0.0f, glm::dot(dir, surf_norm));
 
-                glm::vec3 light = diffuse * i * std::max(0.0f, glm::dot(dir, glm::normalize(vec.n)));
-                light.x = Math::clamp(light.x + ambient.x, 0.0f, 1.0f);
-                light.y = Math::clamp(light.y + ambient.y, 0.0f, 1.0f);
-                light.z = Math::clamp(light.z + ambient.z, 0.0f, 1.0f);
+                const glm::vec3 reflection = glm::normalize((2.0f * glm::dot(delta, surf_norm)) * surf_norm - delta);
+                glm::vec3 specular = diffuse * specular_intensity * std::pow(
+                    std::max(0.0f, glm::dot(-reflection, glm::normalize(vec.worldPos))), specular_power);
+
+                light.x = Math::clamp(light.x + specular.x + ambient.x, 0.0f, 1.0f);
+                light.y = Math::clamp(light.y + specular.y + ambient.y, 0.0f, 1.0f);
+                light.z = Math::clamp(light.z + specular.z + ambient.z, 0.0f, 1.0f);
 
                 c.r = (uint8_t)Math::clamp(light.x * (float)c.r, 0.0f, 255.0f);
                 c.g = (uint8_t)Math::clamp(light.y * (float)c.g, 0.0f, 255.0f);
@@ -165,6 +170,9 @@ namespace graphics
             float A = 0.44f;
             float B = 0.35f;
             float C = 1.0f;
+            // specular
+            float specular_power = 30.0f;
+            float specular_intensity = 0.6f;
         private:
             Color color;
         };
