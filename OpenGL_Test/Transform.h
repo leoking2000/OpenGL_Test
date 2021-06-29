@@ -42,7 +42,7 @@ namespace graphics
               
             ver *= transform.scale;
             ver *= rotation;
-            ver.pos += transform.pos;
+            ver += transform.pos;
         }
 	};
 }

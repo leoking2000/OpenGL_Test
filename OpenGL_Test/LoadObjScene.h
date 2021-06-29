@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "GouraudPointEffect.h"
+#include "PhongPointEffect.h"
 #include "OneColorEffect.h"
 #include "Colors.h"
 
@@ -9,7 +9,7 @@ class LoadObjScene : public Scene
 public:
 	LoadObjScene(const char* file)
 		:
-		cube(graphics::LoadObjNormals<graphics::GouraudPointEffect::Vertex>(std::string(file))),
+		mesh(graphics::LoadObjNormals<graphics::PhongPointEffect::Vertex>(std::string(file))),
 		sphere(graphics::LoadObj<graphics::OneColorEffect::Vertex>("assets/ccw_sphere.obj"))
 	{
 	}
@@ -19,8 +19,8 @@ public:
 		gfx_sphere.Init(in_canvas);
 		window = in_window;
 
-		cubetransform.Translate({ 0.0f, 0.0f, 3.0f });
-		gfx.effect.vertex_shader.BindTransform(cubetransform);
+		meshtransform.Translate({ 0.0f, 0.0f, 3.0f });
+		gfx.effect.vertex_shader.BindTransform(meshtransform);
 		gfx.effect.pixel_shader.BindColor(Colors::Gray);
 
 		spheretransform.Translate({ 0.0f, 0.0f, 1.0f });
@@ -36,39 +36,39 @@ public:
 
 		if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
 		{
-			cubetransform.RotateX(speed * dt);
+			meshtransform.RotateX(speed * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
-			cubetransform.RotateX(-speed * dt);
+			meshtransform.RotateX(-speed * dt);
 		}
 
 		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		{
-			cubetransform.RotateY(speed * dt);
+			meshtransform.RotateY(speed * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 		{
-			cubetransform.RotateY(-speed * dt);
+			meshtransform.RotateY(-speed * dt);
 		}
 
 		if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
 		{
-			cubetransform.RotateZ(speed * dt);
+			meshtransform.RotateZ(speed * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
 		{
-			cubetransform.RotateZ(-speed * dt);
+			meshtransform.RotateZ(-speed * dt);
 		}
 
 		// fordward 
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
 		{
-			cubetransform.Translate(glm::vec3(0.0f, 0.0f, speed) * dt);
+			meshtransform.Translate(glm::vec3(0.0f, 0.0f, speed) * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		{
-			cubetransform.Translate(-glm::vec3(0.0f, 0.0f, speed) * dt);
+			meshtransform.Translate(-glm::vec3(0.0f, 0.0f, speed) * dt);
 		}
 
 		// light movement
@@ -120,20 +120,20 @@ public:
 		}
 		*/
 		
-		gfx.effect.vertex_shader.light_Pos = spheretransform.pos;
+		gfx.effect.pixel_shader.light_Pos = spheretransform.pos;
 	}
 
 
 	void Draw() override
 	{
 		gfx_sphere.DrawMesh(sphere);
-		gfx.DrawMesh(cube);
+		gfx.DrawMesh(mesh);
 	}
 
 private:
-	graphics::Graphics<graphics::GouraudPointEffect> gfx;
-	graphics::Mesh<graphics::GouraudPointEffect::Vertex> cube;
-	graphics::Transform cubetransform;
+	graphics::Graphics<graphics::PhongPointEffect> gfx;
+	graphics::Mesh<graphics::PhongPointEffect::Vertex> mesh;
+	graphics::Transform meshtransform;
 
 	graphics::Graphics<graphics::OneColorEffect> gfx_sphere;
 	graphics::Mesh<graphics::OneColorEffect::Vertex> sphere;
