@@ -1,5 +1,4 @@
 #include "Application.h"
-#include <iostream>
 
 int main() 
 {
@@ -12,8 +11,6 @@ int main()
 	}
 
 	app.TerminateApp();
-
-	std::cin.get();
 	
 	return return_code;
 }

@@ -18,6 +18,28 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="Core\FrameTimer.cpp" />
+    <ClCompile Include="Core\Log.cpp" />
+    <ClCompile Include="Core\main.cpp" />
+    <ClCompile Include="Core\utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Application.h" />
+    <ClInclude Include="Core\FrameTimer.h" />
+    <ClInclude Include="Core\Log.h" />
+    <ClInclude Include="Core\utilities.h" />
+    <ClInclude Include="Math\math.h" />
+    <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Math\Vector3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\earth.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="glew32.dll" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -144,29 +166,6 @@
       <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <None Include="canvas.shader" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Canvas.cpp" />
-    <ClCompile Include="FrameTimer.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Log.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="utilities.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Canvas.h" />
-    <ClInclude Include="FrameTimer.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Log.h" />
-    <ClInclude Include="math.h" />
-    <ClInclude Include="utilities.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Vector3.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

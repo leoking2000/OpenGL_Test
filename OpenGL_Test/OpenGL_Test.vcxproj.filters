@@ -8,88 +8,29 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{9647cc29-b925-4a0c-808e-fd4dbe741840}</UniqueIdentifier>
     </Filter>
-    <Filter Include="log">
-      <UniqueIdentifier>{63def1f7-4adb-47ba-ba3f-7dc631b7c9d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{64e44868-6fa0-41c7-b161-e7e1829ff198}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Core\Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{42428c53-ca59-4909-96f9-04a13af1982c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Header Files">
-      <UniqueIdentifier>{4fdfdbf2-bec4-40cf-a499-e1e96dee557e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Source Files">
-      <UniqueIdentifier>{463e875b-4d1d-4fcc-b8a4-3c44d9aca1a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\math">
-      <UniqueIdentifier>{d127b601-ba41-4cdb-96d8-db8d92318798}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Log.cpp">
-      <Filter>log</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="utilities.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Canvas.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FrameTimer.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Game\Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="Core\main.cpp" />
+    <ClCompile Include="Core\Log.cpp" />
+    <ClCompile Include="Core\FrameTimer.cpp" />
+    <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="Core\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Log.h">
-      <Filter>log</Filter>
-    </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="utilities.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Canvas.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FrameTimer.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Game\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math.h">
-      <Filter>Core\math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Core\math</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Core\math</Filter>
-    </ClInclude>
+    <ClInclude Include="Core\Log.h" />
+    <ClInclude Include="Core\FrameTimer.h" />
+    <ClInclude Include="Core\Application.h" />
+    <ClInclude Include="Math\math.h" />
+    <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="Core\utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="canvas.shader">
-      <Filter>Shaders</Filter>
-    </None>
+    <Image Include="assets\earth.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="glew32.dll" />
   </ItemGroup>
 </Project>
