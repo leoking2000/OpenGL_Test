@@ -47,10 +47,13 @@
       <Filter>Core\Utilities\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\IndexBuffer.cpp">
-      <Filter>Core\Source Files</Filter>
+      <Filter>Core\Utilities\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\VertexBuffer.cpp">
-      <Filter>Core\Source Files</Filter>
+      <Filter>Core\Utilities\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\VartexArray.cpp">
+      <Filter>Core\Utilities\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,10 +79,13 @@
       <Filter>Core\Utilities\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\IndexBuffer.h">
-      <Filter>Core\Header Files</Filter>
+      <Filter>Core\Utilities\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\VertexBuffer.h">
-      <Filter>Core\Header Files</Filter>
+      <Filter>Core\Utilities\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\VartexArray.h">
+      <Filter>Core\Utilities\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

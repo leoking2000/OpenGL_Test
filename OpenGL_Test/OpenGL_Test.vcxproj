@@ -26,6 +26,7 @@
     <ClCompile Include="Core\main.cpp" />
     <ClCompile Include="Core\utilities.cpp" />
     <ClCompile Include="Core\VertexBuffer.cpp" />
+    <ClCompile Include="Core\VartexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h" />
@@ -37,6 +38,7 @@
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Core\VertexBuffer.h" />
+    <ClInclude Include="Core\VartexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg" />

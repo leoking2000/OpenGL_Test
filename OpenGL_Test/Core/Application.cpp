@@ -4,6 +4,8 @@
 
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VartexArray.h"
+
 #include "Log.h"
 #include <string>
 
@@ -18,10 +20,6 @@ bool Application::Init()
 	glCall(glClearColor(0.0, 0.0, 0.5, 1.0f));
 	glCall(glClear(GL_COLOR_BUFFER_BIT));
 
-	// Vertex Array
-	glCall(glGenVertexArrays(1, &VertexArray));
-	glCall(glBindVertexArray(VertexArray));
-
 	// shader
 	ShaderProgram = CreateProgramShader("Shaders/Test.shader");
 	glCall(glUseProgram(ShaderProgram));
@@ -34,6 +32,8 @@ int Application::RunMainLoop()
 {
 	Logger::LogInfo("Main Loop has started");
 
+	VartexArray va;
+
 	// vertex buffer
 	float vertexs[] = {
 		0.0f,   0.25f,
@@ -43,8 +43,10 @@ int Application::RunMainLoop()
 
 	VertexBuffer vb(vertexs, sizeof(vertexs));
 
-	glCall(glEnableVertexAttribArray(0));
-	glCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0));
+	VartexArray::ElementType arr[1] = { VartexArray::FLOAT2 };
+	VartexArray::Layout<1> layout(arr);
+
+	va.AddBuffer(vb, layout);
 
 	// index buffer
 	uint32_t indices[] = { 0 , 1 , 2 };

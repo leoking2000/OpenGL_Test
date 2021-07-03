@@ -17,7 +17,6 @@ private:
 	GLFWwindow* m_window;
 	FrameTimer ft;
 private:
-	uint32_t VertexArray;
 	uint32_t ShaderProgram;
 
 };
