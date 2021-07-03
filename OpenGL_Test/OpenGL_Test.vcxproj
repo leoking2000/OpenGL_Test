@@ -21,24 +21,29 @@
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\FrameTimer.cpp" />
+    <ClCompile Include="Core\IndexBuffer.cpp" />
     <ClCompile Include="Core\Log.cpp" />
     <ClCompile Include="Core\main.cpp" />
     <ClCompile Include="Core\utilities.cpp" />
+    <ClCompile Include="Core\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\FrameTimer.h" />
+    <ClInclude Include="Core\IndexBuffer.h" />
     <ClInclude Include="Core\Log.h" />
     <ClInclude Include="Core\utilities.h" />
     <ClInclude Include="Math\math.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
+    <ClInclude Include="Core\VertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
+    <None Include="Shaders\Test.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

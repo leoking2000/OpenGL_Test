@@ -1,10 +1,4 @@
 #include "utilities.h"
-
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <cinttypes>
-#include <assert.h>
-
 #include <malloc.h>
 #include <fstream>
 #include <string>
@@ -24,7 +18,7 @@ uint32_t CompileShader(const char* source, uint32_t type)
 	glCall(glGetShaderiv(id, GL_COMPILE_STATUS, &resalt));
 	if (resalt == GL_FALSE)
 	{
-		Logger::LogError(type == GL_VERTEX_SHADER ? "VERTEX SHADER COMPILE ERROR" : "FRAGMENT SHADER COMPILE ERROR");
+		Logger::LogError(type == GL_VERTEX_SHADER ? "<VERTEX SHADER COMPILE ERROR>" : "<FRAGMENT SHADER COMPILE ERROR>");
 		int len;
 		glCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &len));
 		char* msg = (char*)alloca(len * sizeof(char));
@@ -62,6 +56,9 @@ uint32_t CreateProgramShader(const char* vertexS, const char* fragS)
 uint32_t CreateProgramShader(const char* filename)
 {
 	std::ifstream file(filename);
+	std::string msg = "Creating shader from file ";
+	msg += filename;
+	Logger::LogInfo(msg.c_str());
 
 	enum ShaderType
 	{
@@ -93,7 +90,14 @@ uint32_t CreateProgramShader(const char* filename)
 		}
 	}
 
-	return CreateProgramShader(ss[0].str().c_str(), ss[1].str().c_str());
+	uint32_t program = CreateProgramShader(ss[0].str().c_str(), ss[1].str().c_str());
+
+	msg = "Creation of shader from file ";
+	msg += filename;
+	msg += " Has completed";
+	Logger::LogInfo(msg.c_str());
+
+	return program;
 }
 
 void glClearError()

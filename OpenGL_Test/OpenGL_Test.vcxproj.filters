@@ -8,22 +8,79 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{9647cc29-b925-4a0c-808e-fd4dbe741840}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{bf87d33d-f105-4f69-96b4-d74083d478d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Header Files">
+      <UniqueIdentifier>{01b1d71d-2a60-46ae-a549-b1f24b82f048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Source Files">
+      <UniqueIdentifier>{d3ba57d4-b37b-4fe6-a112-e70969867fb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{33e4d775-cae1-4143-9476-30bfc3d3c855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities">
+      <UniqueIdentifier>{274dd1f1-f155-4259-b2f6-2f0f59708716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities\Header Files">
+      <UniqueIdentifier>{14270543-0a75-402c-9c75-67803242219b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities\Source Files">
+      <UniqueIdentifier>{185669b1-c2b6-4f4e-a457-54591129dbae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\main.cpp" />
-    <ClCompile Include="Core\Log.cpp" />
-    <ClCompile Include="Core\FrameTimer.cpp" />
-    <ClCompile Include="Core\Application.cpp" />
-    <ClCompile Include="Core\utilities.cpp" />
+    <ClCompile Include="Core\Application.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\main.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\utilities.cpp">
+      <Filter>Core\Utilities\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Log.cpp">
+      <Filter>Core\Utilities\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\FrameTimer.cpp">
+      <Filter>Core\Utilities\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\IndexBuffer.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\VertexBuffer.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Log.h" />
-    <ClInclude Include="Core\FrameTimer.h" />
-    <ClInclude Include="Core\Application.h" />
-    <ClInclude Include="Math\math.h" />
-    <ClInclude Include="Math\Vector2.h" />
-    <ClInclude Include="Math\Vector3.h" />
-    <ClInclude Include="Core\utilities.h" />
+    <ClInclude Include="Core\Application.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\utilities.h">
+      <Filter>Core\Utilities\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\FrameTimer.h">
+      <Filter>Core\Utilities\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Log.h">
+      <Filter>Core\Utilities\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IndexBuffer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\VertexBuffer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">
@@ -32,5 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
+    <None Include="Shaders\Test.shader">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
