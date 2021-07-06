@@ -31,30 +31,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Application.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\main.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\utilities.cpp">
+    <ClCompile Include="Core\utilities\FrameTimer.cpp">
       <Filter>Core\Utilities\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Log.cpp">
+    <ClCompile Include="Core\utilities\Log.cpp">
       <Filter>Core\Utilities\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\FrameTimer.cpp">
-      <Filter>Core\Utilities\Source Files</Filter>
+    <ClCompile Include="Core\graphics\IndexBuffer.cpp">
+      <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\IndexBuffer.cpp">
-      <Filter>Core\Utilities\Source Files</Filter>
+    <ClCompile Include="Core\graphics\VartexArray.cpp">
+      <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\VertexBuffer.cpp">
-      <Filter>Core\Utilities\Source Files</Filter>
+    <ClCompile Include="Core\graphics\VertexBuffer.cpp">
+      <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\VartexArray.cpp">
-      <Filter>Core\Utilities\Source Files</Filter>
+    <ClCompile Include="Core\graphics\Shader.cpp" />
+    <ClCompile Include="Core\Application_GLFW.cpp">
+      <Filter>Core\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\graphics\Renderer.cpp" />
+    <ClCompile Include="Platform\MainWindow_GLFW.cpp" />
+    <ClCompile Include="Platform\OpenGL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">
@@ -69,24 +70,29 @@
     <ClInclude Include="Math\Vector3.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="Core\utilities.h">
+    <ClInclude Include="Core\utilities\FrameTimer.h">
       <Filter>Core\Utilities\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\FrameTimer.h">
+    <ClInclude Include="Core\utilities\utilities.h">
       <Filter>Core\Utilities\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Log.h">
+    <ClInclude Include="Core\utilities\Log.h">
       <Filter>Core\Utilities\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\IndexBuffer.h">
-      <Filter>Core\Utilities\Header Files</Filter>
+    <ClInclude Include="Core\graphics\IndexBuffer.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\VertexBuffer.h">
-      <Filter>Core\Utilities\Header Files</Filter>
+    <ClInclude Include="Core\graphics\VartexArray.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\VartexArray.h">
-      <Filter>Core\Utilities\Header Files</Filter>
+    <ClInclude Include="Core\graphics\VertexBuffer.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\graphics\Shader.h" />
+    <ClInclude Include="Core\graphics\Layout.h" />
+    <ClInclude Include="Core\graphics\Renderer.h" />
+    <ClInclude Include="Platform\MainWindow.h" />
+    <ClInclude Include="Platform\OpenGL.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">

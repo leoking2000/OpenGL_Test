@@ -1,10 +1,67 @@
-#include "utilities.h"
+#include "Shader.h"
+#include "Platform/OpenGL.h"
+#include "Core/utilities/Log.h"
+
 #include <malloc.h>
 #include <fstream>
 #include <string>
 #include <sstream>
 
-#include "Log.h"
+using namespace graphics;
+
+graphics::Shader::Shader(const char* filename)
+{
+	id = CreateProgramShader("Shaders/Test.shader");
+	glCall(glUseProgram(id));
+}
+
+graphics::Shader::~Shader()
+{
+	glCall(glDeleteProgram(id));
+}
+
+void graphics::Shader::Bind() const
+{
+	glCall(glUseProgram(id));
+}
+
+void graphics::Shader::UnBind() const
+{
+	glCall(glUseProgram(0));
+}
+
+bool graphics::Shader::SetUniform(const char* name, float num)
+{
+	glCall(int location = glGetUniformLocation(id, name));
+	if (location != -1)
+	{
+		glCall(glProgramUniform1f(id, location, num));
+		return true;
+	}
+	return false;
+}
+
+bool graphics::Shader::SetUniform(const char* name, float x, float y)
+{
+	glCall(int location = glGetUniformLocation(id, name));
+	if (location != -1)
+	{
+		glCall(glProgramUniform2f(id, location, x, y));
+		return true;
+	}
+	return false;
+}
+
+bool graphics::Shader::SetUniform(const char* name, float x, float y, float z)
+{
+	glCall(int location = glGetUniformLocation(id, name));
+	if (location != -1)
+	{
+		glCall(glProgramUniform3f(id, location, x, y, z));
+		return true;
+	}
+	return false;
+}
 
 uint32_t CompileShader(const char* source, uint32_t type)
 {
@@ -31,7 +88,7 @@ uint32_t CompileShader(const char* source, uint32_t type)
 	return id;
 }
 
-uint32_t CreateProgramShader(const char* vertexS, const char* fragS)
+uint32_t CreateProgramShaderVF(const char* vertexS, const char* fragS)
 {
 	glClearError();
 	uint32_t programid = glCreateProgram();
@@ -53,7 +110,7 @@ uint32_t CreateProgramShader(const char* vertexS, const char* fragS)
 	return programid;
 }
 
-uint32_t CreateProgramShader(const char* filename)
+uint32_t graphics::CreateProgramShader(const char* filename)
 {
 	std::ifstream file(filename);
 	std::string msg = "Creating shader from file ";
@@ -90,7 +147,7 @@ uint32_t CreateProgramShader(const char* filename)
 		}
 	}
 
-	uint32_t program = CreateProgramShader(ss[0].str().c_str(), ss[1].str().c_str());
+	uint32_t program = CreateProgramShaderVF(ss[0].str().c_str(), ss[1].str().c_str());
 
 	msg = "Creation of shader from file ";
 	msg += filename;
@@ -98,21 +155,4 @@ uint32_t CreateProgramShader(const char* filename)
 	Logger::LogInfo(msg.c_str());
 
 	return program;
-}
-
-void glClearError()
-{
-	while (glGetError());
-}
-
-bool glCheckError()
-{
-	bool haserror = false;
-	while (GLenum error = glGetError())
-	{
-		Logger::LogError(std::to_string(error).c_str());
-		haserror = true;
-	}
-
-	return haserror;
 }

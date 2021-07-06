@@ -19,26 +19,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Application.cpp" />
-    <ClCompile Include="Core\FrameTimer.cpp" />
-    <ClCompile Include="Core\IndexBuffer.cpp" />
-    <ClCompile Include="Core\Log.cpp" />
+    <ClCompile Include="Core\Application_GLFW.cpp" />
+    <ClCompile Include="Core\graphics\Shader.cpp" />
+    <ClCompile Include="Platform\OpenGL.cpp" />
+    <ClCompile Include="Core\utilities\FrameTimer.cpp" />
+    <ClCompile Include="Core\graphics\IndexBuffer.cpp" />
+    <ClCompile Include="Core\utilities\Log.cpp" />
     <ClCompile Include="Core\main.cpp" />
-    <ClCompile Include="Core\utilities.cpp" />
-    <ClCompile Include="Core\VertexBuffer.cpp" />
-    <ClCompile Include="Core\VartexArray.cpp" />
+    <ClCompile Include="Core\graphics\VertexBuffer.cpp" />
+    <ClCompile Include="Core\graphics\VartexArray.cpp" />
+    <ClCompile Include="Platform\MainWindow_GLFW.cpp" />
+    <ClCompile Include="Core\graphics\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h" />
-    <ClInclude Include="Core\FrameTimer.h" />
-    <ClInclude Include="Core\IndexBuffer.h" />
-    <ClInclude Include="Core\Log.h" />
-    <ClInclude Include="Core\utilities.h" />
+    <ClInclude Include="Core\graphics\Layout.h" />
+    <ClInclude Include="Core\graphics\Shader.h" />
+    <ClInclude Include="Platform\OpenGL.h" />
+    <ClInclude Include="Core\utilities\FrameTimer.h" />
+    <ClInclude Include="Core\graphics\IndexBuffer.h" />
+    <ClInclude Include="Core\utilities\Log.h" />
+    <ClInclude Include="Core\utilities\utilities.h" />
+    <ClInclude Include="Platform\MainWindow.h" />
     <ClInclude Include="Math\math.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
-    <ClInclude Include="Core\VertexBuffer.h" />
-    <ClInclude Include="Core\VartexArray.h" />
+    <ClInclude Include="Core\graphics\VertexBuffer.h" />
+    <ClInclude Include="Core\graphics\VartexArray.h" />
+    <ClInclude Include="Core\graphics\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg" />
@@ -145,7 +153,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Start\Dev\Libs\OpenGL_Template\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\OpenGL_Test;C:\Start\Dev\Libs\OpenGL_Template\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

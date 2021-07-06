@@ -1,23 +1,20 @@
-#pragma once
-#include <GLFW/glfw3.h>
-#include "FrameTimer.h"
+#include "Platform/MainWindow.h"
+#include "utilities/FrameTimer.h"
 
-#define WIDTH 900
-#define HEIGHT 900
-
-class Application
+namespace Core
 {
-public:
-	Application(GLFWwindow* window);
-	bool Init();
-	int RunMainLoop();
-	void TerminateApp();
+	class Application
+	{
+	public:
+		Application();
+		bool Init();
+		int RunMainLoop();
+		void TerminateApp();
 
-private:
-	GLFWwindow* m_window;
-	FrameTimer ft;
-private:
-	uint32_t ShaderProgram;
+	private:
+		FrameTimer ft;
+	};
+}
 
-};
+
 

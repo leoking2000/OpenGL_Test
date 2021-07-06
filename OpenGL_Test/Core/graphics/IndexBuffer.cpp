@@ -1,4 +1,7 @@
 #include "IndexBuffer.h"
+#include "Platform/OpenGL.h"
+
+using namespace graphics;
 
 IndexBuffer::IndexBuffer(const uint32_t* data, uint32_t count)
 	:
