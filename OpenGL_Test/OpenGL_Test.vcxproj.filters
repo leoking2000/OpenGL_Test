@@ -40,22 +40,23 @@
     <ClCompile Include="Core\utilities\Log.cpp">
       <Filter>Core\Utilities\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\graphics\IndexBuffer.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\graphics\VartexArray.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\graphics\VertexBuffer.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\graphics\Shader.cpp" />
     <ClCompile Include="Core\Application_GLFW.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\graphics\Renderer.cpp" />
     <ClCompile Include="Platform\MainWindow_GLFW.cpp" />
     <ClCompile Include="Platform\OpenGL.cpp" />
+    <ClCompile Include="Core\utilities\stb_image.cpp" />
+    <ClCompile Include="Core\graphics\Abstractions\IndexBuffer.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\graphics\Abstractions\VartexArray.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\graphics\Abstractions\VertexBuffer.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">
@@ -79,20 +80,20 @@
     <ClInclude Include="Core\utilities\Log.h">
       <Filter>Core\Utilities\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\graphics\IndexBuffer.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\graphics\VartexArray.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\graphics\VertexBuffer.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\graphics\Shader.h" />
-    <ClInclude Include="Core\graphics\Layout.h" />
     <ClInclude Include="Core\graphics\Renderer.h" />
     <ClInclude Include="Platform\MainWindow.h" />
     <ClInclude Include="Platform\OpenGL.h" />
+    <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
+    <ClInclude Include="Core\graphics\Abstractions\VartexArray.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\graphics\Abstractions\VertexBuffer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">

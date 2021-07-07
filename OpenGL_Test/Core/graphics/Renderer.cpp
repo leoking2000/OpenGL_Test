@@ -13,3 +13,8 @@ void graphics::Renderer::Draw(const VartexArray& va, const IndexBuffer& ib, cons
 
 	glCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
+
+void graphics::Renderer::SetClearColor(float r, float g, float b, float a)
+{
+	glCall(glClearColor(r, g, b, a));
+}

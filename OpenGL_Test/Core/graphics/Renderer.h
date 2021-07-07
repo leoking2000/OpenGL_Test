@@ -1,14 +1,15 @@
 #pragma once
 #include <cinttypes>
-#include "VartexArray.h"
-#include "IndexBuffer.h"
-#include "Shader.h"
+#include "Abstractions/VartexArray.h"
+#include "Abstractions/IndexBuffer.h"
+#include "Abstractions/Shader.h"
 
 namespace graphics
 {
 	class Renderer
 	{
 	public:
+		void SetClearColor(float r, float g, float b, float a);
 		void Draw(const VartexArray& va, const IndexBuffer& ib, const Shader& shader);
 
 	};

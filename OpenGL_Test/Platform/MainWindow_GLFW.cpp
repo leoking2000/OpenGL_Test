@@ -44,6 +44,7 @@ bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, b
 	if (!window.glfwwindow)
 	{
 		Logger::LogError("Window creation failed.");
+		glfwTerminate();
 		return false;
 	}
 

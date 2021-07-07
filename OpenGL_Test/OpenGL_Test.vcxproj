@@ -20,32 +20,33 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application_GLFW.cpp" />
-    <ClCompile Include="Core\graphics\Shader.cpp" />
+    <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
+    <ClCompile Include="Core\utilities\stb_image.cpp" />
     <ClCompile Include="Platform\OpenGL.cpp" />
     <ClCompile Include="Core\utilities\FrameTimer.cpp" />
-    <ClCompile Include="Core\graphics\IndexBuffer.cpp" />
+    <ClCompile Include="Core\graphics\Abstractions\IndexBuffer.cpp" />
     <ClCompile Include="Core\utilities\Log.cpp" />
     <ClCompile Include="Core\main.cpp" />
-    <ClCompile Include="Core\graphics\VertexBuffer.cpp" />
-    <ClCompile Include="Core\graphics\VartexArray.cpp" />
+    <ClCompile Include="Core\graphics\Abstractions\VertexBuffer.cpp" />
+    <ClCompile Include="Core\graphics\Abstractions\VartexArray.cpp" />
     <ClCompile Include="Platform\MainWindow_GLFW.cpp" />
     <ClCompile Include="Core\graphics\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h" />
-    <ClInclude Include="Core\graphics\Layout.h" />
-    <ClInclude Include="Core\graphics\Shader.h" />
+    <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
+    <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
     <ClInclude Include="Platform\OpenGL.h" />
     <ClInclude Include="Core\utilities\FrameTimer.h" />
-    <ClInclude Include="Core\graphics\IndexBuffer.h" />
+    <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h" />
     <ClInclude Include="Core\utilities\Log.h" />
     <ClInclude Include="Core\utilities\utilities.h" />
     <ClInclude Include="Platform\MainWindow.h" />
     <ClInclude Include="Math\math.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
-    <ClInclude Include="Core\graphics\VertexBuffer.h" />
-    <ClInclude Include="Core\graphics\VartexArray.h" />
+    <ClInclude Include="Core\graphics\Abstractions\VertexBuffer.h" />
+    <ClInclude Include="Core\graphics\Abstractions\VartexArray.h" />
     <ClInclude Include="Core\graphics\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
