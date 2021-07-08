@@ -3,6 +3,7 @@
 #include "Abstractions/VartexArray.h"
 #include "Abstractions/IndexBuffer.h"
 #include "Abstractions/Shader.h"
+#include "Abstractions/Texture.h"
 
 namespace graphics
 {

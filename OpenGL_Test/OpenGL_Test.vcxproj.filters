@@ -57,6 +57,7 @@
       <Filter>Core\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
+    <ClCompile Include="Core\graphics\Abstractions\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">
@@ -94,6 +95,8 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
+    <ClInclude Include="Core\graphics\Abstractions\Texture.h" />
+    <ClInclude Include="Core\graphics\Abstractions\Colors.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">

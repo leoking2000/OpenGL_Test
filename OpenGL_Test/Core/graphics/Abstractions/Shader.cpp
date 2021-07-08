@@ -63,6 +63,17 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y, float z)
 	return false;
 }
 
+bool graphics::Shader::SetUniform(const char* name, int i)
+{
+	glCall(int location = glGetUniformLocation(id, name));
+	if (location != -1)
+	{
+		glCall(glProgramUniform1i(id, location, i));
+		return true;
+	}
+	return false;
+}
+
 uint32_t CompileShader(const char* source, uint32_t type)
 {
 	glClearError();

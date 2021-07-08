@@ -18,6 +18,8 @@ namespace graphics
 		bool SetUniform(const char* name, float x, float y);
 		bool SetUniform(const char* name, float x, float y, float z);
 
+		bool SetUniform(const char* name, int i);
+
 	private:
 		uint32_t id;
 		// cash uniform location?

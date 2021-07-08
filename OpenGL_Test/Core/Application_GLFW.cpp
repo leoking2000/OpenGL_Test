@@ -33,17 +33,17 @@ int Core::Application::RunMainLoop()
 
 	// vertex buffer
 	float vertexs[] = {
-	   -0.25f,  0.25f, 1.0f, 0.0f, 0.0f,
-	    0.25f,  0.25f, 0.0f, 0.0f, 1.0f,
-	   -0.25f, -0.25f, 1.0f, 1.0f, 1.0f,
-	    0.25f, -0.25f, 0.0f, 1.0f, 0.0f
+		// pos             // color             // tex cord
+	   -0.5f,  0.5f,     1.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+		0.5f,  0.5f,     0.0f, 0.0f, 1.0f,    1.0f, 0.0f,
+	   -0.5f, -0.5f,     1.0f, 1.0f, 1.0f,    0.0f, 1.0f,
+	    0.5f, -0.5f,     0.0f, 1.0f, 0.0f,	  1.0f, 1.0f
 	};
 
 	VertexBuffer vb(vertexs, sizeof(vertexs));
 
-	ElementType arr[2] = { FLOAT2, FLOAT3_N };
-	Layout<2> layout(arr);
-
+	ElementType arr[3] = { FLOAT2, FLOAT3_N, FLOAT2 };
+	Layout<3> layout(arr);
 	va.AddBuffer(vb, layout);
 
 	// index buffer
@@ -57,6 +57,9 @@ int Core::Application::RunMainLoop()
 	float Xoffset = 0.0f;
 	float Yoffset = 0.0f;
 
+	Texture tex("assets/earth.jpg");
+	tex.Bind();
+
 	Shader shader("Shader/Test.shader");
 
 	Renderer renderer;
@@ -69,6 +72,7 @@ int Core::Application::RunMainLoop()
 		/////////////////////////////////////////////////////////
 		
 		shader.SetUniform("u_offset", Xoffset, Yoffset);
+		shader.SetUniform("u_Tex", 0);
 
 		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
