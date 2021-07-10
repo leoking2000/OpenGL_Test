@@ -28,7 +28,7 @@
     <ClCompile Include="Core\utilities\Log.cpp" />
     <ClCompile Include="Core\main.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\VertexBuffer.cpp" />
-    <ClCompile Include="Core\graphics\Abstractions\VartexArray.cpp" />
+    <ClCompile Include="Core\graphics\Abstractions\VertexArray.cpp" />
     <ClCompile Include="Platform\MainWindow_GLFW.cpp" />
     <ClCompile Include="Core\graphics\Renderer.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\Texture.cpp" />
@@ -38,6 +38,8 @@
     <ClInclude Include="Core\graphics\Abstractions\Colors.h" />
     <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
     <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
+    <ClInclude Include="Core\Tests\RenderTexture.h" />
+    <ClInclude Include="Core\Tests\Test.h" />
     <ClInclude Include="Platform\OpenGL.h" />
     <ClInclude Include="Core\utilities\FrameTimer.h" />
     <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h" />
@@ -48,12 +50,13 @@
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Core\graphics\Abstractions\VertexBuffer.h" />
-    <ClInclude Include="Core\graphics\Abstractions\VartexArray.h" />
+    <ClInclude Include="Core\graphics\Abstractions\VertexArray.h" />
     <ClInclude Include="Core\graphics\Renderer.h" />
     <ClInclude Include="Core\graphics\Abstractions\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg" />
+    <Image Include="assets\sun.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />

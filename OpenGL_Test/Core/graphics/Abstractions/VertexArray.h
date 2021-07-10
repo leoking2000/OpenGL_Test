@@ -4,11 +4,11 @@
 
 namespace graphics {
 
-	class VartexArray
+	class VertexArray
 	{
 	public:
-		VartexArray();
-		~VartexArray();
+		VertexArray();
+		~VertexArray();
 
 		void Bind() const;
 		void UnBind() const;

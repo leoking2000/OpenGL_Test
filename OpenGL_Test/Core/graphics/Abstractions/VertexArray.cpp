@@ -1,32 +1,32 @@
-#include "VartexArray.h"
+#include "VertexArray.h"
 #include "Platform/OpenGL.h"
 #include "Core/utilities/Log.h"
 #include <assert.h>
 
 using namespace graphics;
 
-graphics::VartexArray::VartexArray()
+graphics::VertexArray::VertexArray()
 {
 	glCall(glGenVertexArrays(1, &m_id));
 	glCall(glBindVertexArray(m_id));
 }
 
-graphics::VartexArray::~VartexArray()
+graphics::VertexArray::~VertexArray()
 {
 	glCall(glDeleteVertexArrays(1, &m_id));
 }
 
-void graphics::VartexArray::Bind() const
+void graphics::VertexArray::Bind() const
 {
 	glCall(glBindVertexArray(m_id));
 }
 
-void graphics::VartexArray::UnBind() const
+void graphics::VertexArray::UnBind() const
 {
 	glCall(glBindVertexArray(0));
 }
 
-void graphics::VartexArray::AddAttrib(uint32_t i, ElementType element_type, uint32_t stride, uint32_t& offset)
+void graphics::VertexArray::AddAttrib(uint32_t i, ElementType element_type, uint32_t stride, uint32_t& offset)
 {
 	auto normalize = element_type % 2 == 0 ? GL_FALSE : GL_TRUE;
 	auto type = GL_FLOAT;
@@ -67,7 +67,7 @@ void graphics::VartexArray::AddAttrib(uint32_t i, ElementType element_type, uint
 		count = 4;
 		break;
 	default:
-		Logger::LogError("VartexArray::AddBuffer error unknowed ElementType!!!");
+		Logger::LogError("VertexArray::AddBuffer error unknowed ElementType!!!");
 		assert(false);
 		break;
 	}

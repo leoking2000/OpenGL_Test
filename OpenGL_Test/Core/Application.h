@@ -1,5 +1,7 @@
 #include "Platform/MainWindow.h"
 #include "utilities/FrameTimer.h"
+#include "Tests/Test.h"
+#include <vector>
 
 namespace Core
 {
@@ -13,6 +15,11 @@ namespace Core
 
 	private:
 		FrameTimer ft;
+
+		std::vector<Test*> tests;
+		int current_test_index = 0;
+
+		bool tab_press = false;
 	};
 }
 

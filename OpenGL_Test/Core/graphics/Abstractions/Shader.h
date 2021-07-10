@@ -8,8 +8,11 @@ namespace graphics
 	class Shader
 	{
 	public:
+		Shader();
 		Shader(const char* filename);
 		~Shader();
+
+		void Recreate(const char* filename);
 
 		void Bind() const;
 		void UnBind() const;
@@ -21,7 +24,7 @@ namespace graphics
 		bool SetUniform(const char* name, int i);
 
 	private:
-		uint32_t id;
+		uint32_t id = 0;
 		// cash uniform location?
 	};
 }

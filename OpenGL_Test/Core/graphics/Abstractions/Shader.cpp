@@ -9,6 +9,10 @@
 
 using namespace graphics;
 
+graphics::Shader::Shader()
+{
+}
+
 graphics::Shader::Shader(const char* filename)
 {
 	id = CreateProgramShader("Shaders/Test.shader");
@@ -18,6 +22,13 @@ graphics::Shader::Shader(const char* filename)
 graphics::Shader::~Shader()
 {
 	glCall(glDeleteProgram(id));
+}
+
+void graphics::Shader::Recreate(const char* filename)
+{
+	glCall(glDeleteProgram(id));
+	id = CreateProgramShader("Shaders/Test.shader");
+	glCall(glUseProgram(id));
 }
 
 void graphics::Shader::Bind() const
