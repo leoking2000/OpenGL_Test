@@ -41,7 +41,7 @@
     <ClInclude Include="Core\Tests\FirstCube.h" />
     <ClInclude Include="Core\Tests\RenderTexture.h" />
     <ClInclude Include="Core\Tests\Test.h" />
-    <ClInclude Include="Core\Tests\Triangle2D.h" />
+    <ClInclude Include="Core\Tests\Triangles2D_Test.h" />
     <ClInclude Include="Platform\OpenGL.h" />
     <ClInclude Include="Core\utilities\FrameTimer.h" />
     <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h" />

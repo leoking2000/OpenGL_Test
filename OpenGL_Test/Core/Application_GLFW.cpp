@@ -5,7 +5,7 @@
 #include "graphics/Renderer.h"
 
 #include "Tests/RenderTexture.h"
-#include "Tests/Triangle2D.h"
+#include "Tests/Triangles2D_Test.h"
 
 #include "utilities/Log.h"
 #include <string>
@@ -26,7 +26,7 @@ bool Core::Application::Init()
 	/////////////////////////////////////////////////////////
 
 	//tests.push_back(new FirstCube());
-	tests.push_back(new Triangle2D());
+	tests.push_back(new Triangles2D_Test());
 	tests.push_back(new RenderTexture("assets/earth.jpg"));
 	//tests.push_back(new RenderTexture("assets/sun.jpg"));
 

@@ -100,7 +100,7 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\Tests\FirstCube.h" />
-    <ClInclude Include="Core\Tests\Triangle2D.h" />
+    <ClInclude Include="Core\Tests\Triangles2D_Test.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">
