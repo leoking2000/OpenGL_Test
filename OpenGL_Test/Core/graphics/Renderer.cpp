@@ -9,6 +9,9 @@ void graphics::Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, cons
 	ib.Bind();
 	shader.Bind();
 
+	glCall(glEnable(GL_DEPTH_TEST));
+	glCall(glDepthFunc(GL_LEQUAL));
+
 	glCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
@@ -23,5 +26,5 @@ void graphics::Renderer::SetClearColor(float r, float g, float b, float a)
 
 void graphics::Renderer::Clear()
 {
-	glCall(glClear(GL_COLOR_BUFFER_BIT));
+	glCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }

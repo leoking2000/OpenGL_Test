@@ -99,6 +99,8 @@
     <ClInclude Include="Core\graphics\Abstractions\VertexArray.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Tests\FirstCube.h" />
+    <ClInclude Include="Core\Tests\Triangle2D.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">
@@ -113,5 +115,6 @@
     <None Include="Shaders\Test.shader">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Shaders\first_cube.shader" />
   </ItemGroup>
 </Project>

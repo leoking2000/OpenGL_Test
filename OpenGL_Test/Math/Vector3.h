@@ -1,12 +1,14 @@
 #pragma once
-#include "Vector2.h"
+#include <cmath>
 
 namespace Math
 {
 	template<typename T>
-	class Vector3D_t : public Vector2D_t<T>
+	class Vector3D_t
 	{
 	public:
+		T x = (T)0;
+		T y = (T)0;
 		T z = (T)0;
 	public:
 		Vector3D_t() = default;
@@ -32,11 +34,6 @@ namespace Math
 		inline float operator*(const Vector3D_t<T>& vec) const; // dot product
 		inline Vector3D_t<T> operator*(T scaler) const;
 		inline Vector3D_t<T>& operator*=(T scaler);
-
-		operator Vector2D_t<T>()
-		{
-			return Vector2D_t<T>(x, y);
-		}
 
 		static Vector3D_t<T> cross(const Vector3D_t<T>& a, const Vector3D_t<T>& b)
 		{

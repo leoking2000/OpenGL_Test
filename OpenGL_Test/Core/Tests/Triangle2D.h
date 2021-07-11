@@ -4,19 +4,22 @@
 
 namespace Core
 {
-	class RenderTexture : public Test
+	class Triangle2D : public Test
 	{
 	public:
-		RenderTexture(const char* filename)
-			: tex(filename)
+		Triangle2D()
+			: tex(1, 1, Colors::White)
 		{
 			// vertex buffer
 			float vertexs[] = {
 				// pos             // color             // tex cord
-			   -1.0f,  1.0f, -1.0f,    1.0f, 1.0f, 1.0f,    0.0f, 0.0f,
-				1.0f,  1.0f, -1.0f,    1.0f, 1.0f, 1.0f,    1.0f, 0.0f,
-			   -1.0f, -1.0f, -1.0f,    1.0f, 1.0f, 1.0f,    0.0f, 1.0f,
-				1.0f, -1.0f, -1.0f,    1.0f, 1.0f, 1.0f,	1.0f, 1.0f
+				0.0f,  0.5f, -1.0f,    1.0f, 1.0f, 1.0f,    1.0f, 0.0f, // 0
+				0.5f, -0.5f, -1.0f,    1.0f, 1.0f, 1.0f,	1.0f, 1.0f, // 1
+			   -0.5f, -0.5f, -1.0f,    1.0f, 1.0f, 1.0f,    0.0f, 1.0f, // 2
+
+			    0.0f,  -0.5f, -1.0f,    1.0f, 1.0f, 1.0f,   1.0f, 0.0f, // 3
+				0.25f, 00.0f, -1.0f,    1.0f, 1.0f, 1.0f,	1.0f, 1.0f, // 4
+			   -0.25f, 00.0f, -1.0f,    1.0f, 1.0f, 1.0f,	1.0f, 1.0f  // 5
 			};
 
 			vertexBuffer.Recreate(vertexs, sizeof(vertexs));
@@ -26,12 +29,20 @@ namespace Core
 			vertexArray.AddBuffer(vertexBuffer, layout);
 
 			// index buffer
-			uint32_t indices[] = { 0 , 1 , 2,
-								   2 , 1 , 3 };
-			indexBuffer.Recreare(indices, 6);
+			uint32_t indices[] = { 0 , 4 , 5,
+								   1 , 3 , 4,
+								   2 , 3 , 5 };
+			indexBuffer.Recreare(indices, 9);
 
 			//shader
 			shader.Recreate("Shaders/Test.shader");
+
+			graphics::Renderer::SetClearColor(0.1f, 0.2f, 0.4f, 1.0f);
+		}
+
+		void Update(float dt) override
+		{
+
 		}
 
 		void Draw() override

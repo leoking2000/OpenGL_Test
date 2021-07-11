@@ -38,8 +38,10 @@
     <ClInclude Include="Core\graphics\Abstractions\Colors.h" />
     <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
     <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
+    <ClInclude Include="Core\Tests\FirstCube.h" />
     <ClInclude Include="Core\Tests\RenderTexture.h" />
     <ClInclude Include="Core\Tests\Test.h" />
+    <ClInclude Include="Core\Tests\Triangle2D.h" />
     <ClInclude Include="Platform\OpenGL.h" />
     <ClInclude Include="Core\utilities\FrameTimer.h" />
     <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h" />
@@ -60,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
+    <None Include="Shaders\first_cube.shader" />
     <None Include="Shaders\Test.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

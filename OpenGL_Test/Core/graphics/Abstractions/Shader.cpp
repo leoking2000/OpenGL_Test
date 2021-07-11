@@ -15,7 +15,7 @@ graphics::Shader::Shader()
 
 graphics::Shader::Shader(const char* filename)
 {
-	id = CreateProgramShader("Shaders/Test.shader");
+	id = CreateProgramShader(filename);
 	glCall(glUseProgram(id));
 }
 
@@ -27,7 +27,8 @@ graphics::Shader::~Shader()
 void graphics::Shader::Recreate(const char* filename)
 {
 	glCall(glDeleteProgram(id));
-	id = CreateProgramShader("Shaders/Test.shader");
+
+	id = CreateProgramShader(filename);
 	glCall(glUseProgram(id));
 }
 
@@ -87,8 +88,7 @@ bool graphics::Shader::SetUniform(const char* name, int i)
 
 uint32_t CompileShader(const char* source, uint32_t type)
 {
-	glClearError();
-	uint32_t id = glCreateShader(type);
+	glCall(uint32_t id = glCreateShader(type));
 
 	glCall(glShaderSource(id, 1, &source, nullptr));
 	glCall(glCompileShader(id));
@@ -112,8 +112,7 @@ uint32_t CompileShader(const char* source, uint32_t type)
 
 uint32_t CreateProgramShaderVF(const char* vertexS, const char* fragS)
 {
-	glClearError();
-	uint32_t programid = glCreateProgram();
+	glCall(uint32_t programid = glCreateProgram());
 
 	uint32_t vs = CompileShader(vertexS, GL_VERTEX_SHADER);
 	uint32_t fs = CompileShader(fragS, GL_FRAGMENT_SHADER);
@@ -134,7 +133,12 @@ uint32_t CreateProgramShaderVF(const char* vertexS, const char* fragS)
 
 uint32_t graphics::CreateProgramShader(const char* filename)
 {
+	assert(filename != nullptr);
+
 	std::ifstream file(filename);
+
+	assert(file.fail() == false);
+
 	std::string msg = "Creating shader from file ";
 	msg += filename;
 	Logger::LogInfo(msg.c_str());

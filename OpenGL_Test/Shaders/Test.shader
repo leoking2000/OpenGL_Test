@@ -1,7 +1,7 @@
 #shader vertex
 #version 430
 
-layout(location = 0) in vec2 pos;
+layout(location = 0) in vec3 pos;
 layout(location = 1) in vec3 in_color;
 layout(location = 2) in vec2 tex_cord;
 
@@ -12,7 +12,7 @@ out vec2 v_tex_cord;
 
 void main()
 {
-	gl_Position = vec4(pos.x + u_offset.x, pos.y + u_offset.y, 0.0f, 1.0);
+	gl_Position = vec4(pos.x + u_offset.x, pos.y + u_offset.y, pos.z, 1.0);
 	v_color = in_color;
 	v_tex_cord = tex_cord;
 }

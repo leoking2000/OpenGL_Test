@@ -3,7 +3,9 @@
 #include "Application.h"
 
 #include "graphics/Renderer.h"
+
 #include "Tests/RenderTexture.h"
+#include "Tests/Triangle2D.h"
 
 #include "utilities/Log.h"
 #include <string>
@@ -23,8 +25,10 @@ bool Core::Application::Init()
 	Renderer::Init();
 	/////////////////////////////////////////////////////////
 
+	//tests.push_back(new FirstCube());
+	tests.push_back(new Triangle2D());
 	tests.push_back(new RenderTexture("assets/earth.jpg"));
-	tests.push_back(new RenderTexture("assets/sun.jpg"));
+	//tests.push_back(new RenderTexture("assets/sun.jpg"));
 
 
 	/////////////////////////////////////////////////////////
