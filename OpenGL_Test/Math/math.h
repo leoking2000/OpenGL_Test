@@ -1,7 +1,8 @@
 #pragma once
+#define GLM_GTX_rotate_vector
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
-#include "Vector2.h"
-#include "Vector3.h"
 
 namespace Math
 {

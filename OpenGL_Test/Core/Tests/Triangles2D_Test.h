@@ -84,6 +84,6 @@ namespace Core
 		graphics::Shader shader;
 		graphics::Texture tex;
 
-		Math::Vector2 pos;
+		glm::vec3 pos;
 	};
 }

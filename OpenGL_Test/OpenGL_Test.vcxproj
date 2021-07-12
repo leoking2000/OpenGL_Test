@@ -49,8 +49,6 @@
     <ClInclude Include="Core\utilities\utilities.h" />
     <ClInclude Include="Platform\MainWindow.h" />
     <ClInclude Include="Math\math.h" />
-    <ClInclude Include="Math\Vector2.h" />
-    <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Core\graphics\Abstractions\VertexBuffer.h" />
     <ClInclude Include="Core\graphics\Abstractions\VertexArray.h" />
     <ClInclude Include="Core\graphics\Renderer.h" />

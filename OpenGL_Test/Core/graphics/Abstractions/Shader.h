@@ -1,5 +1,6 @@
 #pragma once
 #include <cinttypes>
+#include "Math/math.h"
 
 namespace graphics
 {
@@ -22,6 +23,8 @@ namespace graphics
 		bool SetUniform(const char* name, float x, float y, float z);
 
 		bool SetUniform(const char* name, int i);
+
+		bool SetUniform(const char* name, const glm::mat4& mat);
 
 	private:
 		uint32_t id = 0;

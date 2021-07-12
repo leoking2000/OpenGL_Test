@@ -82,12 +82,12 @@ void Core::DestroyWindow()
 	glfwTerminate();
 }
 
-inline uint32_t Core::GetWidth()
+uint32_t Core::GetWidth()
 {
 	return window.width;
 }
 
-inline uint32_t Core::GetHeight()
+uint32_t Core::GetHeight()
 {
 	return window.height;
 }

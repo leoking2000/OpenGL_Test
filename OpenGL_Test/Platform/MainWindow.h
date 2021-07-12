@@ -12,8 +12,8 @@ namespace Core
 
 	void DestroyWindow();
 
-	inline uint32_t GetWidth();
-	inline uint32_t GetHeight();
+	uint32_t GetWidth();
+	uint32_t GetHeight();
 
 	void* GetHandle();
 

@@ -1,52 +1,50 @@
 #shader vertex
-#version 430
+#version 330
 
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec3 in_color;
 
 uniform vec3 u_rotation;
 
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 proj;
+
 out vec3 v_color;
 
-mat3 Xrotation(float rad)
+// builds and returns a matrix that performs a rotation around the X axis
+mat4 RotateX(float rad)
 {
-	mat3 xrot = mat3(
-		1.0f, 0.0f, 0.0f,
-		0.0f, cos(rad), -sin(rad),
-		0.0f, sin(rad), cos(rad)
-	);
-
+	mat4 xrot = mat4(1.0, 0.0, 0.0, 0.0,
+		0.0, cos(rad), -sin(rad), 0.0,
+		0.0, sin(rad), cos(rad), 0.0,
+		0.0, 0.0, 0.0, 1.0);
 	return xrot;
 }
-
-mat3 Yrotation(float rad)
+// builds and returns a matrix that performs a rotation around the Y axis
+mat4 RotateY(float rad)
 {
-	mat3 yrot = mat3(
-		cos(rad), 0.0f, sin(rad),
-		    0.0f, 1.0f,     0.0f,
-	   -sin(rad), 0.0f, cos(rad)
-	);
-
+	mat4 yrot = mat4(cos(rad), 0.0, sin(rad), 0.0,
+		0.0, 1.0, 0.0, 0.0,
+		-sin(rad), 0.0, cos(rad), 0.0,
+		0.0, 0.0, 0.0, 1.0);
 	return yrot;
 }
-
-mat3 Zrotation(float rad)
+// builds and returns a matrix that performs a rotation around the Z axis
+mat4 RotateZ(float rad)
 {
-	mat3 zrot = mat3(
-		cos(rad), -sin(rad), 0.0f,
-		cos(rad),  sin(rad), 0.0f,
-		    0.0f,      0.0f, 1.0f
-	);
-
+	mat4 zrot = mat4(cos(rad), -sin(rad), 0.0, 0.0,
+		sin(rad), cos(rad), 0.0, 0.0,
+		0.0, 0.0, 1.0, 0.0,
+		0.0, 0.0, 0.0, 1.0);
 	return zrot;
 }
 
-
 void main()
 {
-	vec3 new_pos = (Xrotation(u_rotation.x) * Yrotation(u_rotation.y) * Zrotation(u_rotation.z)) * pos;
+	vec4 world_pos = model * RotateX(u_rotation.x) * RotateY(u_rotation.y) * RotateZ(u_rotation.z) * vec4(pos, 1.0f);
 
-	gl_Position = vec4(new_pos.x , new_pos.y, new_pos.z, 1.0f);
+	gl_Position = proj * view * world_pos;
 	v_color = in_color;
 }
 
