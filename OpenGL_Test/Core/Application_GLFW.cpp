@@ -5,7 +5,7 @@
 #include "graphics/Renderer.h"
 
 #include "Tests/RenderTexture.h"
-#include "Tests/Triangles2D_Test.h"
+#include "Tests/TextureCube_Test.h"
 #include "Tests/FirstCube.h"
 
 #include "utilities/Log.h"
@@ -19,7 +19,7 @@ Core::Application::Application()
 
 bool Core::Application::Init()
 {
-	if(!CreateWindow(900, 900, "OpenGL Test", true))
+	if(!CreateWindow(1600, 900, "OpenGL Test", true))
 	{
 		return false;
 	}
@@ -27,9 +27,8 @@ bool Core::Application::Init()
 	/////////////////////////////////////////////////////////
 
 	tests.push_back(new FirstCube());
-	//tests.push_back(new Triangles2D_Test());
+	tests.push_back(new TextureCube_Test("assets/wood_mc.png"));
 	//tests.push_back(new RenderTexture("assets/earth.jpg"));
-	//tests.push_back(new RenderTexture("assets/sun.jpg"));
 
 
 	/////////////////////////////////////////////////////////

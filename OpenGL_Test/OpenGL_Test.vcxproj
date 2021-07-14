@@ -41,6 +41,7 @@
     <ClInclude Include="Core\Tests\FirstCube.h" />
     <ClInclude Include="Core\Tests\RenderTexture.h" />
     <ClInclude Include="Core\Tests\Test.h" />
+    <ClInclude Include="Core\Tests\TextureCube_Test.h" />
     <ClInclude Include="Core\Tests\Triangles2D_Test.h" />
     <ClInclude Include="Platform\OpenGL.h" />
     <ClInclude Include="Core\utilities\FrameTimer.h" />
@@ -60,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
+    <None Include="Shaders\Basic3DShader.shader" />
     <None Include="Shaders\first_cube.shader" />
     <None Include="Shaders\Test.shader" />
   </ItemGroup>
