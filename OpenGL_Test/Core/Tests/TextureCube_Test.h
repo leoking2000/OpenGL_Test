@@ -18,48 +18,48 @@ namespace Core
 			vertexArray.Bind();
 
 			float vertexs[] = {
-				// pos                 // tex cord
+				// pos                 // tex cord      // normal
 				// Forward
-				-0.5f, -0.5f, -0.5f,    0.0f, 0.0f, //0
-				-0.5f,  0.5f, -0.5f,    0.0f, 1.0f, //1
-				 0.5f,  0.5f, -0.5f,    1.0f, 1.0f, //2
-				 0.5f, -0.5f, -0.5f,    1.0f, 0.0f, //3
+				-0.5f, -0.5f, -0.5f,    0.0f, 0.0f,     0.0f,  0.0f, -1.0f, //0
+				-0.5f,  0.5f, -0.5f,    0.0f, 1.0f,     0.0f,  0.0f, -1.0f, //1
+				 0.5f,  0.5f, -0.5f,    1.0f, 1.0f,     0.0f,  0.0f, -1.0f, //2
+				 0.5f, -0.5f, -0.5f,    1.0f, 0.0f,     0.0f,  0.0f, -1.0f, //3
 												  
 				// EAST							  
-				 0.5f,  0.5f, -0.5f,     0.0f, 1.0f, //4
-				 0.5f, -0.5f, -0.5f,     0.0f, 0.0f, //5
-				 0.5f,  0.5f,  0.5f,     1.0f, 1.0f, //6
-				 0.5f, -0.5f,  0.5f,     1.0f, 0.0f, //7
+				 0.5f,  0.5f, -0.5f,     0.0f, 1.0f,    1.0f,  0.0f,  0.0f, //4
+				 0.5f, -0.5f, -0.5f,     0.0f, 0.0f,    1.0f,  0.0f,  0.0f, //5
+				 0.5f,  0.5f,  0.5f,     1.0f, 1.0f,    1.0f,  0.0f,  0.0f, //6
+				 0.5f, -0.5f,  0.5f,     1.0f, 0.0f,    1.0f,  0.0f,  0.0f, //7
 												  
 				// BACK							  
-				 0.5f,  0.5f,  0.5f,     0.0f, 1.0f, //8
-				 0.5f, -0.5f,  0.5f,     0.0f, 0.0f, //9
-				-0.5f,  0.5f,  0.5f,     1.0f, 1.0f, //10
-				-0.5f, -0.5f,  0.5f,     1.0f, 0.0f, //11
+				 0.5f,  0.5f,  0.5f,     0.0f, 1.0f,    0.0f,  0.0f,  1.0f, //8
+				 0.5f, -0.5f,  0.5f,     0.0f, 0.0f,    0.0f,  0.0f,  1.0f, //9
+				-0.5f,  0.5f,  0.5f,     1.0f, 1.0f,    0.0f,  0.0f,  1.0f, //10
+				-0.5f, -0.5f,  0.5f,     1.0f, 0.0f,    0.0f,  0.0f,  1.0f, //11
 												  
 				// WEST							  
-				-0.5f, -0.5f, -0.5f,     1.0f, 0.0f, //12
-				-0.5f,  0.5f, -0.5f,     1.0f, 1.0f, //13
-				-0.5f,  0.5f,  0.5f,     0.0f, 1.0f, //14
-				-0.5f, -0.5f,  0.5f,     0.0f, 0.0f, //15
+				-0.5f, -0.5f, -0.5f,     1.0f, 0.0f,   -1.0f,  0.0f,  0.0f, //12
+				-0.5f,  0.5f, -0.5f,     1.0f, 1.0f,   -1.0f,  0.0f,  0.0f, //13
+				-0.5f,  0.5f,  0.5f,     0.0f, 1.0f,   -1.0f,  0.0f,  0.0f, //14
+				-0.5f, -0.5f,  0.5f,     0.0f, 0.0f,   -1.0f,  0.0f,  0.0f, //15
 												  
 				// NORTH						  
-				-0.5f,  0.5f, -0.5f,     0.0f, 0.0f,  //16
-				 0.5f,  0.5f, -0.5f,     0.0f, 1.0f,  //17
-				 0.5f,  0.5f,  0.5f,     1.0f, 1.0f,  //18
-				-0.5f,  0.5f,  0.5f,     1.0f, 0.0f,  //19
+				-0.5f,  0.5f, -0.5f,     0.0f, 0.0f,    0.0f,  1.0f,  0.0f,  //16
+				 0.5f,  0.5f, -0.5f,     0.0f, 1.0f,    0.0f,  1.0f,  0.0f,  //17
+				 0.5f,  0.5f,  0.5f,     1.0f, 1.0f,    0.0f,  1.0f,  0.0f,  //18
+				-0.5f,  0.5f,  0.5f,     1.0f, 0.0f,    0.0f,  1.0f,  0.0f,  //19
 												  
 				// SOUTH						  
-				-0.5f, -0.5f, -0.5f,     0.0f, 0.0f,  //20
-				 0.5f, -0.5f, -0.5f,     1.0f, 0.0f,  //21
-				 0.5f, -0.5f,  0.5f,     1.0f, 1.0f,  //22
-				-0.5f, -0.5f,  0.5f,     0.0f, 1.0f   //23
+				-0.5f, -0.5f, -0.5f,     0.0f, 0.0f,    0.0f, -1.0f,  0.0f,   //20
+				 0.5f, -0.5f, -0.5f,     1.0f, 0.0f,    0.0f, -1.0f,  0.0f,   //21
+				 0.5f, -0.5f,  0.5f,     1.0f, 1.0f,    0.0f, -1.0f,  0.0f,   //22
+				-0.5f, -0.5f,  0.5f,     0.0f, 1.0f,    0.0f, -1.0f,  0.0f    //23
 			};
 
 			vertexBuffer.Recreate(vertexs, sizeof(vertexs));
 
-			graphics::ElementType arr[2] = { graphics::FLOAT3, graphics::FLOAT2 };
-			graphics::Layout<2> layout(arr);
+			graphics::ElementType arr[3] = { graphics::FLOAT3, graphics::FLOAT2, graphics::FLOAT3_N };
+			graphics::Layout<3> layout(arr);
 			vertexArray.AddBuffer(vertexBuffer, layout);
 
 			// index buffer
@@ -80,7 +80,7 @@ namespace Core
 			indexBuffer.Recreare(indices, 36);
 
 			//shader
-			const char* Shaderfilename = "Shaders/Basic3DShader.shader";
+			const char* Shaderfilename = "Shaders/Basic3DShader.glsl";
 			shader.Recreate(Shaderfilename);
 
 			window = (GLFWwindow*)GetHandle();
@@ -120,24 +120,62 @@ namespace Core
 				rotation.z = Math::wrap_angle(rotation.z - speed * dt);
 			}
 
-			shader.SetUniform("u_rotation", rotation.x, rotation.y, rotation.z);
+			if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
+			{
+				glm::mat4 a = glm::mat4(1.0f);
+				a = glm::rotate(a, 0.1f, glm::vec3(0.0f, 1.0f, 0.0f));
+				light_dir = a * light_dir;
+			}
+			if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+			{
+				glm::mat4 a = glm::mat4(1.0f);
+				a = glm::rotate(a, -0.1f, glm::vec3(0.0f, 1.0f, 0.0f));
+				light_dir = a * light_dir;
+			}
+
 		}
 
 		void Draw() override
 		{
-			model = glm::mat4(1.0f);
+			glm::vec3 cubePositions[10] = {
+				glm::vec3(0.0f,  0.0f,  0.0f),
+				glm::vec3(2.0f,  5.0f, -15.0f),
+				glm::vec3(-1.5f, -2.2f, -2.5f),
+				glm::vec3(-3.8f, -2.0f, -12.3f),
+				glm::vec3(2.4f, -0.4f, -3.5f),
+				glm::vec3(-1.7f,  3.0f, -7.5f),
+				glm::vec3(1.3f, -2.0f, -2.5f),
+				glm::vec3(1.5f,  2.0f, -2.5f),
+				glm::vec3(1.5f,  0.2f, -1.5f),
+				glm::vec3(-1.3f,  1.0f, -1.5f)
+			};
+
+
 			view = glm::mat4(1.0f);
-			view = glm::translate(view, glm::vec3(0.0f, -0.4f, -4.0f));
+			view = glm::translate(view, glm::vec3(0.0f, -0.0f, -10.0f));
 			proj = glm::mat4(1.0f);
 			proj = glm::perspective(glm::radians(45.0f), (float)GetWidth() / (float)GetHeight(), 0.1f, 100.0f);
 
 			shader.Bind();
 			tex.Bind();
-			shader.SetUniform("model", model);
 			shader.SetUniform("view", view);
 			shader.SetUniform("proj", proj);
+			shader.SetUniform("u_light_dir", light_dir.x, light_dir.y, light_dir.z);
 
-			graphics::Renderer::Draw(vertexArray, indexBuffer, shader);
+			for (int i = 0; i < 10; i++)
+			{
+				model = glm::mat4(1.0f);
+				model = glm::translate(model, cubePositions[i]);
+
+				model = glm::rotate(model, rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
+				model = glm::rotate(model, rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+				model = glm::rotate(model, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+
+				shader.SetUniform("model", model);
+
+				graphics::Renderer::Draw(vertexArray, indexBuffer, shader);
+			}
+	
 		}
 
 	private:
@@ -149,6 +187,7 @@ namespace Core
 		graphics::Texture tex;
 
 		glm::vec3 rotation;
+		glm::vec4 light_dir{ 0.0f, 0.0f, -1.0f, 0.0f };
 
 		glm::mat4 model; // object space -> world space
 		glm::mat4 view;  // world space -> view/camera space

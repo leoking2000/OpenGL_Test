@@ -26,8 +26,8 @@ bool Core::Application::Init()
 	Renderer::Init();
 	/////////////////////////////////////////////////////////
 
-	tests.push_back(new FirstCube());
 	tests.push_back(new TextureCube_Test("assets/wood_mc.png"));
+	tests.push_back(new FirstCube());
 	//tests.push_back(new RenderTexture("assets/earth.jpg"));
 
 

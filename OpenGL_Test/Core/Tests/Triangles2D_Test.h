@@ -38,7 +38,7 @@ namespace Core
 			indexBuffer.Recreare(indices, 9);
 
 			//shader
-			shader.Recreate("Shaders/Test.shader");
+			shader.Recreate("Shaders/Test.glsl");
 
 			graphics::Renderer::SetClearColor(0.1f, 0.2f, 0.4f, 1.0f);
 		}

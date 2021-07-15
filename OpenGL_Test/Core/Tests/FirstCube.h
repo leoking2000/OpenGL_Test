@@ -44,7 +44,7 @@ namespace Core
 			indexBuffer.Recreare(indices, 36);
 
 			//shader
-			const char* filename = "Shaders/first_cube.shader";
+			const char* filename = "Shaders/first_cube.glsl";
 			shader.Recreate(filename);
 
 			window = (GLFWwindow*)GetHandle();

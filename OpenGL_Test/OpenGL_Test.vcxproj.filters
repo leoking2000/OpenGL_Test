@@ -107,10 +107,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
-    <None Include="Shaders\Test.shader">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Shaders\first_cube.shader" />
-    <None Include="Shaders\Basic3DShader.shader" />
+    <None Include="Shaders\Basic3DShader.glsl" />
+    <None Include="Shaders\first_cube.glsl" />
+    <None Include="Shaders\Test.glsl" />
   </ItemGroup>
 </Project>

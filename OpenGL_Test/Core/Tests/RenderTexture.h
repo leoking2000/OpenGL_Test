@@ -31,7 +31,7 @@ namespace Core
 			indexBuffer.Recreare(indices, 6);
 
 			//shader
-			shader.Recreate("Shaders/Test.shader");
+			shader.Recreate("Shaders/Test.glsl");
 		}
 
 		void Draw() override
