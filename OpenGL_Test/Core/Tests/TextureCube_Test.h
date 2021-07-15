@@ -8,6 +8,31 @@
 
 namespace Core
 {
+	class Camera
+	{
+	public:
+		Camera()
+			:
+			pos(0.0f, 0.0f, 10.0f),
+			dir(0.0f, 0.0f, -1.0f)
+		{
+		}
+
+		glm::mat4 GetCameraView()
+		{
+			glm::vec3 right = glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), dir);
+			glm::vec3 up    = glm::cross(dir, right);
+
+
+			return glm::lookAt(pos, pos + dir, glm::vec3(0.0f, 1.0f, 0.0f));
+		}
+
+	public:
+		glm::vec3 pos;
+		glm::vec3 dir;
+	};
+
+
 	class TextureCube_Test : public Test
 	{
 	public:
@@ -93,31 +118,26 @@ namespace Core
 		{
 			float speed = 1.0f;
 
-			if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-			{
-				rotation.x = Math::wrap_angle(rotation.x + speed * dt);
-			}
 			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 			{
-				rotation.x = Math::wrap_angle(rotation.x - speed * dt);
-			}
-
-			if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-			{
-				rotation.y = Math::wrap_angle(rotation.y + speed * dt);
+				cam.pos = cam.pos + cam.dir * 3.0f * dt;
 			}
 			if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 			{
-				rotation.y = Math::wrap_angle(rotation.y - speed * dt);
+				cam.pos = cam.pos - cam.dir * 3.0f * dt;
 			}
 
-			if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
+			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 			{
-				rotation.z = Math::wrap_angle(rotation.z + speed * dt);
+				glm::mat4 a = glm::mat4(1.0f);
+				a = glm::rotate(a, -0.02f, glm::vec3(0.0f, 1.0f, 0.0f));
+				cam.dir = a * glm::vec4(cam.dir, 0.0f);
 			}
-			if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
+			if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 			{
-				rotation.z = Math::wrap_angle(rotation.z - speed * dt);
+				glm::mat4 a = glm::mat4(1.0f);
+				a = glm::rotate(a, 0.02f, glm::vec3(0.0f, 1.0f, 0.0f));
+				cam.dir = a * glm::vec4(cam.dir, 0.0f);
 			}
 
 			if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
@@ -132,6 +152,9 @@ namespace Core
 				a = glm::rotate(a, -0.1f, glm::vec3(0.0f, 1.0f, 0.0f));
 				light_dir = a * light_dir;
 			}
+
+
+			rotation.y = Math::wrap_angle(rotation.y + speed * dt);
 
 		}
 
@@ -150,15 +173,12 @@ namespace Core
 				glm::vec3(-1.3f,  1.0f, -1.5f)
 			};
 
-
-			view = glm::mat4(1.0f);
-			view = glm::translate(view, glm::vec3(0.0f, -0.0f, -10.0f));
 			proj = glm::mat4(1.0f);
 			proj = glm::perspective(glm::radians(45.0f), (float)GetWidth() / (float)GetHeight(), 0.1f, 100.0f);
 
 			shader.Bind();
 			tex.Bind();
-			shader.SetUniform("view", view);
+			shader.SetUniform("view", cam.GetCameraView());
 			shader.SetUniform("proj", proj);
 			shader.SetUniform("u_light_dir", light_dir.x, light_dir.y, light_dir.z);
 
@@ -189,8 +209,9 @@ namespace Core
 		glm::vec3 rotation;
 		glm::vec4 light_dir{ 0.0f, 0.0f, -1.0f, 0.0f };
 
+		Camera cam;
+
 		glm::mat4 model; // object space -> world space
-		glm::mat4 view;  // world space -> view/camera space
 		glm::mat4 proj;  // projection
 
 		GLFWwindow* window = nullptr;
