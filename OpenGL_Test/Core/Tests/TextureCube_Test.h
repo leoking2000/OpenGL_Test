@@ -117,7 +117,7 @@ namespace Core
 			lastX = xpos;
 			lastY = ypos;
 
-			float sensitivity = 0.01f;
+			float sensitivity = 0.005f;
 			xoffset *= sensitivity;
 			yoffset *= sensitivity;
 
@@ -228,13 +228,13 @@ namespace Core
 			if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 			{
 				glm::mat4 a = glm::mat4(1.0f);
-				a = glm::rotate(a, 0.1f, glm::vec3(0.0f, 1.0f, 0.0f));
+				a = glm::rotate(a, 0.01f, glm::vec3(0.0f, 1.0f, 0.0f));
 				light_dir = a * light_dir;
 			}
 			if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 			{
 				glm::mat4 a = glm::mat4(1.0f);
-				a = glm::rotate(a, -0.1f, glm::vec3(0.0f, 1.0f, 0.0f));
+				a = glm::rotate(a, -0.01f, glm::vec3(0.0f, 1.0f, 0.0f));
 				light_dir = a * light_dir;
 			}
 
