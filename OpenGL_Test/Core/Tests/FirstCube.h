@@ -48,7 +48,6 @@ namespace Core
 			shader.Recreate(filename);
 
 			window = (GLFWwindow*)GetHandle();
-			graphics::Renderer::SetClearColor(0.1f, 0.2f, 0.4f, 1.0f);
 
 			rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 		}
@@ -85,6 +84,7 @@ namespace Core
 			}
 
 			shader.SetUniform("u_rotation", rotation.x, rotation.y, rotation.z);
+			graphics::Renderer::SetClearColor(0.1f, 0.2f, 0.4f, 1.0f);
 		}
 
 		void Draw() override
