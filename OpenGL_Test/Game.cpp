@@ -1,7 +1,5 @@
 #include "Game.h"
 
-#include "CubeWithTexture.h"
-#include "ZbufferTest.h"
 #include "LoadObjScene.h"
 
 Game::Game()
@@ -16,12 +14,6 @@ void Game::Init(graphics::Canvas* in_canvas, GLFWwindow* in_window)
 	scenes.push_back(std::make_unique<LoadObjScene>("assets/ccw_m.obj", 1.0f));
 	scenes.push_back(std::make_unique<LoadObjScene>("assets/ccw_object1.obj", 1.0f));
 	scenes.push_back(std::make_unique<LoadObjScene>("assets/plane.obj", 1.0f));
-	//scenes.push_back(std::make_unique<LoadObjScene>("assets/ccw_sphere.obj"));
-	//scenes.push_back(std::make_unique<LoadObjScene>("assets/car.obj"));
-	//scenes.push_back(std::make_unique<CubeWithTexture>("assets/wood.png"));
-	//scenes.push_back(std::make_unique<CubeWithTexture>("assets/wood2.png"));
-	//scenes.push_back(std::make_unique<CubeWithTexture>("assets/w2.jpg"));
-	//scenes.push_back(std::make_unique<ZbufferTest>());
 
 	for (auto& scene : scenes)
 	{

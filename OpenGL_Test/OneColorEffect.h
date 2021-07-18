@@ -22,10 +22,7 @@ namespace graphics
         public:
             Color operator()(const Vertex& vec)
             {
-                Color c = color;
-
-                return c;
-
+                return color;
             }
             void BindColor(const Color& in_color)
             {

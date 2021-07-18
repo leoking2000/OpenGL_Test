@@ -66,10 +66,10 @@ namespace graphics
 		// to vertex positions, laid out as xyzxyzxyz... etc.
 		// first preallocate required space in OUR std::vector
 		tl.vartices.reserve(attrib.vertices.size() / 3u);
-		// iterate over individual vertices, construct glm::vec3s in OUR vector
+		// iterate over individual vertices, construct Math::vec3s in OUR vector
 		for (int i = 0; i < attrib.vertices.size(); i += 3)
 		{
-			tl.vartices.emplace_back(glm::vec3{
+			tl.vartices.emplace_back(Math::vec3{
 				attrib.vertices[i + 0],
 				attrib.vertices[i + 1],
 				attrib.vertices[i + 2]
@@ -162,7 +162,7 @@ namespace graphics
 		// iterate over individual vertices, construct Vec3s in OUR vector
 		for (int i = 0; i < attrib.vertices.size(); i += 3)
 		{
-			tl.vartices.emplace_back(glm::vec3{
+			tl.vartices.emplace_back(Math::vec3{
 				attrib.vertices[i + 0],
 				attrib.vertices[i + 1],
 				attrib.vertices[i + 2]
@@ -193,7 +193,7 @@ namespace graphics
 				const auto idx = mesh.indices[f * 3u + vn];
 				tl.indices.push_back(size_t(idx.vertex_index));
 				// write normals into the vertices
-				tl.vartices[(size_t)idx.vertex_index].n = glm::vec3{
+				tl.vartices[(size_t)idx.vertex_index].n = Math::vec3{
 					attrib.normals[3 * idx.normal_index + 0],
 					attrib.normals[3 * idx.normal_index + 1],
 					attrib.normals[3 * idx.normal_index + 2]

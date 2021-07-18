@@ -37,24 +37,6 @@ namespace graphics
 			ProcessVertices(in);
 		}
 
-		void DrawLine(const glm::vec3& a, const glm::vec3& b, const Color& c)
-		{
-			glm::ivec2 t_a = NDC_To_Canvas(a);
-			glm::ivec2 t_b = NDC_To_Canvas(b);
-
-			canvas->DrawLine(t_a.x, t_a.y, t_b.x, t_b.y, c);
-		}
-		void DrawWireframeTriangle(const glm::vec3& a, const glm::vec3& b, const glm::vec3& c, const Color& color)
-		{
-			glm::ivec2 t_a = NDC_To_Canvas(a);
-			glm::ivec2 t_b = NDC_To_Canvas(b);
-			glm::ivec2 t_c = NDC_To_Canvas(c);
-
-			canvas->DrawLine(t_a.x, t_a.y, t_b.x, t_b.y, color);
-			canvas->DrawLine(t_b.x, t_b.y, t_c.x, t_c.y, color);
-			canvas->DrawLine(t_c.x, t_c.y, t_a.x, t_a.y, color);
-		}
-
 	private:
 		// pipeline
 		// model -> world (copy)
@@ -75,17 +57,17 @@ namespace graphics
 			{
 				const int k = i * 3;
 
-				const glm::vec3& vec0 = vartices[indices[k]].pos;
-				const glm::vec3& vec1 = vartices[indices[k + 1]].pos;
-				const glm::vec3& vec2 = vartices[indices[k + 2]].pos;
+				const Math::vec3& vec0 = vartices[indices[k]].pos;
+				const Math::vec3& vec1 = vartices[indices[k + 1]].pos;
+				const Math::vec3& vec2 = vartices[indices[k + 2]].pos;
 
-				glm::vec3 lineA = vec1 - vec0;
-				glm::vec3 lineB = vec2 - vec0;
-				glm::vec3 normal = glm::cross(lineA, lineB);
+				Math::vec3 lineA = vec1 - vec0;
+				Math::vec3 lineB = vec2 - vec0;
+				Math::vec3 normal = Math::vec3::cross(lineA, lineB);
 
-				normal = glm::normalize(normal);
+				normal.normalize();
 
-				if (glm::dot(normal, vec0) > 0.0f) continue;
+				if (Math::vec3::dot(normal, vec0) > 0.0f) continue;
 
 				ProcessTriangle(vartices[indices[k]], vartices[indices[k + 1]], vartices[indices[k + 2]], i);
 			}
@@ -236,19 +218,6 @@ namespace graphics
 			}
 		}
 	private:
-		static glm::ivec2 NDC_To_Canvas(const glm::vec3& vec)
-		{
-			const float xFactor = WIDTH / 2.0f;
-			const float yFactor = HEIGHT / 2.0f;
-			const float zFactor = 1.0f / vec.z;
-
-			glm::ivec2 out;
-
-			out.x = int((vec.x * zFactor + 1) * xFactor);
-			out.y = int((-vec.y * zFactor + 1) * yFactor);
-
-			return out;
-		}
 		static void NDC_To_Canvas2(GSout& vec)
 		{
 			const float xFactor = WIDTH / 2.0f;

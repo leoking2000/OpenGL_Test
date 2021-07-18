@@ -4,28 +4,28 @@
 class VertexPN
 {
 public:
-    glm::vec3 pos;
-    glm::vec3 n;
+    Math::vec3 pos;
+    Math::vec3 n;
 public:
     VertexPN()
     {
-        pos = glm::vec3(0.0f, 0.0f, 0.0f);
-        n = glm::vec3(0.0f, 0.0f, 0.0f);
+        pos = Math::vec3(0.0f, 0.0f, 0.0f);
+        n = Math::vec3(0.0f, 0.0f, 0.0f);
     }
 
-    VertexPN(const glm::vec3& in_pos)
+    VertexPN(const Math::vec3& in_pos)
     {
         pos = in_pos;
-        n = glm::vec3(0.0f, 0.0f, 0.0f);
+        n = Math::vec3(0.0f, 0.0f, 0.0f);
     }
 
-    VertexPN(glm::vec3 in_pos, glm::vec3 norm)
+    VertexPN(Math::vec3 in_pos, Math::vec3 norm)
     {
         pos = in_pos;
         n = norm;
     }
 
-    VertexPN(const glm::vec3& in_pos, const VertexPN& other)
+    VertexPN(const Math::vec3& in_pos, const VertexPN& other)
     {
         pos = in_pos;
         n = other.n;
@@ -59,7 +59,7 @@ public:
 
         return *this;
     }
-    VertexPN& operator*=(const glm::mat3x3& mat)
+    VertexPN& operator*=(const Math::mat3& mat)
     {
         pos = pos * mat;
         n = n * mat;

@@ -66,45 +66,45 @@ public:
 		// fordward 
 		if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
 		{
-			meshtransform.Translate(glm::vec3(0.0f, 0.0f, speed) * dt);
+			meshtransform.Translate(Math::vec3(0.0f, 0.0f, speed) * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		{
-			meshtransform.Translate(-glm::vec3(0.0f, 0.0f, speed) * dt);
+			meshtransform.Translate(Math::vec3(0.0f, 0.0f, -speed) * dt);
 		}
 
 		// light movement
 		if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		{
-			spheretransform.Translate(glm::vec3(0.0f, 0.0f, speed) * dt);
+			spheretransform.Translate(Math::vec3(0.0f, 0.0f, speed) * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 		{
-			spheretransform.Translate(-glm::vec3(0.0f, 0.0f, speed) * dt);
+			spheretransform.Translate(Math::vec3(0.0f, 0.0f, -speed) * dt);
 		}
 
 		if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
 		{
-			spheretransform.Translate(-glm::vec3(speed, 0.0f, 0.0f) * dt);
+			spheretransform.Translate(Math::vec3(-speed, 0.0f, 0.0f) * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
 		{
-			spheretransform.Translate(glm::vec3(speed, 0.0f, 0.0f) * dt);
+			spheretransform.Translate(Math::vec3(speed, 0.0f, 0.0f) * dt);
 		}
 
 		if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		{
-			spheretransform.Translate(glm::vec3(0.0f, speed, 0.0f) * dt);
+			spheretransform.Translate(Math::vec3(0.0f, speed, 0.0f) * dt);
 		}
 		if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 		{
-			spheretransform.Translate(-glm::vec3(0.0f, speed, 0.0f) * dt);
+			spheretransform.Translate(Math::vec3(0.0f, -speed, 0.0f) * dt);
 		}
 
 		/*
 		if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
 		{
-			glm::vec3& vec = gfx.effect.vertex_shader.light_dir;
+			Math::vec3& vec = gfx.effect.vertex_shader.light_dir;
 			float z = cosf(speed * dt) * vec.z - sinf(speed * dt) * vec.x;
 			float x = sinf(speed * dt) * vec.z + cosf(speed * dt) * vec.x;
 
@@ -113,7 +113,7 @@ public:
 		}
 		if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 		{
-			glm::vec3& vec = gfx.effect.vertex_shader.light_dir;
+			Math::vec3& vec = gfx.effect.vertex_shader.light_dir;
 			float z = cosf(-speed * dt) * vec.z - sinf(-speed * dt) * vec.x;
 			float x = sinf(-speed * dt) * vec.z + cosf(-speed * dt) * vec.x;
 

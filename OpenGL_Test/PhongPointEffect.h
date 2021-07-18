@@ -18,32 +18,32 @@ namespace graphics
             class Output
             {
             public:
-                glm::vec3 pos;
-                glm::vec3 n;
-                glm::vec3 worldPos;
+                Math::vec3 pos;
+                Math::vec3 n;
+                Math::vec3 worldPos;
             public:
                 Output()
                 {
-                    pos = glm::vec3(0.0f, 0.0f, 0.0f);
-                    n = glm::vec3(0.0f, 0.0f, 0.0f);
-                    worldPos = glm::vec3(0.0f, 0.0f, 0.0f);
+                    pos = Math::vec3(0.0f, 0.0f, 0.0f);
+                    n = Math::vec3(0.0f, 0.0f, 0.0f);
+                    worldPos = Math::vec3(0.0f, 0.0f, 0.0f);
                 }
 
-                Output(const glm::vec3& in_pos)
+                Output(const Math::vec3& in_pos)
                 {
                     pos = in_pos;
                     worldPos = in_pos;
-                    n = glm::vec3(0.0f, 0.0f, 0.0f);
+                    n = Math::vec3(0.0f, 0.0f, 0.0f);
                 }
 
-                Output(glm::vec3 in_pos, glm::vec3 norm, glm::vec3 world)
+                Output(Math::vec3 in_pos, Math::vec3 norm, Math::vec3 world)
                 {
                     pos = in_pos;
                     n = norm;
                     worldPos = world;
                 }
 
-                Output(const glm::vec3& in_pos, const Output& other)
+                Output(const Math::vec3& in_pos, const Output& other)
                 {
                     pos = in_pos;
                     n = other.n;
@@ -84,7 +84,7 @@ namespace graphics
 
                     return *this;
                 }
-                Output& operator*=(const glm::mat3x3& mat)
+                Output& operator*=(const Math::mat3& mat)
                 {
                     pos = pos * mat;
                     n = n * mat;
@@ -137,17 +137,17 @@ namespace graphics
             {
                 Color c = color;
 
-                const glm::vec3 delta = light_Pos - vec.worldPos;
-                const float     dist = glm::length(delta);
-                const glm::vec3 dir = glm::normalize(delta);
-                const glm::vec3 surf_norm = glm::normalize(vec.n);
+                const Math::vec3 delta = light_Pos - vec.worldPos;
+                const float     dist = delta.length();
+                const Math::vec3 dir = delta.normalized();
+                const Math::vec3 surf_norm = vec.n.normalized();
 
                 const float i = 1.0f / (A * dist * dist + B * dist + C);
-                glm::vec3 light = diffuse * i * std::max(0.0f, glm::dot(dir, surf_norm));
+                Math::vec3 light = diffuse * i * std::max(0.0f, Math::vec3::dot(dir, surf_norm));
 
-                const glm::vec3 reflection = glm::normalize((2.0f * glm::dot(delta, surf_norm)) * surf_norm - delta);
-                glm::vec3 specular = diffuse * specular_intensity * std::pow(
-                    std::max(0.0f, glm::dot(-reflection, glm::normalize(vec.worldPos))), specular_power);
+                const Math::vec3 reflection = ((2.0f * Math::vec3::dot(delta, surf_norm)) * surf_norm - delta).normalized();
+                Math::vec3 specular = diffuse * specular_intensity * std::pow(
+                    std::max(0.0f, Math::vec3::dot(-reflection, vec.worldPos.normalized())), specular_power);
 
                 light.x = Math::clamp(light.x + specular.x + ambient.x, 0.0f, 1.0f);
                 light.y = Math::clamp(light.y + specular.y + ambient.y, 0.0f, 1.0f);
@@ -164,9 +164,9 @@ namespace graphics
                 color = in_color;
             }
         public:
-            glm::vec3 light_Pos{ 0.0f, 0.0f, 1.0f };
-            glm::vec3 diffuse{ 1.0f,1.0f,1.0f };
-            glm::vec3 ambient{ 0.1f,0.1f,0.1f };
+            Math::vec3 light_Pos{ 0.0f, 0.0f, 1.0f };
+            Math::vec3 diffuse{ 1.0f,1.0f,1.0f };
+            Math::vec3 ambient{ 0.1f,0.1f,0.1f };
             float A = 0.44f;
             float B = 0.35f;
             float C = 1.0f;
@@ -182,3 +182,4 @@ namespace graphics
         PixelShader pixel_shader;
     };
 }
+

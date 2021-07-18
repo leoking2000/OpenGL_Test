@@ -10,7 +10,7 @@ namespace graphics
 
         const float s = size / 2.0f;
 
-        std::vector<glm::vec3> vartices;
+        std::vector<Math::vec3> vartices;
 
         // Forward
         vartices.emplace_back(-s,-s, -s);  // 0 0 

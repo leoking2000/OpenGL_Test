@@ -4,14 +4,14 @@
 class VertexP
 {
 public:
-	glm::vec3 pos;
+	Math::vec3 pos;
 public:
 	VertexP() = default;
-	VertexP(const glm::vec3 & pos)
+	VertexP(const Math::vec3 & pos)
 		:
 		pos(pos)
 	{}
-	VertexP(const glm::vec3 & pos, const VertexP & src)
+	VertexP(const Math::vec3 & pos, const VertexP & src)
 		:
 		pos(pos)
 	{}
@@ -38,7 +38,7 @@ public:
 		pos *= rhs;
 		return *this;
 	}
-	VertexP& operator*=(const glm::mat3x3 & mat)
+	VertexP& operator*=(const Math::mat3& mat)
 	{
 		pos = pos * mat;
 

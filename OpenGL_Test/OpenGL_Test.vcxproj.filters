@@ -55,6 +55,9 @@
     <Filter Include="Engine\Vertexs">
       <UniqueIdentifier>{991e8b1b-f0f2-4e4f-a808-bcf0f31a503b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\math">
+      <UniqueIdentifier>{45c27826-bfe1-48b4-840a-5594297eda0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,9 +81,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math.cpp">
-      <Filter>Engine\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Engine\Source Files</Filter>
     </ClCompile>
@@ -89,6 +89,12 @@
     </ClCompile>
     <ClCompile Include="tiny_obj_loader.cpp">
       <Filter>Engine\data structures</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Engine\math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Engine\math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +116,6 @@
     <ClInclude Include="Game.h">
       <Filter>Game\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="math.h">
-      <Filter>Engine\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Colors.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
@@ -131,31 +134,10 @@
     <ClInclude Include="Graphics.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="TextureEffect.h">
-      <Filter>Engine\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="InterColorEffect.h">
-      <Filter>Engine\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeWithTexture.h">
-      <Filter>Game\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="ZbufferTest.h">
-      <Filter>Game\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultVertexShader.h">
       <Filter>Engine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="DefaultGeometryShader.h">
-      <Filter>Engine\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="SolidGeometryEffect.h">
-      <Filter>Engine\Effects</Filter>
-    </ClInclude>
-    <ClInclude Include="SolidCubeScene.h">
-      <Filter>Game\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="FlatShadingGS.h">
       <Filter>Engine\Shaders</Filter>
     </ClInclude>
     <ClInclude Include="tiny_obj_loader.h">
@@ -166,12 +148,6 @@
     </ClInclude>
     <ClInclude Include="LoadObjScene.h">
       <Filter>Game\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="GouraudShadingVS.h">
-      <Filter>Engine\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="GouraudShadingEffect.h">
-      <Filter>Engine\Effects</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Game\Header Files</Filter>
@@ -185,14 +161,20 @@
     <ClInclude Include="VertexPC.h">
       <Filter>Engine\Vertexs</Filter>
     </ClInclude>
-    <ClInclude Include="GouraudPointVS.h">
-      <Filter>Engine\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="GouraudPointEffect.h">
-      <Filter>Engine\Effects</Filter>
-    </ClInclude>
     <ClInclude Include="PhongPointEffect.h">
       <Filter>Engine\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="math.h">
+      <Filter>Engine\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Engine\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Engine\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Engine\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
