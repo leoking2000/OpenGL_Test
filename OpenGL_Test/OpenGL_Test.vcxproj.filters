@@ -96,6 +96,9 @@
     <ClCompile Include="Vector3.cpp">
       <Filter>Engine\math</Filter>
     </ClCompile>
+    <ClCompile Include="Vector4.cpp">
+      <Filter>Engine\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Log.h">
@@ -174,6 +177,9 @@
       <Filter>Engine\math</Filter>
     </ClInclude>
     <ClInclude Include="Matrix.h">
+      <Filter>Engine\math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
       <Filter>Engine\math</Filter>
     </ClInclude>
   </ItemGroup>

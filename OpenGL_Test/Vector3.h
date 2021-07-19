@@ -96,7 +96,6 @@ namespace Math
 	};
 
 	vec3 operator* (float num, const vec3& a);
-	vec3 operator/ (float num, const vec3& a);
 }
 
 

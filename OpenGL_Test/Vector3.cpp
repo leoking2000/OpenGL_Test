@@ -62,7 +62,7 @@ float Math::vec3::distance(const vec3& a, const vec3& b)
 
 float Math::vec3::dot(const vec3& a, const vec3& b)
 {
-    return a.x * b.x + a.y * b.y * a.z * b.z;
+    return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
 Math::vec3 Math::vec3::cross(const vec3& a, const vec3& b)
@@ -102,7 +102,7 @@ float Math::vec3::distance(const vec3& a) const
 
 float Math::vec3::dot(const vec3& a) const
 {
-    return a.x * x + a.y * y * a.z * z;
+    return a.x * x + a.y * y + a.z * z;
 }
 
 void Math::vec3::normalize()
@@ -121,9 +121,7 @@ Math::vec3& Math::vec3::operator+=(const vec3& a)
 
 Math::vec3 Math::vec3::operator+(const vec3& a) const
 {
-    vec3 r(a.x, a.y, a.z);
-    r += *this;
-
+    vec3 r(x + a.x, y + a.y, z + a.z);
     return r;
 }
 
@@ -138,9 +136,7 @@ Math::vec3& Math::vec3::operator-=(const vec3& a)
 
 Math::vec3 Math::vec3::operator-(const vec3& a) const
 {
-    vec3 r(a.x, a.y, a.z);
-    r -= *this;
-
+    vec3 r(x - a.x, y - a.y, z - a.z);
     return r;
 }
 
@@ -160,9 +156,7 @@ Math::vec3& Math::vec3::operator*=(float num)
 
 Math::vec3 Math::vec3::operator*(float num) const
 {
-    vec3 r(this->x, this->y, this->z);
-    r *= num;
-
+    vec3 r(this->x * num, this->y * num, this->z * num);
     return r;
 }
 
@@ -177,8 +171,7 @@ Math::vec3& Math::vec3::operator/=(float num)
 
 Math::vec3 Math::vec3::operator/(float num) const
 {
-    vec3 r(this->x, this->y, this->z);
-    r /= num;
+    vec3 r(this->x / num, this->y / num, this->z / num);
 
     return r;
 }
@@ -205,14 +198,7 @@ float& Math::vec3::operator[](int i)
 
 Math::vec3 Math::operator*(float num, const vec3& a)
 {
-    vec3 r(a.x, a.y, a.z);
-    r *= num;
+    vec3 r(a.x * num, a.y * num, a.z * num);
     return r;
 }
 
-Math::vec3 Math::operator/(float num, const vec3& a)
-{
-    vec3 r(a.x, a.y, a.z);
-    r *= num;
-    return r;
-}

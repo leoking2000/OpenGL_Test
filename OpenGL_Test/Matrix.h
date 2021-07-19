@@ -71,7 +71,7 @@ namespace Math
 					   s, 0.0f, 0.0f, 0.0f,
 					0.0f,    s, 0.0f, 0.0f,
 					0.0f, 0.0f,    s, 0.0f,
-					0.0f, 0.0f, 0.0f,    s
+					0.0f, 0.0f, 0.0f, 1.0f
 				};
 			}
 			else
@@ -108,8 +108,8 @@ namespace Math
 			{
 				return {
 					1.0f, 0.0f, 0.0f, 0.0f,
-					0.0f, 1.0f, 0.0f, 0.0f,
-					0.0f, 0.0f, 1.0f, 0.0f,
+					0.0f,  cos,  sin, 0.0f,
+					0.0f, -sin,  cos, 0.0f,
 					0.0f, 0.0f, 0.0f, 1.0f
 				};
 			}
@@ -135,9 +135,9 @@ namespace Math
 			else if constexpr (S == 4)
 			{
 				return {
-					1.0f, 0.0f, 0.0f, 0.0f,
+					 cos, 0.0f, -sin, 0.0f,
 					0.0f, 1.0f, 0.0f, 0.0f,
-					0.0f, 0.0f, 1.0f, 0.0f,
+					 sin, 0.0f,  cos, 0.0f,
 					0.0f, 0.0f, 0.0f, 1.0f
 				};
 			}
@@ -163,8 +163,8 @@ namespace Math
 			else if constexpr (S == 4)
 			{
 				return {
-					1.0f, 0.0f, 0.0f, 0.0f,
-					0.0f, 1.0f, 0.0f, 0.0f,
+					 cos,  sin, 0.0f, 0.0f,
+					-sin,  cos, 0.0f, 0.0f,
 					0.0f, 0.0f, 1.0f, 0.0f,
 					0.0f, 0.0f, 0.0f, 1.0f
 				};
@@ -175,17 +175,39 @@ namespace Math
 			}
 		}
 
+		mat<3> Translation2D(float x, float y)
+		{
+			return {
+				1.0f, 0.0f, 0.0f,
+				0.0f, 1.0f, 0.0f,
+				   x,    y, 1.0f
+			};
+		}
+
+		mat<4> Translation3D(float x, float y, float z)
+		{
+			return {
+				1.0f, 0.0f, 0.0f, 0.0f,
+				0.0f, 1.0f, 0.0f, 0.0f,
+				0.0f, 0.0f, 1.0f, 0.0f,
+				   x,    y,    z, 1.0f
+			};
+		}
+
 		// Methods //
 
-		mat<S>& transpose()
+		mat<S> transpose() const
 		{
+			mat<S> r;
 			for (int row = 0; row < S; row++)
 			{
 				for (int col = 0; col < S; col++)
 				{
-					data[row][col] = data[col][row];
+					r[row][col] = data[col][row];
 				}
 			}
+
+			return r;
 		}
 
 		// operators
