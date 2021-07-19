@@ -18,14 +18,14 @@ namespace graphics
             class Output
             {
             public:
-                Math::vec3 pos;
-                Math::vec3 n;
+                Math::vec4 pos;
+                Math::vec4 n;
                 Math::vec3 worldPos;
             public:
                 Output()
                 {
-                    pos = Math::vec3(0.0f, 0.0f, 0.0f);
-                    n = Math::vec3(0.0f, 0.0f, 0.0f);
+                    pos = Math::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+                    n = Math::vec4(0.0f, 0.0f, 0.0f, 1.0f);
                     worldPos = Math::vec3(0.0f, 0.0f, 0.0f);
                 }
 
@@ -33,20 +33,20 @@ namespace graphics
                 {
                     pos = in_pos;
                     worldPos = in_pos;
-                    n = Math::vec3(0.0f, 0.0f, 0.0f);
+                    n = Math::vec4(0.0f, 0.0f, 0.0f, 0.0f);
                 }
 
                 Output(Math::vec3 in_pos, Math::vec3 norm, Math::vec3 world)
                 {
                     pos = in_pos;
-                    n = norm;
+                    n = Math::vec4(norm, 0.0f);
                     worldPos = world;
                 }
 
                 Output(const Math::vec3& in_pos, const Output& other)
                 {
                     pos = in_pos;
-                    n = other.n;
+                    n = Math::vec4(other.n, 0.0f);;
                     worldPos = other.worldPos;
                 }
 
@@ -84,11 +84,12 @@ namespace graphics
 
                     return *this;
                 }
-                Output& operator*=(const Math::mat3& mat)
+                Output& operator*=(const Math::mat4& mat)
                 {
                     pos = pos * mat;
                     n = n * mat;
-                    worldPos = worldPos * mat;
+
+                    worldPos = pos;
 
                     return *this;
                 }

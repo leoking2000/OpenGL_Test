@@ -4,31 +4,35 @@
 class VertexPC
 {
 public:
-    Math::vec3 pos;
+    Math::vec4 pos;
     Math::vec3 color;
 public:
     VertexPC()
+        :
+        pos(0.0f, 0.0f, 0.0f, 1.0f),
+        color(0.0f, 0.0f, 0.0f)
     {
-        pos = Math::vec3(0.0f, 0.0f, 0.0f);
-        color = Math::vec3(0.0f, 0.0f, 0.0f);
     }
 
     VertexPC(const Math::vec3& in_pos)
+        :
+        pos(in_pos, 1.0f),
+        color(0.0f, 0.0f, 0.0f)
     {
-        pos = in_pos;
-        color = Math::vec3(0.0f, 0.0f, 0.0f);
     }
 
     VertexPC(Math::vec3 in_pos, Math::vec3 in_color)
+        :
+        pos(in_pos, 1.0f),
+        color(in_color)
     {
-        pos = in_pos;
-        color = in_color;
     }
 
     VertexPC(const Math::vec3& in_pos, const VertexPC& other)
+        :
+        pos(in_pos, 1.0f),
+        color(other.color)
     {
-        pos = in_pos;
-        color = other.color;
     }
 
     VertexPC& operator+=(const VertexPC& rhs)
@@ -62,7 +66,7 @@ public:
 
         return *this;
     }
-    VertexPC& operator*=(const Math::mat3& mat)
+    VertexPC& operator*=(const Math::mat4& mat)
     {
         pos = pos * mat;
 

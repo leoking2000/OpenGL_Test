@@ -20,13 +20,13 @@ namespace graphics
         template<class V>
         static void TransformVertex(V& ver, const Transform& transform)
         {
-            Math::mat3 rotation_scale = Math::mat3::rotationX(transform.rot.x) * 
-								        Math::mat3::rotationY(transform.rot.y) * 
-								        Math::mat3::rotationZ(transform.rot.z) *
-										Math::mat3::scale(transform.scale);
+            Math::mat4 T = Math::mat4::rotationX(transform.rot.x) * 
+						   Math::mat4::rotationY(transform.rot.y) * 
+						   Math::mat4::rotationZ(transform.rot.z) *
+						   Math::mat4::scale(transform.scale) *
+						   Math::mat4::Translation3D(transform.pos.x, transform.pos.y, transform.pos.z);
               
-            ver *= rotation_scale;
-            ver += transform.pos;
+            ver *= T;
         }
 	};
 }

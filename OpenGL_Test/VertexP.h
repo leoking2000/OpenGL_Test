@@ -4,7 +4,7 @@
 class VertexP
 {
 public:
-	Math::vec3 pos;
+	Math::vec4 pos;
 public:
 	VertexP() = default;
 	VertexP(const Math::vec3 & pos)
@@ -38,7 +38,7 @@ public:
 		pos *= rhs;
 		return *this;
 	}
-	VertexP& operator*=(const Math::mat3& mat)
+	VertexP& operator*=(const Math::mat4& mat)
 	{
 		pos = pos * mat;
 

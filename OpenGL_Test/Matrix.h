@@ -1,5 +1,5 @@
 #pragma once
-#include "Vector3.h"
+#include "Vector4.h"
 #include <string>
 #include <cmath>
 
@@ -175,7 +175,7 @@ namespace Math
 			}
 		}
 
-		mat<3> Translation2D(float x, float y)
+		static mat<3> Translation2D(float x, float y)
 		{
 			return {
 				1.0f, 0.0f, 0.0f,
@@ -184,7 +184,7 @@ namespace Math
 			};
 		}
 
-		mat<4> Translation3D(float x, float y, float z)
+		static mat<4> Translation3D(float x, float y, float z)
 		{
 			return {
 				1.0f, 0.0f, 0.0f, 0.0f,
@@ -285,25 +285,22 @@ namespace Math
 		return lhs = lhs * rhs;
 	}
 
-	/*
-	* 
-	vec4& operator*=(vec4& lhs, const mat<4>& rhs)
+
+	static vec4 operator*(const vec4& lhs, const mat<4>& rhs)
+	{
+		return{
+			lhs.x * rhs.data[0][0] + lhs.y * rhs.data[1][0] + lhs.z * rhs.data[2][0] + lhs.w * rhs.data[3][0],
+			lhs.x * rhs.data[0][1] + lhs.y * rhs.data[1][1] + lhs.z * rhs.data[2][1] + lhs.w * rhs.data[3][1],
+			lhs.x * rhs.data[0][2] + lhs.y * rhs.data[1][2] + lhs.z * rhs.data[2][2] + lhs.w * rhs.data[3][2],
+			lhs.x * rhs.data[0][3] + lhs.y * rhs.data[1][3] + lhs.z * rhs.data[2][3] + lhs.w * rhs.data[3][3]
+		};
+	}
+	static vec4& operator*=(vec4& lhs, const mat<4>& rhs)
 	{
 		return lhs = lhs * rhs;
 	}
 
-	vec4 operator*(const vec4& lhs, const mat<4>& rhs)
-	{
-		return{
-			lhs.x * rhs.elements[0][0] + lhs.y * rhs.elements[1][0] + lhs.z * rhs.elements[2][0] + lhs.w * rhs.elements[3][0],
-			lhs.x * rhs.elements[0][1] + lhs.y * rhs.elements[1][1] + lhs.z * rhs.elements[2][1] + lhs.w * rhs.elements[3][1],
-			lhs.x * rhs.elements[0][2] + lhs.y * rhs.elements[1][2] + lhs.z * rhs.elements[2][2] + lhs.w * rhs.elements[3][2],
-			lhs.x * rhs.elements[0][3] + lhs.y * rhs.elements[1][3] + lhs.z * rhs.elements[2][3] + lhs.w * rhs.elements[3][3]
-		};
-	}
-	*/
-
 	typedef mat<2> mat2;
 	typedef mat<3> mat3;
-	typedef mat<4> Mat4;
+	typedef mat<4> mat4;
 }
