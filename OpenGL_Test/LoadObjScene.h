@@ -25,7 +25,7 @@ public:
 		gfx.effect.vertex_shader.BindTransform(meshtransform);
 		gfx.effect.pixel_shader.BindColor(Colors::Gray);
 
-		spheretransform.Translate({ 0.0f, 0.0f, 1.0f });
+		spheretransform.Translate({ 0.0f, 0.0f, 1.5f });
 		spheretransform.scale = 0.01f;
 		gfx_sphere.effect.vertex_shader.BindTransform(spheretransform);
 		gfx_sphere.effect.pixel_shader.BindColor(Colors::White);

@@ -53,6 +53,8 @@ namespace graphics
 		{
 			const int end = indices.size() / 3;
 
+			const Math::vec4 eyePos = Math::vec4(0.0f, 0.0f, 0.0f, 1.0f) * Math::mat4::perspective(2.0f, 2.0f, 1.0f, 10.0f);
+
 			for (int i = 0; i < end; i++)
 			{
 				const int k = i * 3;
@@ -67,7 +69,7 @@ namespace graphics
 
 				normal.normalize();
 
-				if (Math::vec3::dot(normal, vec0) > 0.0f) continue;
+				if (Math::vec3::dot(normal, vec0 - Math::vec3(eyePos)) > 0.0f) continue;
 
 				ProcessTriangle(vartices[indices[k]], vartices[indices[k + 1]], vartices[indices[k + 2]], i);
 			}
@@ -197,15 +199,15 @@ namespace graphics
 				{
 					if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 					{
-						// recover interpolated z from interpolated 1/z
-						const float z = 1.0f / iLine.pos.z;
-
-						if (canvas->Depth_TestSet(x, y, z))
+						if (canvas->Depth_TestSet(x, y, iLine.pos.z))
 						{
+							// recover interpolated z from interpolated 1/z
+							const float w = 1.0f / iLine.pos.w;
+
 							// recover interpolated attributes
 							// (wasted effort in multiplying pos (x,y,z) here, but
 							//  not a huge deal, not worth the code complication to fix) 
-							const auto attr = iLine * z;
+							const auto attr = iLine * w;
 
 							// invoke pixel shader with interpolated vertex attributes	
 							graphics::Color c = effect.pixel_shader(attr);
@@ -222,13 +224,13 @@ namespace graphics
 		{
 			const float xFactor = WIDTH / 2.0f;
 			const float yFactor = HEIGHT / 2.0f;
-			const float zFactor = 1.0f / vec.pos.z;
+			const float wFactor = 1.0f / vec.pos.w;
 
-			// divide all position components and attributes by z
+			// divide all position components and attributes by w
 			// (we want to be interpolating our attributes in the
 			//  same space where the x,y interpolation is taking
 			//  place to prevent distortion)
-			vec *= zFactor;
+			vec *= wFactor;
 
 			// adjust position x,y from perspective normalized space
 			// to screen dimension space after perspective divide
@@ -240,7 +242,7 @@ namespace graphics
 
 			// store 1/z in z (we will need the interpolated 1/z
 			// so that we can recover the attributes after interp.)
-			vec.pos.z = zFactor;
+			vec.pos.w = wFactor;
 		}
 	};
 }

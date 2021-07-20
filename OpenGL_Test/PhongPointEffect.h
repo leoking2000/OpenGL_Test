@@ -29,21 +29,21 @@ namespace graphics
                     worldPos = Math::vec3(0.0f, 0.0f, 0.0f);
                 }
 
-                Output(const Math::vec3& in_pos)
+                Output(const Math::vec4& in_pos)
                 {
                     pos = in_pos;
                     worldPos = in_pos;
                     n = Math::vec4(0.0f, 0.0f, 0.0f, 0.0f);
                 }
 
-                Output(Math::vec3 in_pos, Math::vec3 norm, Math::vec3 world)
+                Output(Math::vec4 in_pos, Math::vec3 norm, Math::vec3 world)
                 {
                     pos = in_pos;
                     n = Math::vec4(norm, 0.0f);
                     worldPos = world;
                 }
 
-                Output(const Math::vec3& in_pos, const Output& other)
+                Output(const Math::vec4& in_pos, const Output& other)
                 {
                     pos = in_pos;
                     n = Math::vec4(other.n, 0.0f);;
@@ -80,7 +80,7 @@ namespace graphics
                 {
                     pos *= rhs;
                     n *= rhs;
-                    worldPos *= rhs;
+                    //worldPos *= rhs;
 
                     return *this;
                 }
@@ -102,7 +102,7 @@ namespace graphics
                 {
                     pos /= rhs;
                     n /= rhs;
-                    worldPos /= rhs;
+                    //worldPos /= rhs;
 
                     return *this;
                 }
@@ -125,7 +125,7 @@ namespace graphics
 
                 return out;
             }
-        private:
+        public:
             graphics::Transform* transform;
         };
     public:

@@ -18,6 +18,6 @@ public:
 
 		return out;
 	}
-private:
+public:
 	graphics::Transform* transform;
 };

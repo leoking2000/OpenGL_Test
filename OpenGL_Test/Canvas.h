@@ -1,8 +1,6 @@
 #pragma once
 #include "Colors.h"
-
-#define WIDTH 900
-#define HEIGHT 900
+#include "defines.h"
 
 namespace graphics
 {

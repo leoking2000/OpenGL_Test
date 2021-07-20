@@ -194,6 +194,19 @@ namespace Math
 			};
 		}
 
+		static mat<4> perspective(float width, float height, float near, float far)
+		{
+			float mapX = (2.0f * near) / width;
+			float mapY = (2.0f * near) / height;
+
+			return {
+				mapX, 0.0f,                        0.0f, 0.0f,
+				0.0f, mapY,                        0.0f, 0.0f,
+				0.0f, 0.0f,          far / (far - near), 1.0f,
+				0.0f, 0.0f, - near * far / (far - near), 0.0f
+			};
+		}
+
 		// Methods //
 
 		mat<S> transpose() const
