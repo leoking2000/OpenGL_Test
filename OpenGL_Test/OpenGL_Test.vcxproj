@@ -21,6 +21,13 @@
   <ItemGroup>
     <ClCompile Include="Core\Application_GLFW.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Core\utilities\stb_image.cpp" />
     <ClCompile Include="Platform\OpenGL.cpp" />
     <ClCompile Include="Core\utilities\FrameTimer.cpp" />
@@ -43,6 +50,14 @@
     <ClInclude Include="Core\Tests\Test.h" />
     <ClInclude Include="Core\Tests\TextureCube_Test.h" />
     <ClInclude Include="Core\Tests\Triangles2D_Test.h" />
+    <ClInclude Include="Core\utilities\imgui\imconfig.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui_internal.h" />
+    <ClInclude Include="Core\utilities\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Core\utilities\imgui\imstb_textedit.h" />
+    <ClInclude Include="Core\utilities\imgui\imstb_truetype.h" />
     <ClInclude Include="Platform\OpenGL.h" />
     <ClInclude Include="Core\utilities\FrameTimer.h" />
     <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h" />

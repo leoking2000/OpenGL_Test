@@ -225,23 +225,6 @@ namespace Core
 
 			Camera::Get().Update(dt);
 
-			if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
-			{
-				glm::mat4 a = glm::mat4(1.0f);
-				a = glm::rotate(a, 0.01f, glm::vec3(0.0f, 1.0f, 0.0f));
-				light_dir = a * light_dir;
-			}
-			if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
-			{
-				glm::mat4 a = glm::mat4(1.0f);
-				a = glm::rotate(a, -0.01f, glm::vec3(0.0f, 1.0f, 0.0f));
-				light_dir = a * light_dir;
-			}
-
-
-			rotation.y = Math::wrap_angle(rotation.y + speed * dt);
-			rotation.z = Math::wrap_angle(rotation.y + (speed/2.0f) * dt);
-
 		}
 
 		void Draw() override
@@ -282,9 +265,21 @@ namespace Core
 				shader.SetUniform("model", model);
 
 				graphics::Renderer::Draw(vertexArray, indexBuffer, shader);
-			}
-	
+			}	
 		}
+
+		void ImGui() override
+		{
+
+			ImGui::Begin("Rotation");
+			ImGui::SliderFloat("X", &rotation.x, 0.0f, 2.0f * Math::PI);
+			ImGui::SliderFloat("Y", &rotation.y, 0.0f, 2.0f * Math::PI);
+			ImGui::SliderFloat("Z", &rotation.z, 0.0f, 2.0f * Math::PI);
+			ImGui::End();
+
+
+		}
+
 
 	private:
 		graphics::VertexArray vertexArray;

@@ -58,6 +58,13 @@
     <ClCompile Include="Core\graphics\Abstractions\VertexArray.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\utilities\imgui\imgui.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Core\utilities\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">
@@ -96,6 +103,14 @@
     <ClInclude Include="Core\Tests\FirstCube.h" />
     <ClInclude Include="Core\Tests\Triangles2D_Test.h" />
     <ClInclude Include="Core\Tests\TextureCube_Test.h" />
+    <ClInclude Include="Core\utilities\imgui\imconfig.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Core\utilities\imgui\imgui_internal.h" />
+    <ClInclude Include="Core\utilities\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Core\utilities\imgui\imstb_textedit.h" />
+    <ClInclude Include="Core\utilities\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">

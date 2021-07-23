@@ -8,7 +8,8 @@ namespace Core
 		Test() {}
 		virtual ~Test() {}
 
-		virtual void Update(float dt) {};
-		virtual void Draw() {};
+		virtual void Update(float dt) {}
+		virtual void Draw() {}
+		virtual void ImGui() {}
 	};
 }

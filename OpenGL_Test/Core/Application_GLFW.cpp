@@ -1,8 +1,11 @@
+#include "Application.h"
 #include "GLFW/glfw3.h"
 
-#include "Application.h"
-
 #include "graphics/Renderer.h"
+
+#include "utilities/imgui/imgui.h"
+#include "utilities/imgui/imgui_impl_glfw.h"
+#include "utilities/imgui/imgui_impl_opengl3.h"
 
 #include "Tests/RenderTexture.h"
 #include "Tests/TextureCube_Test.h"
@@ -27,7 +30,7 @@ bool Core::Application::Init()
 	/////////////////////////////////////////////////////////
 
 	tests.push_back(new TextureCube_Test("assets/wood_mc.png"));
-	tests.push_back(new FirstCube());
+	//tests.push_back(new FirstCube());
 	//tests.push_back(new RenderTexture("assets/earth.jpg"));
 
 
@@ -43,14 +46,26 @@ int Core::Application::RunMainLoop()
 	float dt = ft.Mark();
 	GLFWwindow* window = (GLFWwindow*)GetHandle();
 
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init("#version 460");
+
 	// Main Loop
 	while (!glfwWindowShouldClose(window))
 	{
 		/////////////////////////////////////////////////////////
 		Renderer::Clear();
 
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
 		tests[current_test_index]->Update(dt);
 		tests[current_test_index]->Draw();
+		tests[current_test_index]->ImGui();
 
 	    ////////////////////////////////////////////////////////
 
@@ -72,12 +87,10 @@ int Core::Application::RunMainLoop()
 			glfwSetWindowShouldClose(window, true);
 		}
 
-		if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
-		{
-			Logger::LogInfo(std::to_string(1.0f / ft.Mark()).c_str());
-		}
-
 		/////////////////////////////////////////////
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -90,6 +103,10 @@ int Core::Application::RunMainLoop()
 
 void Core::Application::TerminateApp()
 {
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
+
 	for (Test* p : tests)
 	{
 		delete p;

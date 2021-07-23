@@ -36,10 +36,9 @@ bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, b
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	// using the core profile
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	// maiking the window not resizable
+
 	glfwWindowHint(GLFW_RESIZABLE, resizable ? GL_TRUE : GL_FALSE);
 
-	// Creating a Window.
 	window.glfwwindow = glfwCreateWindow(width, height, win_name, NULL, NULL);
 	if (!window.glfwwindow)
 	{
@@ -50,7 +49,6 @@ bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, b
 
 	glfwSetWindowSizeCallback(window.glfwwindow, window_size_callback);
 
-	//Making the OpenGL context current
 	glfwMakeContextCurrent(window.glfwwindow);
 
 	// Initialize OpenGL
@@ -65,7 +63,6 @@ bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, b
 
 	glfwSwapInterval(1);
 
-	// Tell OpenGL how big is the window
 	glCall(glViewport(0, 0, width, height));
 
 	window.width = width;
