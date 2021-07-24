@@ -42,7 +42,7 @@ void graphics::Shader::UnBind() const
 	glCall(glUseProgram(0));
 }
 
-bool graphics::Shader::SetUniform(const char* name, float num)
+bool graphics::Shader::SetUniform(const char* name, float num) const
 {
 	glCall(int location = glGetUniformLocation(id, name));
 	if (location != -1)
@@ -54,7 +54,7 @@ bool graphics::Shader::SetUniform(const char* name, float num)
 	return false;
 }
 
-bool graphics::Shader::SetUniform(const char* name, float x, float y)
+bool graphics::Shader::SetUniform(const char* name, float x, float y) const
 {
 	glCall(int location = glGetUniformLocation(id, name));
 	if (location != -1)
@@ -66,7 +66,7 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y)
 	return false;
 }
 
-bool graphics::Shader::SetUniform(const char* name, float x, float y, float z)
+bool graphics::Shader::SetUniform(const char* name, float x, float y, float z) const
 {
 	glCall(int location = glGetUniformLocation(id, name));
 	if (location != -1)
@@ -78,7 +78,7 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y, float z)
 	return false;
 }
 
-bool graphics::Shader::SetUniform(const char* name, int i)
+bool graphics::Shader::SetUniform(const char* name, int i) const
 {
 	glCall(int location = glGetUniformLocation(id, name));
 	if (location != -1)
@@ -90,7 +90,7 @@ bool graphics::Shader::SetUniform(const char* name, int i)
 	return false;
 }
 
-bool graphics::Shader::SetUniform(const char* name, const glm::mat4& mat)
+bool graphics::Shader::SetUniform(const char* name, const glm::mat4& mat) const
 {
 	glCall(int location = glGetUniformLocation(id, name));
 	if (location != -1)

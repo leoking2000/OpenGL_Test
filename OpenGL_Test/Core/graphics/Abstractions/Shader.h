@@ -18,13 +18,13 @@ namespace graphics
 		void Bind() const;
 		void UnBind() const;
 
-		bool SetUniform(const char* name, float num);
-		bool SetUniform(const char* name, float x, float y);
-		bool SetUniform(const char* name, float x, float y, float z);
+		bool SetUniform(const char* name, float num) const;
+		bool SetUniform(const char* name, float x, float y) const;
+		bool SetUniform(const char* name, float x, float y, float z) const;
 
-		bool SetUniform(const char* name, int i);
+		bool SetUniform(const char* name, int i) const;
 
-		bool SetUniform(const char* name, const glm::mat4& mat);
+		bool SetUniform(const char* name, const glm::mat4& mat) const;
 
 	private:
 		uint32_t id = 0;

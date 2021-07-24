@@ -45,11 +45,12 @@
     <ClInclude Include="Core\graphics\Abstractions\Colors.h" />
     <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
     <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
-    <ClInclude Include="Core\Tests\FirstCube.h" />
-    <ClInclude Include="Core\Tests\RenderTexture.h" />
+    <ClInclude Include="Core\Tests\Camera.h" />
+    <ClInclude Include="Core\Tests\Cube.h" />
+    <ClInclude Include="Core\Tests\Light_Test.h" />
+    <ClInclude Include="Core\Tests\Material.h" />
     <ClInclude Include="Core\Tests\Test.h" />
     <ClInclude Include="Core\Tests\TextureCube_Test.h" />
-    <ClInclude Include="Core\Tests\Triangles2D_Test.h" />
     <ClInclude Include="Core\utilities\imgui\imconfig.h" />
     <ClInclude Include="Core\utilities\imgui\imgui.h" />
     <ClInclude Include="Core\utilities\imgui\imgui_impl_glfw.h" />
@@ -73,12 +74,12 @@
   <ItemGroup>
     <Image Include="assets\earth.jpg" />
     <Image Include="assets\sun.jpg" />
+    <Image Include="assets\wood_mc.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
     <None Include="Shaders\Basic3DShader.glsl" />
-    <None Include="Shaders\first_cube.glsl" />
-    <None Include="Shaders\Test.glsl" />
+    <None Include="Shaders\OneColor.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -32,11 +32,10 @@ in vec3 v_normal;
 in vec3 v_world_pos;
 
 uniform sampler2D u_Tex;
-uniform vec3 u_light_dir;
 
 // specular
-float specular_power = 30.0;
-float specular_intensity = 0.1;
+//float specular_power = 30.0;
+//float specular_intensity = 0.1;
 
 out vec4 color;
 
@@ -45,11 +44,13 @@ void main()
 	vec3 diffuse = vec3(1.0, 1.0, 1.0);
 	vec3 ambient = vec3(0.1, 0.1, 0.1);
 
+	vec3 light_dir = vec3(0.0, -1.0, 0.0);
+
 	vec3 surf_normal = normalize(v_normal);
 
 	vec3 tex_color = vec3(texture(u_Tex, v_tex_cord).xyz);
 
-	vec3 light = diffuse * max(0.0, dot(-u_light_dir, surf_normal));
+	vec3 light = diffuse * max(0.0, dot(-light_dir, surf_normal));
 
 	color = vec4((light + ambient) * tex_color, 1.0);
 

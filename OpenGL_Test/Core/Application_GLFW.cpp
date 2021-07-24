@@ -7,9 +7,7 @@
 #include "utilities/imgui/imgui_impl_glfw.h"
 #include "utilities/imgui/imgui_impl_opengl3.h"
 
-#include "Tests/RenderTexture.h"
 #include "Tests/TextureCube_Test.h"
-#include "Tests/FirstCube.h"
 
 #include "utilities/Log.h"
 #include <string>
@@ -29,9 +27,7 @@ bool Core::Application::Init()
 	Renderer::Init();
 	/////////////////////////////////////////////////////////
 
-	tests.push_back(new TextureCube_Test("assets/wood_mc.png"));
-	//tests.push_back(new FirstCube());
-	//tests.push_back(new RenderTexture("assets/earth.jpg"));
+	tests.push_back(new TextureCube_Test());
 
 
 	/////////////////////////////////////////////////////////

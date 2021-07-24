@@ -96,12 +96,9 @@
     <ClInclude Include="Core\graphics\Abstractions\Texture.h" />
     <ClInclude Include="Core\graphics\Abstractions\Colors.h" />
     <ClInclude Include="Core\Tests\Test.h" />
-    <ClInclude Include="Core\Tests\RenderTexture.h" />
     <ClInclude Include="Core\graphics\Abstractions\VertexArray.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Tests\FirstCube.h" />
-    <ClInclude Include="Core\Tests\Triangles2D_Test.h" />
     <ClInclude Include="Core\Tests\TextureCube_Test.h" />
     <ClInclude Include="Core\utilities\imgui\imconfig.h" />
     <ClInclude Include="Core\utilities\imgui\imgui.h" />
@@ -111,6 +108,10 @@
     <ClInclude Include="Core\utilities\imgui\imstb_rectpack.h" />
     <ClInclude Include="Core\utilities\imgui\imstb_textedit.h" />
     <ClInclude Include="Core\utilities\imgui\imstb_truetype.h" />
+    <ClInclude Include="Core\Tests\Camera.h" />
+    <ClInclude Include="Core\Tests\Light_Test.h" />
+    <ClInclude Include="Core\Tests\Cube.h" />
+    <ClInclude Include="Core\Tests\Material.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">
@@ -119,11 +120,13 @@
     <Image Include="assets\sun.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\wood_mc.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
     <None Include="Shaders\Basic3DShader.glsl" />
-    <None Include="Shaders\first_cube.glsl" />
-    <None Include="Shaders\Test.glsl" />
+    <None Include="Shaders\OneColor.glsl" />
   </ItemGroup>
 </Project>
