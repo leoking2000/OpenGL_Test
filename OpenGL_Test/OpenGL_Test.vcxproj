@@ -46,9 +46,10 @@
     <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
     <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
     <ClInclude Include="Core\Tests\Camera.h" />
-    <ClInclude Include="Core\Tests\Cube.h" />
+    <ClInclude Include="Core\Tests\GameObject.h" />
     <ClInclude Include="Core\Tests\Light_Test.h" />
     <ClInclude Include="Core\Tests\Material.h" />
+    <ClInclude Include="Core\Tests\Mesh.h" />
     <ClInclude Include="Core\Tests\Test.h" />
     <ClInclude Include="Core\Tests\TextureCube_Test.h" />
     <ClInclude Include="Core\utilities\imgui\imconfig.h" />

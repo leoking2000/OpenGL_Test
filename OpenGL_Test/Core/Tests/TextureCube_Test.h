@@ -3,7 +3,7 @@
 #include "Core/graphics/Renderer.h"
 
 #include "Camera.h"
-#include "Cube.h"
+#include "GameObject.h"
 #include <vector>
 
 namespace Core
@@ -13,11 +13,12 @@ namespace Core
 	public:
 		TextureCube_Test()
 			:
+			cube_mesh(Mesh::GenarateCube()),
 			whiteMat("Shaders/Basic3DShader.glsl", Colors::White),
 			woodMat("Shaders/Basic3DShader.glsl", "assets/wood_mc.png")
 		{
 
-			auto SetUniform = [](const Cube& cube)
+			auto SetUniform = [](const GameObject& cube)
 			{
 				cube.mat.shader.SetUniform("proj", glm::perspective(glm::radians(45.0f), (float)GetWidth() / (float)GetHeight(), 0.1f, 100.0f));
 				cube.mat.shader.SetUniform("view", Camera::Get().GetCameraView());
@@ -27,12 +28,12 @@ namespace Core
 			};
 
 			cubes.reserve(50);
-			cubes.emplace_back(glm::vec3(  0.0f, -4.0f,  -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(50.0f, 1.0f, 50.0f), whiteMat, SetUniform);
-			cubes.emplace_back(glm::vec3( 20.0f,  1.0f, -15.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
-			cubes.emplace_back(glm::vec3(-14.0f,  1.0f, -12.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
-			cubes.emplace_back(glm::vec3(-17.0f,  0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
-			cubes.emplace_back(glm::vec3( 30.0f,  3.0f, -20.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
-			cubes.emplace_back(glm::vec3(  5.0f,  2.0f, -11.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3(  0.0f, -4.0f,  -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(50.0f, 1.0f, 50.0f), *cube_mesh, whiteMat, SetUniform);
+			cubes.emplace_back(glm::vec3( 20.0f,  1.0f, -15.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f), *cube_mesh,  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3(-14.0f,  1.0f, -12.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f), *cube_mesh,  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3(-17.0f,  0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f), *cube_mesh,  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3( 30.0f,  3.0f, -20.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f), *cube_mesh,  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3(  5.0f,  2.0f, -11.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f), *cube_mesh,  woodMat, SetUniform);
 
 			rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 		}
@@ -50,20 +51,7 @@ namespace Core
 		{
 			graphics::Renderer::SetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-			glm::vec3 cubePositions[10] = {
-				glm::vec3(0.0f,  0.0f,  0.0f),
-				glm::vec3(2.0f,  5.0f, -15.0f),
-				glm::vec3(-1.5f, -2.2f, -2.5f),
-				glm::vec3(-3.8f, -2.0f, -12.3f),
-				glm::vec3(2.4f, -0.4f, -3.5f),
-				glm::vec3(-1.7f,  3.0f, -7.5f),
-				glm::vec3(1.3f, -2.0f, -2.5f),
-				glm::vec3(1.5f,  2.0f, -2.5f),
-				glm::vec3(1.5f,  0.2f, -1.5f),
-				glm::vec3(-1.3f,  1.0f, -1.5f)
-			};
-
-			for (Cube& cube : cubes)
+			for (GameObject& cube : cubes)
 			{
 				cube.Draw();
 			}	
@@ -81,11 +69,18 @@ namespace Core
 
 		}
 
+		~TextureCube_Test()
+		{
+			delete cube_mesh;
+		}
+
 
 	private:
+		Mesh* cube_mesh;
 		Matirial whiteMat;
 		Matirial woodMat;
-		std::vector<Cube> cubes;
+
+		std::vector<GameObject> cubes;
 
 		glm::vec3 rotation;
 	

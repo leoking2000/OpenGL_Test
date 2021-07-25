@@ -110,8 +110,9 @@
     <ClInclude Include="Core\utilities\imgui\imstb_truetype.h" />
     <ClInclude Include="Core\Tests\Camera.h" />
     <ClInclude Include="Core\Tests\Light_Test.h" />
-    <ClInclude Include="Core\Tests\Cube.h" />
     <ClInclude Include="Core\Tests\Material.h" />
+    <ClInclude Include="Core\Tests\Mesh.h" />
+    <ClInclude Include="Core\Tests\GameObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">
