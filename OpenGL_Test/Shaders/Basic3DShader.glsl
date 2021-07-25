@@ -33,10 +33,6 @@ in vec3 v_world_pos;
 
 uniform sampler2D u_Tex;
 
-// specular
-//float specular_power = 30.0;
-//float specular_intensity = 0.1;
-
 out vec4 color;
 
 void main()

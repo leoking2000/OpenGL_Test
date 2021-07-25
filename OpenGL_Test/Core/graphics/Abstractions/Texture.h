@@ -31,8 +31,8 @@ namespace graphics
 		int m_width;
 		int m_height;
 
-		uint32_t m_id;
-		Color* m_data;
+		uint32_t m_id = 0;
+		Color* m_data = nullptr;
 	};
 }
 

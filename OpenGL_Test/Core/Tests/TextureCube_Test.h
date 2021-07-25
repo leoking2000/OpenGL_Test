@@ -26,7 +26,13 @@ namespace Core
 				cube.mat.shader.SetUniform("u_Tex", 0);
 			};
 
-			cubes.emplace_back(glm::vec3( 0.0f, -2.0f, 0.0f ), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(5.0f, 1.0f, 5.0f), woodMat, SetUniform);
+			cubes.reserve(50);
+			cubes.emplace_back(glm::vec3(  0.0f, -4.0f,  -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(50.0f, 1.0f, 50.0f), whiteMat, SetUniform);
+			cubes.emplace_back(glm::vec3( 20.0f,  1.0f, -15.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3(-14.0f,  1.0f, -12.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3(-17.0f,  0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3( 30.0f,  3.0f, -20.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
+			cubes.emplace_back(glm::vec3(  5.0f,  2.0f, -11.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(  1.0f, 1.0f, 1.0f),  woodMat, SetUniform);
 
 			rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 		}

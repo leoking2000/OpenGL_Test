@@ -16,11 +16,21 @@ namespace Core
 
 		const Matirial& mat;
 	public:
-		Cube(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3 in_scale, const Matirial& mat, std::function<void(const Cube&)> SetUniforms)
+		Cube(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3& in_scale, const Matirial& mat, std::function<void(const Cube&)> SetUniforms)
 			:
 			pos(in_pos),
 			rotation(in_rotation),
 			scale(in_scale),
+			mat(mat),
+			SetUniforms(SetUniforms)
+		{
+			Init();
+		}
+		Cube(const glm::vec3& in_pos, const glm::vec3& in_rotation, float in_scale, const Matirial& mat, std::function<void(const Cube&)> SetUniforms)
+			:
+			pos(in_pos),
+			rotation(in_rotation),
+			scale(in_scale, in_scale, in_scale),
 			mat(mat),
 			SetUniforms(SetUniforms)
 		{

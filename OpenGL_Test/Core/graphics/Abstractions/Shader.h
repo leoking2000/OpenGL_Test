@@ -21,6 +21,7 @@ namespace graphics
 		bool SetUniform(const char* name, float num) const;
 		bool SetUniform(const char* name, float x, float y) const;
 		bool SetUniform(const char* name, float x, float y, float z) const;
+		bool SetUniform(const char* name, float x, float y, float z, float w) const;
 
 		bool SetUniform(const char* name, int i) const;
 

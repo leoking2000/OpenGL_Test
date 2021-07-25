@@ -8,6 +8,7 @@
 #include "utilities/imgui/imgui_impl_opengl3.h"
 
 #include "Tests/TextureCube_Test.h"
+#include "Tests/Light_Test.h"
 
 #include "utilities/Log.h"
 #include <string>
@@ -27,7 +28,7 @@ bool Core::Application::Init()
 	Renderer::Init();
 	/////////////////////////////////////////////////////////
 
-	tests.push_back(new TextureCube_Test());
+	tests.push_back(new Light_Test());
 
 
 	/////////////////////////////////////////////////////////

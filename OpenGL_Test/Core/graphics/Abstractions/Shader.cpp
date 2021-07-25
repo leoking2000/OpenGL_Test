@@ -78,6 +78,18 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y, float z) c
 	return false;
 }
 
+bool graphics::Shader::SetUniform(const char* name, float x, float y, float z, float w) const
+{
+	glCall(int location = glGetUniformLocation(id, name));
+	if (location != -1)
+	{
+		glCall(glProgramUniform4f(id, location, x, y, z, w));
+		return true;
+	}
+	Logger::LogError("uniform error");
+	return false;
+}
+
 bool graphics::Shader::SetUniform(const char* name, int i) const
 {
 	glCall(int location = glGetUniformLocation(id, name));

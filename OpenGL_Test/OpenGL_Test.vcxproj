@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
+    <None Include="Shaders\Basic.glsl" />
     <None Include="Shaders\Basic3DShader.glsl" />
     <None Include="Shaders\OneColor.glsl" />
   </ItemGroup>

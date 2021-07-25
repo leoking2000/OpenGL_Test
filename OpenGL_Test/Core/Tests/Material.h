@@ -23,6 +23,13 @@ namespace Core
 			tex(1, 1, color)
 		{
 		}
+		Matirial(const char* shader)
+			:
+			shader(shader),
+			tex(0, 0)
+		{
+
+		}
 
 		void Bind() const
 		{

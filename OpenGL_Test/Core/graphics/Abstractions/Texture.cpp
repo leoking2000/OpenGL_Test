@@ -9,6 +9,8 @@ graphics::Texture::Texture(uint32_t width, uint32_t height)
     :
     m_width(width), m_height(height), m_data(new Color[width * height])
 {
+	if (width * height <= 0) return;
+
 	Clear(Colors::Black);
 	UploadToGPU();
 }
