@@ -5,6 +5,8 @@
 #include "Abstractions/Shader.h"
 #include "Abstractions/Texture.h"
 
+#include "Math/math.h"
+
 namespace graphics
 {
 	class Renderer
@@ -16,6 +18,9 @@ namespace graphics
 		static void Clear();
 
 		static void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
+
+	public:
+		static glm::mat4 proj;
 
 	};
 }

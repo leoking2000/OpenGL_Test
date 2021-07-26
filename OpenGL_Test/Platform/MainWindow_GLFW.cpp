@@ -9,11 +9,15 @@ struct MainWindow
 	GLFWwindow* glfwwindow;
 	uint32_t width;
 	uint32_t height;
+
+	double mouseX;
+	double mouseY;
 };
 
 static MainWindow window;
 
 void window_size_callback(GLFWwindow* window, int width, int height);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, bool resizable)
 {
@@ -68,6 +72,8 @@ bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, b
 	window.width = width;
 	window.height = height;
 
+	glfwSetCursorPosCallback(window.glfwwindow, mouse_callback);
+
 	init = true;
 
 	return true;
@@ -89,9 +95,42 @@ uint32_t Core::GetHeight()
 	return window.height;
 }
 
-void* Core::GetHandle()
+void Core::SetMouseVisibility(bool visible)
 {
-	return window.glfwwindow;
+	glfwSetInputMode(window.glfwwindow, GLFW_CURSOR, visible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
+}
+
+double Core::GetMouseX()
+{
+	return window.mouseX;
+}
+
+double Core::GetMouseY()
+{
+	return window.mouseY;
+}
+
+bool Core::KeyIsPress(KEY key)
+{
+	switch (key)
+	{
+	case Core::KEY_W:
+		return glfwGetKey(window.glfwwindow, GLFW_KEY_W) == GLFW_PRESS;
+	case Core::KEY_S:
+		return glfwGetKey(window.glfwwindow, GLFW_KEY_S) == GLFW_PRESS;
+	case Core::KEY_A:
+		return glfwGetKey(window.glfwwindow, GLFW_KEY_A) == GLFW_PRESS;
+	case Core::KEY_D:
+		return glfwGetKey(window.glfwwindow, GLFW_KEY_D) == GLFW_PRESS;
+	case Core::KEY_X:
+		return glfwGetKey(window.glfwwindow, GLFW_KEY_X) == GLFW_PRESS;
+	case Core::KEY_TAB:
+		return glfwGetKey(window.glfwwindow, GLFW_KEY_TAB) == GLFW_PRESS;
+	case Core::KEY_ESCAPE:
+		return glfwGetKey(window.glfwwindow, GLFW_KEY_ESCAPE) == GLFW_PRESS;
+	default:
+		return false;
+	}
 }
 
 void Core::Resize(uint32_t width, uint32_t height)
@@ -101,10 +140,21 @@ void Core::Resize(uint32_t width, uint32_t height)
 	window_size_callback(window.glfwwindow, (int)width, (int)height);
 }
 
+void* Core::GetHandle()
+{
+	return window.glfwwindow;
+}
+
 void window_size_callback(GLFWwindow* _window, int width, int height)
 {
 	glCall(glViewport(0, 0, width, height));
 
 	window.width = width;
 	window.height = height;
+}
+
+void mouse_callback(GLFWwindow* win, double xpos, double ypos)
+{
+	window.mouseX = xpos;
+	window.mouseY = ypos;
 }

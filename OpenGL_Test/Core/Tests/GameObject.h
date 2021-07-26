@@ -71,7 +71,7 @@ namespace Core
 
 			SetUniforms(*this);
 
-			graphics::Renderer::Draw(*mesh.vertexArray, *mesh.indexBuffer, mat.shader);
+			graphics::Renderer::Draw(mesh.vertexArray, mesh.indexBuffer, mat.shader);
 		}
 
 	private:

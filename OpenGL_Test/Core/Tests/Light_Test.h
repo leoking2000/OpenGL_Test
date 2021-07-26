@@ -2,7 +2,7 @@
 #include "Test.h"
 #include "Core/graphics/Renderer.h"
 
-#include "Camera.h"
+#include "Core/graphics/Camera.h"
 #include "GameObject.h"
 #include <vector>
 
@@ -13,7 +13,6 @@ namespace Core
 	public:
 		Light_Test()
 			:
-			proj(glm::perspective(glm::radians(45.0f), (float)GetWidth() / (float)GetHeight(), 0.1f, 500.0f)),
 			lightMat("Shaders/OneColor.glsl"),
 			woodMat("Shaders/Basic.glsl", "assets/wood_mc.png"),
 			floorMat("Shaders/Basic.glsl", { 255, 127, 80, 255 }),
@@ -23,8 +22,8 @@ namespace Core
 			light(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f), *cube_mesh,lightMat,
 				[&](const GameObject& gameObject)
 				{
-					gameObject.mat.shader.SetUniform("proj", proj);
-					gameObject.mat.shader.SetUniform("view", Camera::Get().GetCameraView());
+					gameObject.mat.shader.SetUniform("proj", graphics::Renderer::proj);
+					gameObject.mat.shader.SetUniform("view", cam.GetCameraView());
 					gameObject.mat.shader.SetUniform("model", gameObject.GetModelMatrix());
 
 					gameObject.mat.shader.SetUniform("u_object_color", light_color.x, light_color.y, light_color.z);
@@ -33,8 +32,8 @@ namespace Core
 
 			auto SetUniform_Basic = [&](const GameObject& gameObject)
 			{
-				gameObject.mat.shader.SetUniform("proj", proj);
-				gameObject.mat.shader.SetUniform("view", Camera::Get().GetCameraView());
+				gameObject.mat.shader.SetUniform("proj", graphics::Renderer::proj);
+				gameObject.mat.shader.SetUniform("view", cam.GetCameraView());
 				gameObject.mat.shader.SetUniform("model", gameObject.GetModelMatrix());
 
 				gameObject.mat.shader.SetUniform("u_Tex", 0);
@@ -42,7 +41,7 @@ namespace Core
 				gameObject.mat.shader.SetUniform("u_light_color", light_color.x, light_color.y, light_color.z);
 				gameObject.mat.shader.SetUniform("u_light_pos", light.pos.x, light.pos.y, light.pos.z);
 
-				glm::vec3 camPos = Camera::Get().pos;
+				glm::vec3 camPos = cam.pos;
 				gameObject.mat.shader.SetUniform("u_cameraPos", camPos.x, camPos.y, camPos.z);
 			};
 
@@ -60,7 +59,7 @@ namespace Core
 		{
 			float speed = 1.0f;
 
-			Camera::Get().Update(dt);
+			cam.Update(dt);
 		}
 
 		void Draw() override
@@ -93,7 +92,7 @@ namespace Core
 
 
 	private:
-		glm::mat4 proj;
+		graphics::Camera cam;
 
 		Mesh* cube_mesh;
 
@@ -105,7 +104,5 @@ namespace Core
 		GameObject light;
 
 		std::vector<GameObject> GameObjects;
-
-		GLFWwindow* window = nullptr;
 	};
 }

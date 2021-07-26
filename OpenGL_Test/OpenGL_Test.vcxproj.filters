@@ -65,6 +65,7 @@
     <ClCompile Include="Core\utilities\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Core\utilities\imgui\imgui_tables.cpp" />
     <ClCompile Include="Core\utilities\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Core\graphics\Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">
@@ -108,11 +109,11 @@
     <ClInclude Include="Core\utilities\imgui\imstb_rectpack.h" />
     <ClInclude Include="Core\utilities\imgui\imstb_textedit.h" />
     <ClInclude Include="Core\utilities\imgui\imstb_truetype.h" />
-    <ClInclude Include="Core\Tests\Camera.h" />
     <ClInclude Include="Core\Tests\Light_Test.h" />
     <ClInclude Include="Core\Tests\Material.h" />
     <ClInclude Include="Core\Tests\Mesh.h" />
     <ClInclude Include="Core\Tests\GameObject.h" />
+    <ClInclude Include="Core\graphics\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">

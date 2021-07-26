@@ -2,7 +2,7 @@
 #include "Test.h"
 #include "Core/graphics/Renderer.h"
 
-#include "Camera.h"
+#include "Core/graphics/Camera.h"
 #include "GameObject.h"
 #include <vector>
 
@@ -18,10 +18,10 @@ namespace Core
 			woodMat("Shaders/Basic3DShader.glsl", "assets/wood_mc.png")
 		{
 
-			auto SetUniform = [](const GameObject& cube)
+			auto SetUniform = [&](const GameObject& cube)
 			{
-				cube.mat.shader.SetUniform("proj", glm::perspective(glm::radians(45.0f), (float)GetWidth() / (float)GetHeight(), 0.1f, 100.0f));
-				cube.mat.shader.SetUniform("view", Camera::Get().GetCameraView());
+				cube.mat.shader.SetUniform("proj", graphics::Renderer::proj);
+				cube.mat.shader.SetUniform("view", cam.GetCameraView());
 				cube.mat.shader.SetUniform("model", cube.GetModelMatrix());
 
 				cube.mat.shader.SetUniform("u_Tex", 0);
@@ -42,7 +42,7 @@ namespace Core
 		{
 			float speed = 1.0f;
 
-			Camera::Get().Update(dt);
+			cam.Update(dt);
 
 			cubes[0].rotation = rotation;
 		}
@@ -79,6 +79,8 @@ namespace Core
 		Mesh* cube_mesh;
 		Matirial whiteMat;
 		Matirial woodMat;
+
+		graphics::Camera cam;
 
 		std::vector<GameObject> cubes;
 

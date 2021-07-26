@@ -12,8 +12,7 @@ namespace Core
 		{
 			Mesh* mesh = new Mesh();
 
-			mesh->vertexArray = new graphics::VertexArray();
-			mesh->vertexArray->Bind();
+			mesh->vertexArray.Bind();
 
 			float vertexs[] = {
 				// pos                 // tex cord      // normal
@@ -54,11 +53,11 @@ namespace Core
 				-0.5f, -0.5f,  0.5f,     0.0f, 1.0f,    0.0f, -1.0f,  0.0f    //23
 			};
 
-			mesh->vertexBuffer = new graphics::VertexBuffer(vertexs, sizeof(vertexs));
+			mesh->vertexBuffer.Recreate(vertexs, sizeof(vertexs));
 
 			graphics::ElementType arr[3] = { graphics::FLOAT3, graphics::FLOAT2, graphics::FLOAT3_N };
 			graphics::Layout<3> layout(arr);
-			mesh->vertexArray->AddBuffer(*mesh->vertexBuffer, layout);
+			mesh->vertexArray.AddBuffer(mesh->vertexBuffer, layout);
 
 			// index buffer
 			uint32_t indices[] = {
@@ -75,7 +74,7 @@ namespace Core
 				// SOUTH
 				22, 23, 20, /**/ 22, 20, 21
 			};
-			mesh->indexBuffer = new graphics::IndexBuffer(indices, 36);
+			mesh->indexBuffer.Recreare(indices, 36);
 
 			return mesh;
 		}
@@ -87,21 +86,14 @@ namespace Core
 
 		void Bind() const
 		{
-			vertexArray->Bind();		
-			indexBuffer->Bind();
-		}
-
-		~Mesh()
-		{
-			delete vertexArray;
-			delete vertexBuffer;
-			delete indexBuffer;
+			vertexArray.Bind();		
+			indexBuffer.Bind();
 		}
 
 	public:
-		graphics::VertexArray* vertexArray;
-		graphics::VertexBuffer* vertexBuffer;
-		graphics::IndexBuffer* indexBuffer;
+		graphics::VertexArray vertexArray;
+		graphics::VertexBuffer vertexBuffer;
+		graphics::IndexBuffer indexBuffer;
 	private:
 		Mesh() {};
 	};

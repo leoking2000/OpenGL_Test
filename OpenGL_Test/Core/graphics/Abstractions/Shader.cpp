@@ -167,10 +167,6 @@ uint32_t graphics::CreateProgramShader(const char* filename)
 
 	assert(file.fail() == false);
 
-	std::string msg = "Creating shader from file ";
-	msg += filename;
-	Logger::LogInfo(msg.c_str());
-
 	enum ShaderType
 	{
 		NONE = -1,
@@ -203,7 +199,7 @@ uint32_t graphics::CreateProgramShader(const char* filename)
 
 	uint32_t program = CreateProgramShaderVF(ss[0].str().c_str(), ss[1].str().c_str());
 
-	msg = "Creation of shader from file ";
+	std::string msg = "Creation of shader from file ";
 	msg += filename;
 	msg += " Has completed";
 	Logger::LogInfo(msg.c_str());
