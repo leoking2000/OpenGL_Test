@@ -41,8 +41,9 @@ namespace Core
 				gameObject.mat.shader.SetUniform("u_light_color", light_color.x, light_color.y, light_color.z);
 				gameObject.mat.shader.SetUniform("u_light_pos", light.pos.x, light.pos.y, light.pos.z);
 
-				glm::vec3 camPos = cam.pos;
-				gameObject.mat.shader.SetUniform("u_cameraPos", camPos.x, camPos.y, camPos.z);
+				gameObject.mat.shader.SetUniform("ambientStrength", ambientStrength);
+				gameObject.mat.shader.SetUniform("specularStrength", specularStrength);
+				gameObject.mat.shader.SetUniform("shininess", shininess);
 			};
 
 			GameObjects.reserve(50);
@@ -82,6 +83,11 @@ namespace Core
 			ImGui::SliderFloat("Z Pos", &light.pos.z, -10.0f, 10.0f);
 
 			ImGui::ColorPicker4("light color", glm::value_ptr(light_color));
+
+			ImGui::SliderFloat("Ambient", &ambientStrength, 0.0f, 0.5f);
+			ImGui::SliderFloat("Specular", &specularStrength, 0.0f, 2.0f);
+			ImGui::SliderFloat("shininess", &shininess, 0.0f, 64.0f);
+
 			ImGui::End();
 		}
 
@@ -101,6 +107,9 @@ namespace Core
 		Matirial floorMat;
 
 		glm::vec3 light_color;
+		float ambientStrength = 0.05f;
+		float specularStrength = 0.25f;
+		float shininess = 64.0f;
 		GameObject light;
 
 		std::vector<GameObject> GameObjects;

@@ -9,19 +9,23 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 proj;
 
+uniform vec3 u_light_pos;
+
 out vec2 v_tex_cord;
 out vec3 v_normal;
 out vec3 v_world_pos;
+out vec3 v_light_pos;
 
 void main()
 {
-	vec4 world_pos = model * vec4(pos, 1.0);
+    mat4 view_model = view * model;
 
-	gl_Position = proj * view * world_pos;
+	gl_Position = proj * view_model * vec4(pos, 1.0);
 
 	v_tex_cord  = tex_cord;
-	v_normal    = vec3( ( model * vec4(normal, 0.0) ).xyz );
-	v_world_pos = vec3(world_pos.xyz);
+	v_normal    = vec3( ( view_model * vec4(     normal, 0.0) ).xyz );
+	v_world_pos = vec3( ( view_model * vec4(        pos, 1.0) ).xyz );
+    v_light_pos = vec3( ( view       * vec4(u_light_pos, 1.0) ).xyz );
 }
 
 #shader fragment
@@ -30,35 +34,30 @@ void main()
 in vec2 v_tex_cord;
 in vec3 v_normal;
 in vec3 v_world_pos;
+in vec3 v_light_pos;
 
 uniform sampler2D u_Tex;
-
 uniform vec3 u_light_color;
-uniform vec3 u_light_pos;
 
-uniform vec3 u_cameraPos;
+uniform float ambientStrength;
+uniform float specularStrength;
+uniform float shininess;
 
 out vec4 color;
 
-float specularStrength = 0.5;
-float specularPower = 32;
-
-float ambientStrength = 0.1;
-
 void main()
 {
-
     vec3 ambient = ambientStrength * u_light_color;
 
     vec3 surf_normal = normalize(v_normal);
-    vec3 lightDir = normalize(v_world_pos - u_light_pos);
+    vec3 lightDir = normalize(v_world_pos - v_light_pos);
     vec3 diffuse = max(dot(surf_normal, -lightDir), 0.0) * u_light_color;
 
 	vec3 tex_color = vec3(texture(u_Tex, v_tex_cord).xyz);
 
-    vec3 viewDir = normalize(u_cameraPos - v_world_pos);
+    vec3 viewDir = normalize(-v_world_pos);
     vec3 reflectDir = reflect(lightDir, surf_normal);
-    vec3 specular = specularStrength * pow(max(dot(viewDir, reflectDir), 0.0), specularPower) * u_light_color;
+    vec3 specular = specularStrength * pow(max(dot(viewDir, reflectDir), 0.0), shininess) * u_light_color;
 
     vec3 result = (ambient + diffuse + specular) * tex_color;
 	color = vec4(result, 1.0);
