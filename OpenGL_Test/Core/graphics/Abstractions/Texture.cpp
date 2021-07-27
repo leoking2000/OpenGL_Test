@@ -48,6 +48,9 @@ int graphics::Texture::GetHeight() const
 void graphics::Texture::Load(const char* file_name)
 {
 	delete m_data;
+
+	stbi_set_flip_vertically_on_load(1);
+
 	int m_bpp;
 	m_data = (Color*)stbi_load(file_name, &m_width, &m_height, &m_bpp, 4);
 	assert(m_data);

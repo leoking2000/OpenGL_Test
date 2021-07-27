@@ -1,4 +1,7 @@
 #include "Mesh.h"
+#include "Math/math.h"
+#include <glm/gtx/matrix_transform_2d.hpp>
+#include <vector>
 
 using namespace graphics;
 
@@ -73,14 +76,78 @@ graphics::Mesh* graphics::Mesh::GenarateCube()
 	return mesh;
 }
 
-Mesh* graphics::Mesh::GenarateSphere()
+struct Vertex
+{
+	glm::vec3 pos;
+	glm::vec2 texCord;
+	glm::vec3 normal;
+};
+
+float toRadians(float degrees) { return (degrees * 2.0f * 3.14159f) / 360.0f; }
+
+// Note latitude east west | longitude North to south
+Mesh* graphics::Mesh::GenarateSphere(uint32_t prec)
 {
 	Mesh* mesh = new Mesh();
 
 	mesh->vertexArray.Bind();
 
+	const uint32_t numVertices = (prec + 1) * (prec + 1);
+	const uint32_t numIndices = prec * prec * 6;
+
+	std::vector<Vertex> vertices(numVertices);
+
+	// calculate triangle vertices
+	for (int i = 0; i <= prec; i++) {
+		for (int j = 0; j <= prec; j++) {
+			float y = (float)cos(toRadians(180.0f - i * 180.0f / prec));
+			float x = -(float)cos(toRadians(j * 360.0f / prec)) * (float)abs(cos(asin(y)));
+			float z = (float)sin(toRadians(j * 360.0f / (float)(prec))) * (float)abs(cos(asin(y)));
+			vertices[i * (prec + 1) + j].pos = glm::vec3(x, y, z);
+			vertices[i * (prec + 1) + j].texCord = glm::vec2(((float)j / prec), ((float)i / prec));
+			vertices[i * (prec + 1) + j].normal = glm::vec3(x, y, z);
+
+		}
+	}
+
+	std::vector<uint32_t> indices(numIndices);
+	
+	// calculate triangle indices
+	for (int i = 0; i < prec; i++) {
+		for (int j = 0; j < prec; j++) {
+			indices[6 * (i * prec + j) + 0] = i * (prec + 1) + j;
+			indices[6 * (i * prec + j) + 1] = i * (prec + 1) + j + 1;
+			indices[6 * (i * prec + j) + 2] = (i + 1) * (prec + 1) + j;
+			indices[6 * (i * prec + j) + 3] = i * (prec + 1) + j + 1;
+			indices[6 * (i * prec + j) + 4] = (i + 1) * (prec + 1) + j + 1;
+			indices[6 * (i * prec + j) + 5] = (i + 1) * (prec + 1) + j;
+		}
+	}
+
+	std::vector<float> vertex_buffer;
+
+	for (Vertex& v : vertices)
+	{
+		vertex_buffer.emplace_back(v.pos.x);
+		vertex_buffer.emplace_back(v.pos.y);
+		vertex_buffer.emplace_back(v.pos.z);
+
+		vertex_buffer.emplace_back(v.texCord.s);
+		vertex_buffer.emplace_back(v.texCord.t);
+
+		vertex_buffer.emplace_back(v.normal.x);
+		vertex_buffer.emplace_back(v.normal.y);
+		vertex_buffer.emplace_back(v.normal.z);
+	}
+
+	mesh->vertexBuffer.Recreate((const void*)vertex_buffer.data(), vertex_buffer.size() * sizeof(float) );
+
+	graphics::ElementType arr[3] = { graphics::FLOAT3, graphics::FLOAT2, graphics::FLOAT3_N };
+	graphics::Layout<3> layout(arr);
+	mesh->vertexArray.AddBuffer(mesh->vertexBuffer, layout);
 
 
+	mesh->indexBuffer.Recreare(indices.data(), indices.size());
 
 	return mesh;
 }

@@ -15,9 +15,11 @@ namespace Core
 			:
 			lightMat("Shaders/OneColor.glsl"),
 			woodMat("Shaders/Basic.glsl", "assets/wood_mc.png"),
+			earthMat("Shaders/Basic.glsl", "assets/earth.jpg"),
 			floorMat("Shaders/Basic.glsl", { 255, 127, 80, 255 }),
 			light_color(1.0f, 1.0f, 1.0f),
 			cube_mesh(graphics::Mesh::GenarateCube()),
+			sphere_mesh(graphics::Mesh::GenarateSphere()),
 
 			light(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f), *cube_mesh,lightMat,
 				[&](const graphics::GameObject& gameObject)
@@ -54,6 +56,8 @@ namespace Core
 			GameObjects.emplace_back(glm::vec3( 30.0f,  3.0f, -20.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat, SetUniform_Basic);
 			GameObjects.emplace_back(glm::vec3(  5.0f,  2.0f, -11.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat, SetUniform_Basic);
 
+			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,    3.0f), glm::vec3(0.0f, 0.0f, 0.0f), 5.0f, *sphere_mesh, earthMat, SetUniform_Basic); // 6
+
 		}
 
 		void Update(float dt) override
@@ -61,6 +65,8 @@ namespace Core
 			float speed = 1.0f;
 
 			cam.Update(dt);
+
+
 		}
 
 		void Draw() override
@@ -78,15 +84,27 @@ namespace Core
 		void ImGui() override
 		{
 			ImGui::Begin("Light");
-			ImGui::SliderFloat("X Pos", &light.pos.x, -10.0f, 10.0f);
-			ImGui::SliderFloat("Y Pos", &light.pos.y,  -3.0f, 10.0f);
-			ImGui::SliderFloat("Z Pos", &light.pos.z, -10.0f, 10.0f);
+			ImGui::SliderFloat("X Pos", &light.pos.x, -50.0f, 50.0f);
+			ImGui::SliderFloat("Y Pos", &light.pos.y,  -3.0f, 50.0f);
+			ImGui::SliderFloat("Z Pos", &light.pos.z, -50.0f, 50.0f);
 
 			ImGui::ColorPicker4("light color", glm::value_ptr(light_color));
 
 			ImGui::SliderFloat("Ambient", &ambientStrength, 0.0f, 0.5f);
 			ImGui::SliderFloat("Specular", &specularStrength, 0.0f, 2.0f);
 			ImGui::SliderFloat("shininess", &shininess, 0.0f, 64.0f);
+
+			ImGui::End();
+
+			ImGui::Begin("Earth");
+
+			ImGui::SliderFloat("X Pos", &GameObjects[6].pos.x, -100.0f, 100.0f);
+			ImGui::SliderFloat("Y Pos", &GameObjects[6].pos.y,    0.0f, 100.0f);
+			ImGui::SliderFloat("Z Pos", &GameObjects[6].pos.z, -100.0f, 100.0f);
+
+			ImGui::SliderFloat("X rot", &GameObjects[6].rotation.x,  0.0f, 2.0f * Math::PI);
+			ImGui::SliderFloat("Y rot", &GameObjects[6].rotation.y,  0.0f, 2.0f * Math::PI);
+			ImGui::SliderFloat("Z rot", &GameObjects[6].rotation.z,  0.0f, 2.0f * Math::PI);
 
 			ImGui::End();
 		}
@@ -101,9 +119,11 @@ namespace Core
 		graphics::Camera cam;
 
 		graphics::Mesh* cube_mesh;
+		graphics::Mesh* sphere_mesh;
 
 		graphics::Matirial lightMat;
 		graphics::Matirial woodMat;
+		graphics::Matirial earthMat;
 		graphics::Matirial floorMat;
 
 		glm::vec3 light_color;

@@ -10,7 +10,7 @@ namespace graphics
 
 		static Mesh* GenarateCube();
 
-		static Mesh* GenarateSphere();
+		static Mesh* GenarateSphere(uint32_t prec = 48);
 
 		void Bind() const
 		{
