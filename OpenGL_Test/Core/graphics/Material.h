@@ -2,7 +2,7 @@
 #include "Core/graphics/Abstractions/Shader.h"
 #include "Core/graphics/Abstractions/Texture.h"
 
-namespace Core
+namespace graphics
 {
 	class Matirial
 	{

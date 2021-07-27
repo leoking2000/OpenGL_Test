@@ -66,6 +66,7 @@
     <ClCompile Include="Core\utilities\imgui\imgui_tables.cpp" />
     <ClCompile Include="Core\utilities\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Core\graphics\Camera.cpp" />
+    <ClCompile Include="Core\graphics\Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">
@@ -100,7 +101,6 @@
     <ClInclude Include="Core\graphics\Abstractions\VertexArray.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Tests\TextureCube_Test.h" />
     <ClInclude Include="Core\utilities\imgui\imconfig.h" />
     <ClInclude Include="Core\utilities\imgui\imgui.h" />
     <ClInclude Include="Core\utilities\imgui\imgui_impl_glfw.h" />
@@ -110,10 +110,10 @@
     <ClInclude Include="Core\utilities\imgui\imstb_textedit.h" />
     <ClInclude Include="Core\utilities\imgui\imstb_truetype.h" />
     <ClInclude Include="Core\Tests\Light_Test.h" />
-    <ClInclude Include="Core\Tests\Material.h" />
-    <ClInclude Include="Core\Tests\Mesh.h" />
-    <ClInclude Include="Core\Tests\GameObject.h" />
     <ClInclude Include="Core\graphics\Camera.h" />
+    <ClInclude Include="Core\graphics\GameObject.h" />
+    <ClInclude Include="Core\graphics\Material.h" />
+    <ClInclude Include="Core\graphics\Mesh.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">
@@ -128,7 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
-    <None Include="Shaders\Basic3DShader.glsl" />
     <None Include="Shaders\OneColor.glsl" />
     <None Include="Shaders\Basic.glsl" />
   </ItemGroup>

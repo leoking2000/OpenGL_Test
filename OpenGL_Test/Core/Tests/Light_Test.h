@@ -3,7 +3,7 @@
 #include "Core/graphics/Renderer.h"
 
 #include "Core/graphics/Camera.h"
-#include "GameObject.h"
+#include "Core/graphics/GameObject.h"
 #include <vector>
 
 namespace Core
@@ -17,10 +17,10 @@ namespace Core
 			woodMat("Shaders/Basic.glsl", "assets/wood_mc.png"),
 			floorMat("Shaders/Basic.glsl", { 255, 127, 80, 255 }),
 			light_color(1.0f, 1.0f, 1.0f),
-			cube_mesh(Mesh::GenarateCube()),
+			cube_mesh(graphics::Mesh::GenarateCube()),
 
 			light(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f), *cube_mesh,lightMat,
-				[&](const GameObject& gameObject)
+				[&](const graphics::GameObject& gameObject)
 				{
 					gameObject.mat.shader.SetUniform("proj", graphics::Renderer::proj);
 					gameObject.mat.shader.SetUniform("view", cam.GetCameraView());
@@ -30,7 +30,7 @@ namespace Core
 				})
 		{
 
-			auto SetUniform_Basic = [&](const GameObject& gameObject)
+			auto SetUniform_Basic = [&](const graphics::GameObject& gameObject)
 			{
 				gameObject.mat.shader.SetUniform("proj", graphics::Renderer::proj);
 				gameObject.mat.shader.SetUniform("view", cam.GetCameraView());
@@ -67,7 +67,7 @@ namespace Core
 		{
 			graphics::Renderer::SetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-			for (GameObject& GameObject : GameObjects)
+			for (graphics::GameObject& GameObject : GameObjects)
 			{
 				GameObject.Draw();
 			}
@@ -100,18 +100,18 @@ namespace Core
 	private:
 		graphics::Camera cam;
 
-		Mesh* cube_mesh;
+		graphics::Mesh* cube_mesh;
 
-		Matirial lightMat;
-		Matirial woodMat;
-		Matirial floorMat;
+		graphics::Matirial lightMat;
+		graphics::Matirial woodMat;
+		graphics::Matirial floorMat;
 
 		glm::vec3 light_color;
 		float ambientStrength = 0.05f;
 		float specularStrength = 0.25f;
 		float shininess = 64.0f;
-		GameObject light;
+		graphics::GameObject light;
 
-		std::vector<GameObject> GameObjects;
+		std::vector<graphics::GameObject> GameObjects;
 	};
 }

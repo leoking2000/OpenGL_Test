@@ -6,7 +6,7 @@
 
 #include <functional>
 
-namespace Core
+namespace graphics
 {
 	class GameObject
 	{

@@ -22,6 +22,7 @@
     <ClCompile Include="Core\Application_GLFW.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
     <ClCompile Include="Core\graphics\Camera.cpp" />
+    <ClCompile Include="Core\graphics\Mesh.cpp" />
     <ClCompile Include="Core\utilities\imgui\imgui.cpp" />
     <ClCompile Include="Core\utilities\imgui\imgui_demo.cpp" />
     <ClCompile Include="Core\utilities\imgui\imgui_draw.cpp" />
@@ -47,12 +48,11 @@
     <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
     <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
     <ClInclude Include="Core\graphics\Camera.h" />
-    <ClInclude Include="Core\Tests\GameObject.h" />
+    <ClInclude Include="Core\graphics\GameObject.h" />
     <ClInclude Include="Core\Tests\Light_Test.h" />
-    <ClInclude Include="Core\Tests\Material.h" />
-    <ClInclude Include="Core\Tests\Mesh.h" />
+    <ClInclude Include="Core\graphics\Material.h" />
+    <ClInclude Include="Core\graphics\Mesh.h" />
     <ClInclude Include="Core\Tests\Test.h" />
-    <ClInclude Include="Core\Tests\TextureCube_Test.h" />
     <ClInclude Include="Core\utilities\imgui\imconfig.h" />
     <ClInclude Include="Core\utilities\imgui\imgui.h" />
     <ClInclude Include="Core\utilities\imgui\imgui_impl_glfw.h" />
@@ -81,7 +81,6 @@
   <ItemGroup>
     <None Include="glew32.dll" />
     <None Include="Shaders\Basic.glsl" />
-    <None Include="Shaders\Basic3DShader.glsl" />
     <None Include="Shaders\OneColor.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
