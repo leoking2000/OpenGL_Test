@@ -112,6 +112,7 @@ namespace Core
 		~Light_Test()
 		{
 			delete cube_mesh;
+			delete sphere_mesh;
 		}
 
 
