@@ -1,6 +1,6 @@
 #include "Shader.h"
-#include "Platform/OpenGL.h"
-#include "Core/utilities/Log.h"
+#include "OpenGL.h"
+#include "Log.h"
 
 #include <malloc.h>
 #include <fstream>

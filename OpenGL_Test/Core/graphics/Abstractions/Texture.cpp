@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include <assert.h>
 #include "stb/stb_image.h"
-#include "Platform/OpenGL.h"
+#include "OpenGL.h"
 
 using namespace graphics;
 

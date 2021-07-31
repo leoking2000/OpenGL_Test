@@ -18,57 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Core\Application_GLFW.cpp" />
-    <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
-    <ClCompile Include="Core\graphics\Camera.cpp" />
-    <ClCompile Include="Core\graphics\Mesh.cpp" />
-    <ClCompile Include="Core\graphics\Abstractions\IndexBuffer.cpp" />
-    <ClCompile Include="Core\main.cpp" />
-    <ClCompile Include="Core\graphics\Abstractions\VertexBuffer.cpp" />
-    <ClCompile Include="Core\graphics\Abstractions\VertexArray.cpp" />
-    <ClCompile Include="Core\graphics\Renderer.cpp" />
-    <ClCompile Include="Core\graphics\Abstractions\Texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Core\Application.h" />
-    <ClInclude Include="Core\graphics\Abstractions\Colors.h" />
-    <ClInclude Include="Core\graphics\Abstractions\Layout.h" />
-    <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
-    <ClInclude Include="Core\graphics\Camera.h" />
-    <ClInclude Include="Core\graphics\GameObject.h" />
-    <ClInclude Include="Core\Tests\Light_Test.h" />
-    <ClInclude Include="Core\graphics\Material.h" />
-    <ClInclude Include="Core\graphics\Mesh.h" />
-    <ClInclude Include="Core\Tests\Test.h" />
-    <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h" />
-    <ClInclude Include="Core\graphics\Abstractions\VertexBuffer.h" />
-    <ClInclude Include="Core\graphics\Abstractions\VertexArray.h" />
-    <ClInclude Include="Core\graphics\Renderer.h" />
-    <ClInclude Include="Core\graphics\Abstractions\Texture.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="assets\earth.jpg" />
-    <Image Include="assets\sun.jpg" />
-    <Image Include="assets\wood_mc.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="glew32.dll" />
-    <None Include="Shaders\Basic.glsl" />
-    <None Include="Shaders\OneColor.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Platform\Platform.vcxproj">
-      <Project>{ec7a0d1a-43c3-4595-a972-9b343d57ba0f}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{16610dc0-949d-4d2f-b583-bc1c0eb304b4}</ProjectGuid>
-    <RootNamespace>OpenGL_Test</RootNamespace>
+    <ProjectGuid>{ec7a0d1a-43c3-4595-a972-9b343d57ba0f}</ProjectGuid>
+    <RootNamespace>Platform</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>OpenGL_Test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -85,13 +40,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -161,13 +116,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\OpenGL_Test;C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\include;C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\Platform\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\include;C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\Platform\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Start\Dev\Libs\OpenGL_Template\libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -178,17 +131,44 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\OpenGL_Test;C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\include;C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\Platform\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\include;C:\Start\Dev\Γραφικα υπολογιστον\OpenGL_Test\Platform\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Start\Dev\Libs\OpenGL_Template\libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="include\FrameTimer.h" />
+    <ClInclude Include="include\Log.h" />
+    <ClInclude Include="include\MainWindow.h" />
+    <ClInclude Include="include\leo_math.h" />
+    <ClInclude Include="include\OpenGL.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="source\FrameTimer.cpp" />
+    <ClCompile Include="source\Log.cpp" />
+    <ClCompile Include="source\MainWindow_GLFW.cpp" />
+    <ClCompile Include="source\OpenGL.cpp" />
+    <ClCompile Include="source\stb_image.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

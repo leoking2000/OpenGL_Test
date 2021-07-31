@@ -1,7 +1,11 @@
 #include "MainWindow.h"
 #include "OpenGL.h"
+#include "Log.h"
 #include "GLFW/glfw3.h"
-#include "Core/utilities/Log.h"
+
+#include "../imgui/imgui.h"
+#include "../imgui/imgui_impl_glfw.h"
+#include "../imgui/imgui_impl_opengl3.h"
 
 
 struct MainWindow
@@ -19,11 +23,8 @@ static MainWindow window;
 void window_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
-bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, bool resizable)
+bool Platform::CreateWindow(uint32_t width, uint32_t height, const char* win_name, bool resizable)
 {
-	static bool init = false;
-	assert(!init);
-
 	// Set GLFW error callback
 	glfwSetErrorCallback(Logger::LogGLFW_Error);
 
@@ -38,6 +39,7 @@ bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, b
 	// OpenGL version 4.6
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+
 	// using the core profile
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -74,75 +76,105 @@ bool Core::CreateWindow(uint32_t width, uint32_t height, const char* win_name, b
 
 	glfwSetCursorPosCallback(window.glfwwindow, mouse_callback);
 
-	init = true;
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(window.glfwwindow, true);
+	ImGui_ImplOpenGL3_Init("#version 460");
 
 	return true;
 }
 
-void Core::DestroyWindow()
+bool Platform::isRunning()
 {
+	return !glfwWindowShouldClose(window.glfwwindow);
+}
+
+void Platform::BeginFrame()
+{
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+}
+
+void Platform::EndFrame()
+{
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+	glfwSwapBuffers(window.glfwwindow);
+	glfwPollEvents();
+}
+
+void Platform::Stop()
+{
+	glfwSetWindowShouldClose(window.glfwwindow, true);
+}
+
+void Platform::CleanUp()
+{
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
+
 	glfwDestroyWindow(window.glfwwindow);
 	glfwTerminate();
 }
 
-uint32_t Core::GetWidth()
+uint32_t Platform::GetWidth()
 {
 	return window.width;
 }
 
-uint32_t Core::GetHeight()
+uint32_t Platform::GetHeight()
 {
 	return window.height;
 }
 
-void Core::SetMouseVisibility(bool visible)
+void Platform::SetMouseVisibility(bool visible)
 {
 	glfwSetInputMode(window.glfwwindow, GLFW_CURSOR, visible ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_DISABLED);
 }
 
-double Core::GetMouseX()
+double Platform::GetMouseX()
 {
 	return window.mouseX;
 }
 
-double Core::GetMouseY()
+double Platform::GetMouseY()
 {
 	return window.mouseY;
 }
 
-bool Core::KeyIsPress(KEY key)
+bool Platform::KeyIsPress(KEY key)
 {
 	switch (key)
 	{
-	case Core::KEY_W:
+	case Platform::KEY_W:
 		return glfwGetKey(window.glfwwindow, GLFW_KEY_W) == GLFW_PRESS;
-	case Core::KEY_S:
+	case Platform::KEY_S:
 		return glfwGetKey(window.glfwwindow, GLFW_KEY_S) == GLFW_PRESS;
-	case Core::KEY_A:
+	case Platform::KEY_A:
 		return glfwGetKey(window.glfwwindow, GLFW_KEY_A) == GLFW_PRESS;
-	case Core::KEY_D:
+	case Platform::KEY_D:
 		return glfwGetKey(window.glfwwindow, GLFW_KEY_D) == GLFW_PRESS;
-	case Core::KEY_X:
+	case Platform::KEY_X:
 		return glfwGetKey(window.glfwwindow, GLFW_KEY_X) == GLFW_PRESS;
-	case Core::KEY_TAB:
+	case Platform::KEY_TAB:
 		return glfwGetKey(window.glfwwindow, GLFW_KEY_TAB) == GLFW_PRESS;
-	case Core::KEY_ESCAPE:
+	case Platform::KEY_ESCAPE:
 		return glfwGetKey(window.glfwwindow, GLFW_KEY_ESCAPE) == GLFW_PRESS;
 	default:
 		return false;
 	}
 }
 
-void Core::Resize(uint32_t width, uint32_t height)
+void Platform::Resize(uint32_t width, uint32_t height)
 {
 	glfwSetWindowSize(window.glfwwindow, (int)width, (int)height);
 	
 	window_size_callback(window.glfwwindow, (int)width, (int)height);
-}
-
-void* Core::GetHandle()
-{
-	return window.glfwwindow;
 }
 
 void window_size_callback(GLFWwindow* _window, int width, int height)

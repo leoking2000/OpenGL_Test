@@ -1,6 +1,6 @@
 #include "VertexArray.h"
-#include "Platform/OpenGL.h"
-#include "Core/utilities/Log.h"
+#include "OpenGL.h"
+#include "Log.h"
 #include <assert.h>
 
 using namespace graphics;

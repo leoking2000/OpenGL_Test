@@ -1,8 +1,5 @@
 #include "Application.h"
 
-#include "utilities/utilities.h"
-#include "utilities/Log.h"
-
 int main() 
 {
 	

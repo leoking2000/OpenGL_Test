@@ -2,13 +2,21 @@
 #include "Core/graphics/Abstractions/Shader.h"
 #include "Core/graphics/Abstractions/Texture.h"
 
+#include <functional>
+
 namespace graphics
 {
+
+	class GameObject;
+
 	class Matirial
 	{
 	public:
 		graphics::Shader shader;
 		graphics::Texture tex;
+		std::function<void(const GameObject&)> SetUniforms;
+	public:
+
 
 	public:
 		Matirial(const char* shader, const char* tex)
@@ -36,6 +44,8 @@ namespace graphics
 			shader.Bind();
 			tex.Bind();
 		}
+
+		
 	};
 
 }

@@ -1,6 +1,5 @@
 #include "Mesh.h"
-#include "Math/math.h"
-#include <glm/gtx/matrix_transform_2d.hpp>
+#include "leo_math.h"
 #include <vector>
 
 using namespace graphics;

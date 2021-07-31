@@ -34,19 +34,10 @@
     <ClCompile Include="Core\main.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\utilities\FrameTimer.cpp">
-      <Filter>Core\Utilities\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\utilities\Log.cpp">
-      <Filter>Core\Utilities\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Application_GLFW.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\graphics\Renderer.cpp" />
-    <ClCompile Include="Platform\MainWindow_GLFW.cpp" />
-    <ClCompile Include="Platform\OpenGL.cpp" />
-    <ClCompile Include="Core\utilities\stb_image.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\IndexBuffer.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
@@ -58,13 +49,6 @@
     <ClCompile Include="Core\graphics\Abstractions\VertexArray.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\utilities\imgui\imgui.cpp" />
-    <ClCompile Include="Core\utilities\imgui\imgui_demo.cpp" />
-    <ClCompile Include="Core\utilities\imgui\imgui_draw.cpp" />
-    <ClCompile Include="Core\utilities\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="Core\utilities\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="Core\utilities\imgui\imgui_tables.cpp" />
-    <ClCompile Include="Core\utilities\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Core\graphics\Camera.cpp" />
     <ClCompile Include="Core\graphics\Mesh.cpp" />
   </ItemGroup>
@@ -72,21 +56,7 @@
     <ClInclude Include="Core\Application.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math\math.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\utilities\FrameTimer.h">
-      <Filter>Core\Utilities\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\utilities\utilities.h">
-      <Filter>Core\Utilities\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\utilities\Log.h">
-      <Filter>Core\Utilities\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\graphics\Renderer.h" />
-    <ClInclude Include="Platform\MainWindow.h" />
-    <ClInclude Include="Platform\OpenGL.h" />
     <ClInclude Include="Core\graphics\Abstractions\IndexBuffer.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
@@ -101,14 +71,6 @@
     <ClInclude Include="Core\graphics\Abstractions\VertexArray.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\utilities\imgui\imconfig.h" />
-    <ClInclude Include="Core\utilities\imgui\imgui.h" />
-    <ClInclude Include="Core\utilities\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="Core\utilities\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="Core\utilities\imgui\imgui_internal.h" />
-    <ClInclude Include="Core\utilities\imgui\imstb_rectpack.h" />
-    <ClInclude Include="Core\utilities\imgui\imstb_textedit.h" />
-    <ClInclude Include="Core\utilities\imgui\imstb_truetype.h" />
     <ClInclude Include="Core\Tests\Light_Test.h" />
     <ClInclude Include="Core\graphics\Camera.h" />
     <ClInclude Include="Core\graphics\GameObject.h" />

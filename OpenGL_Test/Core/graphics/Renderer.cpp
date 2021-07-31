@@ -1,6 +1,6 @@
 #include "Renderer.h"
-#include "Platform/OpenGL.h"
-#include "Platform/MainWindow.h"
+#include "OpenGL.h"
+#include "MainWindow.h"
 
 using namespace graphics;
 
@@ -19,7 +19,7 @@ void graphics::Renderer::Init()
 {
 	glCall(glEnable(GL_DEPTH_TEST));
 
-	proj = glm::perspective(glm::radians(45.0f), (float)Core::GetWidth() / (float)Core::GetHeight(), 0.1f, 500.0f);
+	proj = glm::perspective(glm::radians(45.0f), (float)Platform::GetWidth() / (float)Platform::GetHeight(), 0.1f, 500.0f);
 }
 
 void graphics::Renderer::SetClearColor(float r, float g, float b, float a)

@@ -1,10 +1,8 @@
 #pragma once
 #include "Core/graphics/Renderer.h"
 #include "Material.h"
-#include "Math/math.h"
+#include "leo_math.h"
 #include "Mesh.h"
-
-#include <functional>
 
 namespace graphics
 {
@@ -18,34 +16,31 @@ namespace graphics
 		const Matirial& mat;
 		const Mesh& mesh;
 	public:
-		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3& in_scale, const Mesh& mesh, const Matirial& mat, std::function<void(const GameObject&)> SetUniforms)
+		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3& in_scale, const Mesh& mesh, const Matirial& mat)
 			:
 			pos(in_pos),
 			rotation(in_rotation),
 			scale(in_scale),
 			mat(mat),
-			SetUniforms(SetUniforms),
 			mesh(mesh)
 		{
 		}
-		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, float in_scale, const Mesh& mesh, const Matirial& mat, std::function<void(const GameObject&)> SetUniforms)
+		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, float in_scale, const Mesh& mesh, const Matirial& mat)
 			:
 			pos(in_pos),
 			rotation(in_rotation),
 			scale(in_scale, in_scale, in_scale),
 			mat(mat),
-			SetUniforms(SetUniforms),
 			mesh(mesh)
 		{
 		}
 
-		GameObject(const glm::vec3& in_pos, const Mesh& mesh, const Matirial& mat, std::function<void(const GameObject&)> SetUniforms)
+		GameObject(const glm::vec3& in_pos, const Mesh& mesh, const Matirial& mat)
 			:
 			pos(in_pos),
 			rotation(0.0f, 0.0f, 0.0f),
 			scale(1.0f, 1.0f, 1.0f),
 			mat(mat),
-			SetUniforms(SetUniforms),
 			mesh(mesh)
 		{
 		}
@@ -69,13 +64,9 @@ namespace graphics
 		{
 			mat.Bind();
 
-			SetUniforms(*this);
+			mat.SetUniforms(*this);
 
 			graphics::Renderer::Draw(mesh.vertexArray, mesh.indexBuffer, mat.shader);
 		}
-
-	private:
-		std::function<void(const GameObject&)> SetUniforms;
-
 	};
 }

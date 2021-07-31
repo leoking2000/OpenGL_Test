@@ -1,21 +1,15 @@
 #include "OpenGL.h"
 #include <string>
-#include "Core/utilities/Log.h"
+#include "Log.h"
 
 bool InitOpenGL()
 {
-	static bool init = false;
-
-	assert(!init);
-
 	// Initialize GLEW
 	if (glewInit() != GLEW_OK)
 	{
 		Logger::LogError("GLEW could not Initialize.");
 		return false;
 	}
-
-	init = true;
 
 	return true;
 }

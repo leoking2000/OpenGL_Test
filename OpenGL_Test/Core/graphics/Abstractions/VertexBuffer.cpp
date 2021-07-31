@@ -1,5 +1,5 @@
 #include "VertexBuffer.h"
-#include "Platform/OpenGL.h"
+#include "OpenGL.h"
 
 using namespace graphics;
 

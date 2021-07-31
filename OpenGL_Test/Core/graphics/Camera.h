@@ -1,6 +1,6 @@
 #pragma once
-#include "Platform/MainWindow.h"
-#include "Math/math.h"
+#include "MainWindow.h"
+#include "leo_math.h"
 
 
 namespace graphics

@@ -1,5 +1,5 @@
-#include "Platform/MainWindow.h"
-#include "utilities/FrameTimer.h"
+#include "MainWindow.h"
+#include "FrameTimer.h"
 #include "Tests/Test.h"
 #include <vector>
 

@@ -23,25 +23,25 @@ void graphics::Camera::Update(float dt)
 {
 	float move_speed = 10.0f;
 
-	if (Core::KeyIsPress(Core::KEY_W))
+	if (Platform::KeyIsPress(Platform::KEY_W))
 	{
 		pos = pos + dir * move_speed * dt;
 	}
-	if (Core::KeyIsPress(Core::KEY_S))
+	if (Platform::KeyIsPress(Platform::KEY_S))
 	{
 		pos = pos - dir * move_speed * dt;
 	}
 
-	if (Core::KeyIsPress(Core::KEY_D))
+	if (Platform::KeyIsPress(Platform::KEY_D))
 	{
 		pos += glm::normalize(glm::cross(dir, glm::vec3(0.0f, 1.0f, 0.0f))) * move_speed * dt;
 	}
-	if (Core::KeyIsPress(Core::KEY_A))
+	if (Platform::KeyIsPress(Platform::KEY_A))
 	{
 		pos -= glm::normalize(glm::cross(dir, glm::vec3(0.0f, 1.0f, 0.0f))) * move_speed * dt;
 	}
 
-	if (Core::KeyIsPress(Core::KEY_X))
+	if (Platform::KeyIsPress(Platform::KEY_X))
 	{
 		if (x_press == false)
 		{
@@ -56,12 +56,12 @@ void graphics::Camera::Update(float dt)
 
 	if (mouseInput == false)
 	{
-		Core::SetMouseVisibility(true);
+		Platform::SetMouseVisibility(true);
 	}
 	else
 	{
-		Core::SetMouseVisibility(false);
-		Update_dir(Core::GetMouseX(), Core::GetMouseY(), dt);
+		Platform::SetMouseVisibility(false);
+		Update_dir(Platform::GetMouseX(), Platform::GetMouseY(), dt);
 	}
 }
 
@@ -96,9 +96,9 @@ void graphics::Camera::Update_dir(double xpos, double ypos, float dt)
 		pitch = -Math::PI / 2.0f;
 
 	glm::vec3 direction;
-	direction.x = cos(yaw) * cos(pitch);
-	direction.y = sin(pitch);
-	direction.z = sin(yaw) * cos(pitch);
+	direction.x = glm::cos(yaw) * glm::cos(pitch);
+	direction.y = glm::sin(pitch);
+	direction.z = glm::sin(yaw) * glm::cos(pitch);
 	dir = glm::normalize(direction);
 }
 

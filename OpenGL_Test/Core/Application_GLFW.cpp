@@ -1,15 +1,10 @@
 #include "Application.h"
-#include "GLFW/glfw3.h"
 
 #include "graphics/Renderer.h"
 
-#include "utilities/imgui/imgui.h"
-#include "utilities/imgui/imgui_impl_glfw.h"
-#include "utilities/imgui/imgui_impl_opengl3.h"
-
 #include "Tests/Light_Test.h"
 
-#include "utilities/Log.h"
+#include "Log.h"
 #include <string>
 
 using namespace graphics;
@@ -20,7 +15,7 @@ Core::Application::Application()
 
 bool Core::Application::Init()
 {
-	if(!CreateWindow(1600, 900, "OpenGL Test", true))
+	if(!Platform::CreateWindow(1600, 900, "OpenGL Test", true))
 	{
 		return false;
 	}
@@ -40,32 +35,19 @@ int Core::Application::RunMainLoop()
 	Logger::LogInfo("Main Loop has started");
 
 	float dt = ft.Mark();
-	GLFWwindow* window = (GLFWwindow*)GetHandle();
-
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImGui::StyleColorsDark();
-	ImGui_ImplGlfw_InitForOpenGL(window, true);
-	ImGui_ImplOpenGL3_Init("#version 460");
 
 	// Main Loop
-	while (!glfwWindowShouldClose(window))
-	{
-		/////////////////////////////////////////////////////////
-		Renderer::Clear();
+	while (Platform::isRunning())
+	{	
+		Platform::BeginFrame();
 
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+		Renderer::Clear();
 
 		tests[current_test_index]->Update(dt);
 		tests[current_test_index]->Draw();
 		tests[current_test_index]->ImGui();
 
-	    ////////////////////////////////////////////////////////
-
-		if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_PRESS)
+		if (Platform::KeyIsPress(Platform::KEY_TAB))
 		{
 			if (tab_press == false)
 			{
@@ -78,18 +60,12 @@ int Core::Application::RunMainLoop()
 			tab_press = false;
 		}
 
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		if (Platform::KeyIsPress(Platform::KEY_ESCAPE))
 		{
-			glfwSetWindowShouldClose(window, true);
+			Platform::Stop(); // causes the Platform::isRunning() to retrun false;
 		}
 
-		/////////////////////////////////////////////
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+		Platform::EndFrame();
 
 		dt = ft.Mark();
 	}
@@ -99,15 +75,12 @@ int Core::Application::RunMainLoop()
 
 void Core::Application::TerminateApp()
 {
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
 
 	for (Test* p : tests)
 	{
 		delete p;
 	}
 
-	DestroyWindow();
+	Platform::CleanUp();
 }
 

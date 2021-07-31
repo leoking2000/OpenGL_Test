@@ -2,6 +2,8 @@
 #include "Test.h"
 #include "Core/graphics/Renderer.h"
 
+#include "../imgui/imgui.h"
+
 #include "Core/graphics/Camera.h"
 #include "Core/graphics/GameObject.h"
 #include <vector>
@@ -21,16 +23,17 @@ namespace Core
 			cube_mesh(graphics::Mesh::GenarateCube()),
 			sphere_mesh(graphics::Mesh::GenarateSphere()),
 
-			light(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f), *cube_mesh,lightMat,
-				[&](const graphics::GameObject& gameObject)
-				{
-					gameObject.mat.shader.SetUniform("proj", graphics::Renderer::proj);
-					gameObject.mat.shader.SetUniform("view", cam.GetCameraView());
-					gameObject.mat.shader.SetUniform("model", gameObject.GetModelMatrix());
-
-					gameObject.mat.shader.SetUniform("u_object_color", light_color.x, light_color.y, light_color.z);
-				})
+			light(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f), *cube_mesh,lightMat)
 		{
+
+			auto SetUniform_OneColor = [&](const graphics::GameObject& gameObject)
+			{
+				gameObject.mat.shader.SetUniform("proj", graphics::Renderer::proj);
+				gameObject.mat.shader.SetUniform("view", cam.GetCameraView());
+				gameObject.mat.shader.SetUniform("model", gameObject.GetModelMatrix());
+
+				gameObject.mat.shader.SetUniform("u_object_color", light_color.x, light_color.y, light_color.z);
+			};
 
 			auto SetUniform_Basic = [&](const graphics::GameObject& gameObject)
 			{
@@ -48,15 +51,21 @@ namespace Core
 				gameObject.mat.shader.SetUniform("shininess", shininess);
 			};
 
-			GameObjects.reserve(50);
-			GameObjects.emplace_back(glm::vec3(  0.0f, -4.0f,  -1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(50.0f, 1.0f, 50.0f), *cube_mesh, floorMat, SetUniform_Basic);
-			GameObjects.emplace_back(glm::vec3(  5.0f,  1.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3( 1.0f, 5.0f, 10.0f), *cube_mesh, floorMat, SetUniform_Basic);
-			GameObjects.emplace_back(glm::vec3(-14.0f,  1.0f, -12.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat, SetUniform_Basic);
-			GameObjects.emplace_back(glm::vec3(-17.0f,  0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat, SetUniform_Basic);
-			GameObjects.emplace_back(glm::vec3( 30.0f,  3.0f, -20.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat, SetUniform_Basic);
-			GameObjects.emplace_back(glm::vec3(  5.0f,  2.0f, -11.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat, SetUniform_Basic);
+			lightMat.SetUniforms = SetUniform_OneColor;
 
-			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,    3.0f), glm::vec3(0.0f, 0.0f, 0.0f), 5.0f, *sphere_mesh, earthMat, SetUniform_Basic); // 6
+			earthMat.SetUniforms = SetUniform_Basic;
+			woodMat.SetUniforms = SetUniform_Basic;
+			floorMat.SetUniforms = SetUniform_Basic;
+
+
+			GameObjects.reserve(50);
+			GameObjects.emplace_back(glm::vec3(  0.0f, -4.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(50.0f, 1.0f, 50.0f), *cube_mesh, floorMat);
+			GameObjects.emplace_back(glm::vec3(  5.0f,  1.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3( 1.0f, 5.0f, 10.0f), *cube_mesh, floorMat);
+			GameObjects.emplace_back(glm::vec3(  0.0f, -3.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat);
+
+			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,    3.0f), glm::vec3(0.0f, 0.0f, 0.0f), 5.0f, *sphere_mesh, earthMat); // 3
+
+			cam.pos = glm::vec3(0.0f, 0.0f, 40.0f);
 
 		}
 
@@ -98,13 +107,13 @@ namespace Core
 
 			ImGui::Begin("Earth");
 
-			ImGui::SliderFloat("X Pos", &GameObjects[6].pos.x, -100.0f, 100.0f);
-			ImGui::SliderFloat("Y Pos", &GameObjects[6].pos.y,    0.0f, 100.0f);
-			ImGui::SliderFloat("Z Pos", &GameObjects[6].pos.z, -100.0f, 100.0f);
-
-			ImGui::SliderFloat("X rot", &GameObjects[6].rotation.x,  0.0f, 2.0f * Math::PI);
-			ImGui::SliderFloat("Y rot", &GameObjects[6].rotation.y,  0.0f, 2.0f * Math::PI);
-			ImGui::SliderFloat("Z rot", &GameObjects[6].rotation.z,  0.0f, 2.0f * Math::PI);
+			ImGui::SliderFloat("X Pos", &GameObjects[3].pos.x, -100.0f, 100.0f);
+			ImGui::SliderFloat("Y Pos", &GameObjects[3].pos.y,    0.0f, 100.0f);
+			ImGui::SliderFloat("Z Pos", &GameObjects[3].pos.z, -100.0f, 100.0f);
+													 
+			ImGui::SliderFloat("X rot", &GameObjects[3].rotation.x,  0.0f, 2.0f * Math::PI);
+			ImGui::SliderFloat("Y rot", &GameObjects[3].rotation.y,  0.0f, 2.0f * Math::PI);
+			ImGui::SliderFloat("Z rot", &GameObjects[3].rotation.z,  0.0f, 2.0f * Math::PI);
 
 			ImGui::End();
 		}

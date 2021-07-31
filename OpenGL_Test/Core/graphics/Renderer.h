@@ -5,7 +5,7 @@
 #include "Abstractions/Shader.h"
 #include "Abstractions/Texture.h"
 
-#include "Math/math.h"
+#include "leo_math.h"
 
 namespace graphics
 {
