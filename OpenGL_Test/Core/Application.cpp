@@ -24,7 +24,6 @@ bool Core::Application::Init()
 
 	tests.push_back(new Light_Test());
 
-
 	/////////////////////////////////////////////////////////
 	Logger::LogInfo("Application has initialized");
     return true;

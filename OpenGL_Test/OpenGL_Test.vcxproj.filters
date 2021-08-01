@@ -34,9 +34,6 @@
     <ClCompile Include="Core\main.cpp">
       <Filter>Core\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Application_GLFW.cpp">
-      <Filter>Core\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\graphics\Renderer.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\IndexBuffer.cpp">
       <Filter>Core\Source Files</Filter>
@@ -51,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="Core\graphics\Camera.cpp" />
     <ClCompile Include="Core\graphics\Mesh.cpp" />
+    <ClCompile Include="Core\Application.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">

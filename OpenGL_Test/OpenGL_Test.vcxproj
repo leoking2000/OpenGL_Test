@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Application_GLFW.cpp" />
+    <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
     <ClCompile Include="Core\graphics\Camera.cpp" />
     <ClCompile Include="Core\graphics\Mesh.cpp" />
