@@ -22,6 +22,8 @@ namespace Core
 			light_color(1.0f, 1.0f, 1.0f),
 			cube_mesh(graphics::Mesh::GenarateCube()),
 			sphere_mesh(graphics::Mesh::GenarateSphere()),
+			tea_mesh(graphics::Mesh::Load("assets/tea.obj")),
+			monkey_mesh(graphics::Mesh::Load("assets/monkey.obj")),
 
 			light(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.2f, 0.2f, 0.2f), *cube_mesh,lightMat)
 		{
@@ -63,7 +65,10 @@ namespace Core
 			GameObjects.emplace_back(glm::vec3(  5.0f,  1.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3( 1.0f, 5.0f, 10.0f), *cube_mesh, floorMat);
 			GameObjects.emplace_back(glm::vec3(  0.0f, -3.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *cube_mesh, woodMat);
 
-			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,    3.0f), glm::vec3(0.0f, 0.0f, 0.0f), 5.0f, *sphere_mesh, earthMat); // 3
+			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,    3.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, *sphere_mesh, earthMat); // 3
+
+			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,  -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, *tea_mesh, floorMat);
+			GameObjects.emplace_back(glm::vec3( 0.0f, 0.0f,   -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 3.0f, *monkey_mesh, floorMat);
 
 			cam.pos = glm::vec3(0.0f, 0.0f, 40.0f);
 
@@ -75,7 +80,7 @@ namespace Core
 
 			cam.Update(dt);
 
-
+			GameObjects[3].rotation.y = Math::wrap_angle(GameObjects[3].rotation.y + speed * dt);
 		}
 
 		void Draw() override
@@ -104,24 +109,14 @@ namespace Core
 			ImGui::SliderFloat("shininess", &shininess, 0.0f, 64.0f);
 
 			ImGui::End();
-
-			ImGui::Begin("Earth");
-
-			ImGui::SliderFloat("X Pos", &GameObjects[3].pos.x, -100.0f, 100.0f);
-			ImGui::SliderFloat("Y Pos", &GameObjects[3].pos.y,    0.0f, 100.0f);
-			ImGui::SliderFloat("Z Pos", &GameObjects[3].pos.z, -100.0f, 100.0f);
-													 
-			ImGui::SliderFloat("X rot", &GameObjects[3].rotation.x,  0.0f, 2.0f * Math::PI);
-			ImGui::SliderFloat("Y rot", &GameObjects[3].rotation.y,  0.0f, 2.0f * Math::PI);
-			ImGui::SliderFloat("Z rot", &GameObjects[3].rotation.z,  0.0f, 2.0f * Math::PI);
-
-			ImGui::End();
 		}
 
 		~Light_Test()
 		{
 			delete cube_mesh;
 			delete sphere_mesh;
+			delete tea_mesh;
+			delete monkey_mesh;
 		}
 
 
@@ -130,6 +125,8 @@ namespace Core
 
 		graphics::Mesh* cube_mesh;
 		graphics::Mesh* sphere_mesh;
+		graphics::Mesh* tea_mesh;
+		graphics::Mesh* monkey_mesh;
 
 		graphics::Matirial lightMat;
 		graphics::Matirial woodMat;

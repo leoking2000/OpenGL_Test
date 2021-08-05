@@ -1,8 +1,43 @@
 #include "Mesh.h"
 #include "leo_math.h"
 #include <vector>
+#include "OBJLoader.h"
 
 using namespace graphics;
+
+graphics::Mesh* graphics::Mesh::Load(const char* filename)
+{
+	Mesh* mesh = new Mesh();
+	OBJLoader::ObjMesh obj(filename);
+
+	mesh->vertexArray.Bind();
+
+	std::vector<float> vertex_buffer;
+
+	for (auto& v : obj.vertices)
+	{
+		vertex_buffer.emplace_back(v.pos.x);
+		vertex_buffer.emplace_back(v.pos.y);
+		vertex_buffer.emplace_back(v.pos.z);
+
+		vertex_buffer.emplace_back(v.texCord.s);
+		vertex_buffer.emplace_back(v.texCord.t);
+
+		vertex_buffer.emplace_back(v.normal.x);
+		vertex_buffer.emplace_back(v.normal.y);
+		vertex_buffer.emplace_back(v.normal.z);
+	}
+
+	mesh->vertexBuffer.Recreate((const void*)vertex_buffer.data(), vertex_buffer.size() * sizeof(float));
+
+	graphics::ElementType arr[3] = { graphics::FLOAT3, graphics::FLOAT2, graphics::FLOAT3_N };
+	graphics::Layout<3> layout(arr);
+	mesh->vertexArray.AddBuffer(mesh->vertexBuffer, layout);
+
+	mesh->indexBuffer.Recreare(obj.indices.data(), obj.indices.size());
+
+	return mesh;
+}
 
 graphics::Mesh* graphics::Mesh::GenarateCube()
 {
@@ -150,3 +185,5 @@ Mesh* graphics::Mesh::GenarateSphere(uint32_t prec)
 
 	return mesh;
 }
+
+

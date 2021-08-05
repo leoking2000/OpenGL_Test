@@ -12,6 +12,8 @@ namespace graphics
 
 		static Mesh* GenarateSphere(uint32_t prec = 48);
 
+		static Mesh* Load(const char* filename);
+
 		void Bind() const
 		{
 			vertexArray.Bind();		

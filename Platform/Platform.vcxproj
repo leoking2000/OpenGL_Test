@@ -153,6 +153,7 @@
     <ClInclude Include="include\Log.h" />
     <ClInclude Include="include\MainWindow.h" />
     <ClInclude Include="include\leo_math.h" />
+    <ClInclude Include="include\OBJLoader.h" />
     <ClInclude Include="include\OpenGL.h" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,7 @@
     <ClCompile Include="source\FrameTimer.cpp" />
     <ClCompile Include="source\Log.cpp" />
     <ClCompile Include="source\MainWindow_GLFW.cpp" />
+    <ClCompile Include="source\OBJLoader.cpp" />
     <ClCompile Include="source\OpenGL.cpp" />
     <ClCompile Include="source\stb_image.cpp" />
   </ItemGroup>
