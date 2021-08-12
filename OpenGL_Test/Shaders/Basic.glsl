@@ -1,5 +1,5 @@
 #shader vertex
-#version 430
+#version 330
 
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec2 tex_cord;
@@ -29,7 +29,14 @@ void main()
 }
 
 #shader fragment
-#version 430
+#version 330
+struct Material 
+{
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
+    float shininess;
+};
 
 in vec2 v_tex_cord;
 in vec3 v_normal;
@@ -39,26 +46,25 @@ in vec3 v_light_pos;
 uniform sampler2D u_Tex;
 uniform vec3 u_light_color;
 
-uniform float ambientStrength;
-uniform float specularStrength;
-uniform float shininess;
+uniform Material mat;
 
 out vec4 color;
 
 void main()
 {
-    vec3 ambient = ambientStrength * u_light_color;
+    vec3 ambient = mat.ambient * u_light_color;
 
     vec3 surf_normal = normalize(v_normal);
-    vec3 lightDir = normalize(v_world_pos - v_light_pos);
-    vec3 diffuse = max(dot(surf_normal, -lightDir), 0.0) * u_light_color;
-
-	vec3 tex_color = vec3(texture(u_Tex, v_tex_cord).xyz);
+    vec3 lightDir = normalize(v_light_pos - v_world_pos);
+    float diff = max(0.0, dot(surf_normal, lightDir));
+    vec3 diffuse = (diff * mat.diffuse) * u_light_color;
 
     vec3 viewDir = normalize(-v_world_pos);
-    vec3 reflectDir = reflect(lightDir, surf_normal);
-    vec3 specular = specularStrength * pow(max(dot(viewDir, reflectDir), 0.0), shininess) * u_light_color;
+    vec3 reflectDir = reflect(-lightDir, surf_normal);
+    float spec = pow( max(0.0, dot(viewDir, reflectDir)), mat.shininess);
+    vec3 specular = (spec * mat.specular)  * u_light_color;
 
+    vec3 tex_color = vec3(texture(u_Tex, v_tex_cord).xyz);
     vec3 result = (ambient + diffuse + specular) * tex_color;
 	color = vec4(result, 1.0);
 }

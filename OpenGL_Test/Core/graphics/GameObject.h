@@ -1,7 +1,5 @@
 #pragma once
-#include "Core/graphics/Renderer.h"
-#include "Material.h"
-#include "leo_math.h"
+#include "Matirial/Material.h"
 #include "Mesh.h"
 
 namespace graphics
@@ -13,35 +11,35 @@ namespace graphics
 		glm::vec3 rotation;
 		glm::vec3 scale;
 
-		const Matirial& mat;
-		const Mesh& mesh;
+		Matirial& mat;
+		Mesh& mesh;
 	public:
-		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3& in_scale, const Mesh& mesh, const Matirial& mat)
+		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3& in_scale, Mesh* mesh, Matirial& mat)
 			:
 			pos(in_pos),
 			rotation(in_rotation),
 			scale(in_scale),
 			mat(mat),
-			mesh(mesh)
+			mesh(*mesh)
 		{
 		}
-		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, float in_scale, const Mesh& mesh, const Matirial& mat)
+		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, float in_scale, Mesh* mesh, Matirial& mat)
 			:
 			pos(in_pos),
 			rotation(in_rotation),
 			scale(in_scale, in_scale, in_scale),
 			mat(mat),
-			mesh(mesh)
+			mesh(*mesh)
 		{
 		}
 
-		GameObject(const glm::vec3& in_pos, const Mesh& mesh, const Matirial& mat)
+		GameObject(const glm::vec3& in_pos, Mesh* mesh, Matirial& mat)
 			:
 			pos(in_pos),
 			rotation(0.0f, 0.0f, 0.0f),
 			scale(1.0f, 1.0f, 1.0f),
 			mat(mat),
-			mesh(mesh)
+			mesh(*mesh)
 		{
 		}
 
@@ -58,15 +56,6 @@ namespace graphics
 			model = glm::rotate(model, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
 
 			return model;
-		}
-
-		void Draw() const
-		{
-			mat.Bind();
-
-			mat.SetUniforms(*this);
-
-			graphics::Renderer::Draw(mesh.vertexArray, mesh.indexBuffer, mat.shader);
 		}
 	};
 }

@@ -17,6 +17,7 @@ bool Core::Application::Init()
 {
 	if(!Platform::CreateWindow(1600, 900, "OpenGL Test", true))
 	{
+		Logger::LogError("Can't open window for some reson\n");
 		return false;
 	}
 	Renderer::Init();

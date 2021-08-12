@@ -1,5 +1,5 @@
 #shader vertex
-#version 430
+#version 330
 
 layout(location = 0) in vec3 pos;
 
@@ -13,13 +13,18 @@ void main()
 }
 
 #shader fragment
-#version 430
+#version 330
 
-uniform vec3 u_object_color;
+struct Material 
+{
+    vec3 color;
+};
+
+uniform Material mat;
 
 out vec4 color;
 
 void main()
 {
-	color = vec4(u_object_color, 1.0);
+	color = vec4(mat.color, 1.0);
 }

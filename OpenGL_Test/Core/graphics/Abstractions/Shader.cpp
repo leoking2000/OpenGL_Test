@@ -50,7 +50,9 @@ bool graphics::Shader::SetUniform(const char* name, float num) const
 		glCall(glProgramUniform1f(id, location, num));
 		return true;
 	}
-	Logger::LogError("uniform error");
+	std::string msg = "uniform error ";
+	msg += name;
+	Logger::LogError(msg.c_str());
 	return false;
 }
 
@@ -62,7 +64,9 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y) const
 		glCall(glProgramUniform2f(id, location, x, y));
 		return true;
 	}
-	Logger::LogError("uniform error");
+	std::string msg = "uniform error ";
+	msg += name;
+	Logger::LogError(msg.c_str());
 	return false;
 }
 
@@ -74,7 +78,9 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y, float z) c
 		glCall(glProgramUniform3f(id, location, x, y, z));
 		return true;
 	}
-	Logger::LogError("uniform error");
+	std::string msg = "uniform error ";
+	msg += name;
+	Logger::LogError(msg.c_str());
 	return false;
 }
 
@@ -86,7 +92,9 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y, float z, f
 		glCall(glProgramUniform4f(id, location, x, y, z, w));
 		return true;
 	}
-	Logger::LogError("uniform error");
+	std::string msg = "uniform error ";
+	msg += name;
+	Logger::LogError(msg.c_str());
 	return false;
 }
 
@@ -98,7 +106,9 @@ bool graphics::Shader::SetUniform(const char* name, int i) const
 		glCall(glProgramUniform1i(id, location, i));
 		return true;
 	}
-	Logger::LogError("uniform error");
+	std::string msg = "uniform error ";
+	msg += name;
+	Logger::LogError(msg.c_str());
 	return false;
 }
 
@@ -110,7 +120,9 @@ bool graphics::Shader::SetUniform(const char* name, const glm::mat4& mat) const
 		glCall(glProgramUniformMatrix4fv(id, location, 1, GL_FALSE, glm::value_ptr(mat)));
 		return true;
 	}
-	Logger::LogError("uniform error");
+	std::string msg = "uniform error ";
+	msg += name;
+	Logger::LogError(msg.c_str());
 	return false;
 }
 
