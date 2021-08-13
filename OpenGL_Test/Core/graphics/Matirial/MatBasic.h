@@ -23,11 +23,6 @@ namespace graphics
 
 		MatBasic(const char* tex);
 
-		std::unique_ptr<Matirial> Copy()
-		{
-			return std::make_unique<MatBasic>(*this);
-		}
-
 		void Bind() const override;
 		void SetUniforms(const glm::mat4 model) override;
 	};
