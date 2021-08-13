@@ -1,6 +1,6 @@
 #pragma once
-#include "Matirial/Material.h"
-#include "Mesh.h"
+#include "Renderer.h"
+#include <memory>
 
 namespace graphics
 {
@@ -10,39 +10,44 @@ namespace graphics
 		glm::vec3 pos;
 		glm::vec3 rotation;
 		glm::vec3 scale;
-
-		Matirial& mat;
-		Mesh& mesh;
 	public:
-		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3& in_scale, Mesh* mesh, Matirial& mat)
+		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, const glm::vec3& in_scale, std::shared_ptr<Mesh> mesh, std::unique_ptr<Matirial> mat)
 			:
 			pos(in_pos),
 			rotation(in_rotation),
 			scale(in_scale),
-			mat(mat),
-			mesh(*mesh)
+			mat(std::move(mat)),
+			mesh(std::move(mesh))
 		{
 		}
-		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, float in_scale, Mesh* mesh, Matirial& mat)
+		GameObject(const glm::vec3& in_pos, const glm::vec3& in_rotation, float in_scale, std::shared_ptr<Mesh> mesh, std::unique_ptr<Matirial> mat)
 			:
 			pos(in_pos),
 			rotation(in_rotation),
 			scale(in_scale, in_scale, in_scale),
-			mat(mat),
-			mesh(*mesh)
+			mat(std::move(mat)),
+			mesh(std::move(mesh))
 		{
 		}
 
-		GameObject(const glm::vec3& in_pos, Mesh* mesh, Matirial& mat)
+		GameObject(const glm::vec3& in_pos, std::shared_ptr<Mesh> mesh, std::unique_ptr<Matirial> mat)
 			:
 			pos(in_pos),
 			rotation(0.0f, 0.0f, 0.0f),
 			scale(1.0f, 1.0f, 1.0f),
-			mat(mat),
-			mesh(*mesh)
+			mat(std::move(mat)),
+			mesh(std::move(mesh))
 		{
 		}
 
+		void Draw()
+		{
+			mat->SetUniforms(GetModelMatrix());
+
+			Renderer::Draw(mat.get(), *mesh);
+		}
+	
+	private:
 		glm::mat4 GetModelMatrix() const
 		{
 			glm::mat4 model(1.0f);
@@ -57,5 +62,8 @@ namespace graphics
 
 			return model;
 		}
+	private:
+		std::unique_ptr<Matirial> mat;
+		std::shared_ptr<Mesh> mesh;
 	};
 }

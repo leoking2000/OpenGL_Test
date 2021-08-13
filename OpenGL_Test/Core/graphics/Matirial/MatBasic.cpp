@@ -2,15 +2,22 @@
 #include "Core/graphics/Abstractions/Shader.h"
 #include "Core/graphics/Renderer.h"
 
+static graphics::Shader shader;
+static bool shaderIsInsialized = false;
+
 graphics::MatBasic::MatBasic(const glm::vec3& ambient, const glm::vec3& diffuse, const glm::vec3& specular, float shininess)
 	:
 	ambient(ambient),
 	diffuse(diffuse),
 	specular(specular),
 	shininess(shininess),
-	tex(1,1,Colors::White),
-	shader("Shaders/Basic.glsl")
+	tex(1,1,Colors::White)
 {
+	if (shaderIsInsialized == false)
+	{
+		shader.Recreate("Shaders/Basic.glsl");
+		shaderIsInsialized = true;
+	}
 }
 
 graphics::MatBasic::MatBasic(const char* tex)
@@ -19,9 +26,13 @@ graphics::MatBasic::MatBasic(const char* tex)
 	diffuse(1.0f, 1.0f, 1.0f),
 	specular(0.5f, 0.5f, 0.5f),
 	shininess(64.0f),
-	tex(tex),
-	shader("Shaders/Basic.glsl")
+	tex(tex)
 {
+	if (shaderIsInsialized == false)
+	{
+		shader.Recreate("Shaders/Basic.glsl");
+		shaderIsInsialized = true;
+	}
 }
 
 void graphics::MatBasic::Bind() const

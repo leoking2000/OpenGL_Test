@@ -1,11 +1,10 @@
 #pragma once
 #include <cinttypes>
-#include "Abstractions/VertexArray.h"
-#include "Abstractions/IndexBuffer.h"
+#include "Mesh.h"
 #include "Abstractions/Shader.h"
 #include "Abstractions/Texture.h"
+#include "Matirial/Material.h"
 #include "Camera.h"
-#include "GameObject.h"
 
 #include "leo_math.h"
 
@@ -21,12 +20,11 @@ namespace graphics
 
 		static void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
 
-		static void Draw(const GameObject& obj);
+		static void Draw(const Matirial* mat, const Mesh& mesh);
 
 	public:
 		static glm::mat4 proj;
 		static Camera cam;
-		static GameObject light;
 	};
 }
 

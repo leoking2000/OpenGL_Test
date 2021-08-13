@@ -1,7 +1,7 @@
 #pragma once
 #include "Material.h"
 #include "Core/graphics/Abstractions/Texture.h"
-#include "Core/graphics/Abstractions/Shader.h"
+#include <memory>
 
 namespace graphics
 {
@@ -13,7 +13,6 @@ namespace graphics
 		glm::vec3 specular;
 		float shininess;
 
-		Shader shader;
 		Texture tex;
 	public:
 		MatBasic(
@@ -23,6 +22,11 @@ namespace graphics
 			float shininess);
 
 		MatBasic(const char* tex);
+
+		std::unique_ptr<Matirial> Copy()
+		{
+			return std::make_unique<MatBasic>(*this);
+		}
 
 		void Bind() const override;
 		void SetUniforms(const glm::mat4 model) override;

@@ -29,6 +29,20 @@ graphics::Texture::Texture(const char* file_name)
 	UploadToGPU();
 }
 
+graphics::Texture::Texture(const Texture& other)
+	:
+	m_width(other.m_width), m_height(other.m_height), m_data(new Color[other.m_width * other.m_height])
+{
+	for (uint32_t y = 0; y < m_height; y++)
+	{
+		for (uint32_t x = 0; x < m_width; x++)
+		{
+			m_data[y * m_width + x] = other.m_data[y * m_width + x];
+		}
+	}
+	UploadToGPU();
+}
+
 graphics::Texture::~Texture()
 {
     delete m_data;
@@ -95,8 +109,6 @@ void graphics::Texture::UpdateGPUData()
 	glCall(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_width, m_height, GL_RGBA, GL_UNSIGNED_BYTE, m_data));
 
 }
-
-
 
 void graphics::Texture::UploadToGPU()
 {

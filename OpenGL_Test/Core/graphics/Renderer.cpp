@@ -16,13 +16,12 @@ void graphics::Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, cons
 	glCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
-void graphics::Renderer::Draw(const GameObject& obj)
+void graphics::Renderer::Draw(const Matirial* mat, const Mesh& mesh)
 {
-	obj.mesh.Bind();
-	obj.mat.Bind();
-	obj.mat.SetUniforms(obj.GetModelMatrix());
-	
-	glCall(glDrawElements(GL_TRIANGLES, obj.mesh.indexBuffer.GetCount(), GL_UNSIGNED_INT, nullptr));
+	mesh.Bind();
+	mat->Bind();
+
+	glCall(glDrawElements(GL_TRIANGLES, mesh.indexBuffer.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
 void graphics::Renderer::Init()

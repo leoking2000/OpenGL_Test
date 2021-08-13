@@ -9,6 +9,10 @@ namespace graphics
 		Texture(uint32_t width, uint32_t height); // black
 		Texture(uint32_t width, uint32_t height, const Color& c);
 		Texture(const char* file_name);
+
+		Texture(const Texture& other);
+		Texture& operator= (const Texture& other) = delete;
+
 		~Texture();
 
 		int GetWidth() const;
