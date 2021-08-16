@@ -81,6 +81,7 @@ void Core::Application::TerminateApp()
 		delete p;
 	}
 
+	Renderer::CleanUp();
 	Platform::CleanUp();
 }
 

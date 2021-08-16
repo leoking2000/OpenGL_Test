@@ -4,9 +4,8 @@
 #include "Abstractions/Shader.h"
 #include "Abstractions/Texture.h"
 #include "Matirial/Material.h"
+#include "Light/PointLight.h"
 #include "Camera.h"
-
-#include "leo_math.h"
 
 namespace graphics
 {
@@ -14,17 +13,38 @@ namespace graphics
 	{
 	public:
 		static void Init();
+		static void CleanUp();
+
+		static void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
+		static void Draw(const Matirial* mat, const Mesh& mesh);
 
 		static void SetClearColor(float r, float g, float b, float a);
 		static void Clear();
 
-		static void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);
+		static Camera& MainCamera();
+		static glm::mat4 Proj();
 
-		static void Draw(const Matirial* mat, const Mesh& mesh);
+		static Shader& BasicShader();
+		static Shader& OneColorShader();
+
+		static PointLight& MainLight();
 
 	public:
-		static glm::mat4 proj;
-		static Camera cam;
+		Renderer(const Renderer&) = delete;
+		void operator=(const Renderer&) = delete;
+	private:
+		glm::mat4 proj;
+		Camera cam;
+
+		Shader basicShader;
+		Shader oneColorShader;
+
+		PointLight light;
+	private:
+		Renderer();
+		static Renderer& Get();
+	private:
+		static Renderer* instance;
 	};
 }
 

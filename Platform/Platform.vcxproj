@@ -167,7 +167,12 @@
     <ClCompile Include="source\FrameTimer.cpp" />
     <ClCompile Include="source\Log.cpp" />
     <ClCompile Include="source\MainWindow_GLFW.cpp" />
-    <ClCompile Include="source\OBJLoader.cpp" />
+    <ClCompile Include="source\OBJLoader.cpp">
+      <BasicRuntimeChecks Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Default</BasicRuntimeChecks>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Full</Optimization>
+      <InlineFunctionExpansion Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Speed</FavorSizeOrSpeed>
+    </ClCompile>
     <ClCompile Include="source\OpenGL.cpp" />
     <ClCompile Include="source\stb_image.cpp" />
   </ItemGroup>

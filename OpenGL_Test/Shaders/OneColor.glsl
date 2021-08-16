@@ -15,16 +15,10 @@ void main()
 #shader fragment
 #version 330
 
-struct Material 
-{
-    vec3 color;
-};
-
-uniform Material mat;
-
+uniform vec3 matColor;
 out vec4 color;
 
 void main()
 {
-	color = vec4(mat.color, 1.0);
+	color = vec4(matColor, 1.0);
 }

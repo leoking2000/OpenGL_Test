@@ -52,6 +52,8 @@
       <Filter>Core\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\graphics\Matirial\MatBasic.cpp" />
+    <ClCompile Include="Core\graphics\Matirial\MatOneColor.cpp" />
+    <ClCompile Include="Core\graphics\Light\PointLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h">
@@ -78,6 +80,8 @@
     <ClInclude Include="Core\graphics\Mesh.h" />
     <ClInclude Include="Core\graphics\Matirial\MatBasic.h" />
     <ClInclude Include="Core\graphics\Matirial\Material.h" />
+    <ClInclude Include="Core\graphics\Matirial\MatOneColor.h" />
+    <ClInclude Include="Core\graphics\Light\PointLight.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\earth.jpg">

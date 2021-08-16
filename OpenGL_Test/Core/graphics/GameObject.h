@@ -1,5 +1,6 @@
 #pragma once
 #include "Renderer.h"
+#include "../imgui/imgui.h"
 #include <memory>
 
 namespace graphics
@@ -46,6 +47,11 @@ namespace graphics
 
 			Renderer::Draw(mat.get(), *mesh);
 		}
+
+		Matirial& GetMatirial()
+		{
+			return *mat;
+		}
 	
 	private:
 		glm::mat4 GetModelMatrix() const
@@ -54,11 +60,11 @@ namespace graphics
 
 			model = glm::translate(model, pos);
 
-			model = glm::scale(model, scale);
-
 			model = glm::rotate(model, rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
 			model = glm::rotate(model, rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
 			model = glm::rotate(model, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+
+			model = glm::scale(model, scale);
 
 			return model;
 		}

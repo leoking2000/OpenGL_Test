@@ -6,8 +6,8 @@ namespace graphics
 	class Matirial
 	{
 	public:
-		virtual void Bind() const = 0;
 		virtual void SetUniforms(const glm::mat4 model) = 0;
+		virtual void Imgui(const char* name) = 0;
 
 		virtual ~Matirial() {};
 	};

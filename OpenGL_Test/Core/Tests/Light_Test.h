@@ -2,8 +2,6 @@
 #include "Test.h"
 #include "Core/graphics/Renderer.h"
 
-#include "../imgui/imgui.h"
-
 #include "Core/graphics/Camera.h"
 #include "Core/graphics/GameObject.h"
 #include "Core/graphics/Matirial/MatBasic.h"
@@ -36,23 +34,25 @@ namespace Core
 			GameObjects.emplace_back(glm::vec3( 15.0f,  1.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3( 1.0f, 5.0f, 10.0f),
 				cube_mesh, std::make_unique<MatBasic>(tea_mat));
 
+			GameObjects.emplace_back(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 3.0f, monkey_mesh, std::make_unique<MatBasic>(monkey_mat));
+
 			GameObjects.emplace_back(glm::vec3(  0.0f, -6.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(50.0f, 1.0f, 50.0f), 
 				cube_mesh, std::make_unique<MatBasic>(tea_mat));
 
 			GameObjects.emplace_back(glm::vec3(  0.0f, -5.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, cube_mesh, std::make_unique<MatBasic>(monkey_mat));
 
 			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,  -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, tea_mesh, std::make_unique<MatBasic>(tea_mat));
-			GameObjects.emplace_back(glm::vec3( 0.0f, 0.0f,   -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 3.0f, monkey_mesh, std::make_unique<MatBasic>(monkey_mat));
 
-			graphics::Renderer::cam.pos = glm::vec3(0.0f, 1.0f, 40.0f);
+			graphics::Renderer::MainCamera().pos = glm::vec3(0.0f, 1.0f, 40.0f);
 		}
 
 		void Update(float dt) override
 		{
 
-			graphics::Renderer::cam.Update(cam_speed * dt);
+			graphics::Renderer::MainCamera().Update(cam_speed * dt);
 
 			GameObjects[0].rotation.y = Math::wrap_angle(GameObjects[0].rotation.y + dt);
+			GameObjects[3].rotation.y = Math::wrap_angle(GameObjects[3].rotation.y + dt);
 		}
 
 		void Draw() override
@@ -63,26 +63,14 @@ namespace Core
 			{
 				GameObject.Draw();
 			}
-
+			Renderer::MainLight().Draw();
 		}
 
 		void ImGui() override
 		{
-
-			ImGui::Begin("Space Shuttle");
-
-			ImGui::SliderFloat("X Pos", &GameObjects[1].pos.x, -100.0f, 100.0f);
-			ImGui::SliderFloat("Y Pos", &GameObjects[1].pos.y, -100.0f, 100.0f);
-			ImGui::SliderFloat("Z Pos", &GameObjects[1].pos.z, -100.0f, 100.0f);
-
-			ImGui::SliderFloat("X rot", &GameObjects[1].rotation.x, -2.0f * Math::PI, 2.0f * Math::PI);
-			ImGui::SliderFloat("Y rot", &GameObjects[1].rotation.y, -2.0f * Math::PI, 2.0f * Math::PI);
-			ImGui::SliderFloat("Z rot", &GameObjects[1].rotation.z, -2.0f * Math::PI, 2.0f * Math::PI);
-
-			ImGui::End();
-
-
+			Renderer::MainLight().Imgui("Light");
 		}
+
 	private:
 		float cam_speed = 5.0f;
 		std::vector<graphics::GameObject> GameObjects;

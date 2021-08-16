@@ -22,6 +22,8 @@
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\Shader.cpp" />
     <ClCompile Include="Core\graphics\Camera.cpp" />
+    <ClCompile Include="Core\graphics\Light\PointLight.cpp" />
+    <ClCompile Include="Core\graphics\Matirial\MatOneColor.cpp" />
     <ClCompile Include="Core\graphics\Mesh.cpp" />
     <ClCompile Include="Core\graphics\Abstractions\IndexBuffer.cpp" />
     <ClCompile Include="Core\main.cpp" />
@@ -38,7 +40,9 @@
     <ClInclude Include="Core\graphics\Abstractions\Shader.h" />
     <ClInclude Include="Core\graphics\Camera.h" />
     <ClInclude Include="Core\graphics\GameObject.h" />
+    <ClInclude Include="Core\graphics\Light\PointLight.h" />
     <ClInclude Include="Core\graphics\Matirial\MatBasic.h" />
+    <ClInclude Include="Core\graphics\Matirial\MatOneColor.h" />
     <ClInclude Include="Core\Tests\Light_Test.h" />
     <ClInclude Include="Core\graphics\Matirial\Material.h" />
     <ClInclude Include="Core\graphics\Mesh.h" />

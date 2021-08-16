@@ -1,7 +1,6 @@
 #pragma once
 #include "Material.h"
 #include "Core/graphics/Abstractions/Texture.h"
-#include <memory>
 
 namespace graphics
 {
@@ -23,8 +22,8 @@ namespace graphics
 
 		MatBasic(const char* tex);
 
-		void Bind() const override;
 		void SetUniforms(const glm::mat4 model) override;
+		void Imgui(const char* name) override;
 	};
 
 }

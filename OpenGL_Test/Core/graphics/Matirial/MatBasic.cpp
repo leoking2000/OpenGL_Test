@@ -1,9 +1,8 @@
 #include "MatBasic.h"
-#include "Core/graphics/Abstractions/Shader.h"
 #include "Core/graphics/Renderer.h"
+#include "../imgui/imgui.h"
 
-static graphics::Shader shader;
-static bool shaderIsInsialized = false;
+using namespace graphics;
 
 graphics::MatBasic::MatBasic(const glm::vec3& ambient, const glm::vec3& diffuse, const glm::vec3& specular, float shininess)
 	:
@@ -13,11 +12,6 @@ graphics::MatBasic::MatBasic(const glm::vec3& ambient, const glm::vec3& diffuse,
 	shininess(shininess),
 	tex(1,1,Colors::White)
 {
-	if (shaderIsInsialized == false)
-	{
-		shader.Recreate("Shaders/Basic.glsl");
-		shaderIsInsialized = true;
-	}
 }
 
 graphics::MatBasic::MatBasic(const char* tex)
@@ -28,32 +22,43 @@ graphics::MatBasic::MatBasic(const char* tex)
 	shininess(64.0f),
 	tex(tex)
 {
-	if (shaderIsInsialized == false)
-	{
-		shader.Recreate("Shaders/Basic.glsl");
-		shaderIsInsialized = true;
-	}
-}
-
-void graphics::MatBasic::Bind() const
-{
-	shader.Bind();
-	tex.Bind(0);
 }
 
 void graphics::MatBasic::SetUniforms(const glm::mat4 model)
 {
-	shader.SetUniform("proj", graphics::Renderer::proj);
-	shader.SetUniform("view", graphics::Renderer::cam.GetCameraView());
-	shader.SetUniform("model", model);
+	Renderer::BasicShader().Bind();
+	tex.Bind(0);
 
-	shader.SetUniform("u_Tex", 0);
+	Renderer::BasicShader().SetUniform("proj", graphics::Renderer::Proj());
+	Renderer::BasicShader().SetUniform("view", graphics::Renderer::MainCamera().GetCameraView());
+	Renderer::BasicShader().SetUniform("model", model);
 
-	shader.SetUniform("u_light_color", 1.0f, 1.0f, 1.0f);
-	shader.SetUniform("u_light_pos", 0.0f, 0.0f, 0.0f);
+	Renderer::BasicShader().SetUniform("u_Tex", 0);
 
-	shader.SetUniform("mat.ambient",   ambient.r,  ambient.g,  ambient.b);
-	shader.SetUniform("mat.diffuse",   diffuse.r,  diffuse.g,  diffuse.b);
-	shader.SetUniform("mat.specular", specular.r, specular.g, specular.b);
-	shader.SetUniform("mat.shininess", shininess);
+	glm::vec3 light_pos = Renderer::MainLight().pos;
+	glm::vec3 light_color = Renderer::MainLight().color;
+
+	Renderer::BasicShader().SetUniform("u_light_color", light_color.r, light_color.g, light_color.b);
+	Renderer::BasicShader().SetUniform("u_light_pos", light_pos.r, light_pos.g, light_pos.b);
+
+	Renderer::BasicShader().SetUniform("mat.ambient",   ambient.r,  ambient.g,  ambient.b);
+	Renderer::BasicShader().SetUniform("mat.diffuse",   diffuse.r,  diffuse.g,  diffuse.b);
+	Renderer::BasicShader().SetUniform("mat.specular", specular.r, specular.g, specular.b);
+	Renderer::BasicShader().SetUniform("mat.shininess", shininess);
+}
+
+void graphics::MatBasic::Imgui(const char * name)
+{
+	ImGui::Begin(name);
+
+	ImGui::ColorEdit3("Ambient", glm::value_ptr(ambient));
+
+	ImGui::ColorEdit3("Diffuse", glm::value_ptr(diffuse));
+
+	ImGui::ColorEdit3("Specular", glm::value_ptr(specular));
+
+	ImGui::SliderFloat("Shininess", &shininess, 0.01f, 100.0f);
+
+	ImGui::End();
+
 }
