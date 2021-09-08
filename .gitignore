@@ -3,6 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
 # User-specific files
 *.rsuser
 *.suo
@@ -66,6 +67,7 @@ StyleCopReport.xml
 *.ilk
 *.meta
 *.obj
+!OpenGL_Test/assets/*.obj
 *.iobj
 *.pch
 *.pdb
