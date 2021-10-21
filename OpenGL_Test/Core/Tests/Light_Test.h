@@ -18,12 +18,14 @@ namespace Core
 		{
 			auto sphere_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::GenarateSphere());
 			auto cube_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::GenarateCube());
-			auto tea_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::Load("assets/tea.obj"));
-			auto monkey_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::Load("assets/monkey.obj"));
-			auto shuttle_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::Load("assets/shuttle.obj"));
+			auto tea_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::Load("assets\\tea.obj"));
+			auto monkey_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::Load("assets\\monkey.obj"));
+			auto shuttle_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::Load("assets\\shuttle.obj"));
 
-			graphics::MatBasic earthMat("assets/earth.jpg");
-			graphics::MatBasic shuttleMat("assets/spstob_1.jpg");
+			auto sponza_mesh = std::make_shared<graphics::Mesh>(*graphics::Mesh::Load("assets\\Sponza\\Sponza.obj"));
+
+			graphics::MatBasic earthMat("assets\\earth.jpg");
+			graphics::MatBasic shuttleMat("assets\\spstob_1.jpg");
 			graphics::MatBasic tea_mat(glm::vec3(0.19125f, 0.0735f, 0.0225f), glm::vec3(0.7038f, 0.27048f, 0.0828f), glm::vec3(0.256777f, 0.137622f, 0.086014f), 12.8f);
 			graphics::MatBasic monkey_mat(glm::vec3(0.24725f, 0.1995f, 0.0745f), glm::vec3(0.75164f, 0.60648f, 0.22648f), glm::vec3(0.628281f, 0.555802f, 0.366065f), 51.2f);
 
@@ -34,16 +36,16 @@ namespace Core
 			GameObjects.emplace_back(glm::vec3( 15.0f,  1.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3( 1.0f, 5.0f, 10.0f),
 				cube_mesh, std::make_unique<MatBasic>(tea_mat));
 
-			GameObjects.emplace_back(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 3.0f, monkey_mesh, std::make_unique<MatBasic>(monkey_mat));
+			GameObjects.emplace_back(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 2.0f, monkey_mesh, std::make_unique<MatBasic>(monkey_mat));
 
-			GameObjects.emplace_back(glm::vec3(  0.0f, -6.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(50.0f, 1.0f, 50.0f), 
-				cube_mesh, std::make_unique<MatBasic>(tea_mat));
+			GameObjects.emplace_back(glm::vec3(  0.0f, -6.0f,   0.0f), glm::vec3(0.0f, Math::PI / 2.0f, 0.0f), glm::vec3(0.02f, 0.02f, 0.02f), 
+				sponza_mesh, std::make_unique<MatBasic>(tea_mat));
 
 			GameObjects.emplace_back(glm::vec3(  0.0f, -5.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, cube_mesh, std::make_unique<MatBasic>(monkey_mat));
 
-			GameObjects.emplace_back(glm::vec3(-15.0f, 2.0f,  -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, tea_mesh, std::make_unique<MatBasic>(tea_mat));
+			GameObjects.emplace_back(glm::vec3(0.0f, -4.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, tea_mesh, std::make_unique<MatBasic>(tea_mat));
 
-			graphics::Renderer::MainCamera().pos = glm::vec3(0.0f, 1.0f, 40.0f);
+			graphics::Renderer::MainCamera().pos = glm::vec3(0.0f, 1.0f, 25.0f);
 		}
 
 		void Update(float dt) override
@@ -72,7 +74,7 @@ namespace Core
 		}
 
 	private:
-		float cam_speed = 5.0f;
+		float cam_speed = 2.0f;
 		std::vector<graphics::GameObject> GameObjects;
 	};
 }

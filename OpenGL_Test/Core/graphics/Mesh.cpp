@@ -8,7 +8,7 @@ using namespace graphics;
 graphics::Mesh* graphics::Mesh::Load(const char* filename)
 {
 	Mesh* mesh = new Mesh();
-	OBJLoader::ObjMesh obj(filename);
+	ObjMesh obj(filename);
 
 	mesh->vertexArray.Bind();
 

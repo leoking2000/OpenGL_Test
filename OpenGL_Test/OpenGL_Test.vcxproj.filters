@@ -98,5 +98,6 @@
     <None Include="glew32.dll" />
     <None Include="Shaders\OneColor.glsl" />
     <None Include="Shaders\Basic.glsl" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
