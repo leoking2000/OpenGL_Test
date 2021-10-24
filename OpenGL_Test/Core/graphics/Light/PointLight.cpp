@@ -6,7 +6,7 @@ graphics::PointLight::PointLight(const glm::vec3& pos, const glm::vec3& color)
 	:
 	pos(pos),
 	color(color),
-	mesh(graphics::Mesh::GenarateSphere(24))
+	mesh(graphics::Mesh::GenarateSphere(12))
 {
 }
 
@@ -17,15 +17,13 @@ void graphics::PointLight::Draw()
 	model = glm::translate(model, pos);
 	model = glm::scale(model, glm::vec3(0.1f));
 
-	//Renderer::OneColorShader().Bind();
-
 	Renderer::OneColorShader().SetUniform("proj", graphics::Renderer::Proj());
 	Renderer::OneColorShader().SetUniform("view", graphics::Renderer::MainCamera().GetCameraView());
 	Renderer::OneColorShader().SetUniform("model", model);
 
 	Renderer::OneColorShader().SetUniform("matColor", color.r, color.g, color.b);
 
-	Renderer::Draw(mesh->vertexArray, mesh->indexBuffer, Renderer::OneColorShader());
+	Renderer::Draw(mesh.vertexArray, mesh.indexBuffer, Renderer::OneColorShader());
 
 }
 

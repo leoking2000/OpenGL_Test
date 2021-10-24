@@ -9,32 +9,42 @@
 
 using namespace graphics;
 
-graphics::Shader::Shader()
-{
-}
-
 graphics::Shader::Shader(const char* filename)
 {
-	id = CreateProgramShader(filename);
-	glCall(glUseProgram(id));
+	m_id = CreateProgramShader(filename);
+	glCall(glUseProgram(m_id));
+}
+
+graphics::Shader::Shader(Shader&& other)
+	:
+	m_id(other.m_id)
+{
+	other.m_id = 0;
+}
+
+Shader& graphics::Shader::operator=(Shader&& other)
+{
+	m_id = other.m_id;
+	other.m_id = 0;
+	return *this;
 }
 
 graphics::Shader::~Shader()
 {
-	glCall(glDeleteProgram(id));
+	glCall(glDeleteProgram(m_id));
 }
 
 void graphics::Shader::Recreate(const char* filename)
 {
-	glCall(glDeleteProgram(id));
+	glCall(glDeleteProgram(m_id));
 
-	id = CreateProgramShader(filename);
-	glCall(glUseProgram(id));
+	m_id = CreateProgramShader(filename);
+	glCall(glUseProgram(m_id));
 }
 
 void graphics::Shader::Bind() const
 {
-	glCall(glUseProgram(id));
+	glCall(glUseProgram(m_id));
 }
 
 void graphics::Shader::UnBind() const
@@ -44,10 +54,10 @@ void graphics::Shader::UnBind() const
 
 bool graphics::Shader::SetUniform(const char* name, float num) const
 {
-	glCall(int location = glGetUniformLocation(id, name));
+	int32_t location = GetLocation(name);
 	if (location != -1)
 	{
-		glCall(glProgramUniform1f(id, location, num));
+		glCall(glProgramUniform1f(m_id, location, num));
 		return true;
 	}
 	std::string msg = "uniform error ";
@@ -58,10 +68,10 @@ bool graphics::Shader::SetUniform(const char* name, float num) const
 
 bool graphics::Shader::SetUniform(const char* name, float x, float y) const
 {
-	glCall(int location = glGetUniformLocation(id, name));
+	int32_t location = GetLocation(name);
 	if (location != -1)
 	{
-		glCall(glProgramUniform2f(id, location, x, y));
+		glCall(glProgramUniform2f(m_id, location, x, y));
 		return true;
 	}
 	std::string msg = "uniform error ";
@@ -72,10 +82,10 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y) const
 
 bool graphics::Shader::SetUniform(const char* name, float x, float y, float z) const
 {
-	glCall(int location = glGetUniformLocation(id, name));
+	int32_t location = GetLocation(name);
 	if (location != -1)
 	{
-		glCall(glProgramUniform3f(id, location, x, y, z));
+		glCall(glProgramUniform3f(m_id, location, x, y, z));
 		return true;
 	}
 	std::string msg = "uniform error ";
@@ -86,10 +96,10 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y, float z) c
 
 bool graphics::Shader::SetUniform(const char* name, float x, float y, float z, float w) const
 {
-	glCall(int location = glGetUniformLocation(id, name));
+	int32_t location = GetLocation(name);
 	if (location != -1)
 	{
-		glCall(glProgramUniform4f(id, location, x, y, z, w));
+		glCall(glProgramUniform4f(m_id, location, x, y, z, w));
 		return true;
 	}
 	std::string msg = "uniform error ";
@@ -100,10 +110,10 @@ bool graphics::Shader::SetUniform(const char* name, float x, float y, float z, f
 
 bool graphics::Shader::SetUniform(const char* name, int i) const
 {
-	glCall(int location = glGetUniformLocation(id, name));
+	int32_t location = GetLocation(name);
 	if (location != -1)
 	{
-		glCall(glProgramUniform1i(id, location, i));
+		glCall(glProgramUniform1i(m_id, location, i));
 		return true;
 	}
 	std::string msg = "uniform error ";
@@ -114,16 +124,25 @@ bool graphics::Shader::SetUniform(const char* name, int i) const
 
 bool graphics::Shader::SetUniform(const char* name, const glm::mat4& mat) const
 {
-	glCall(int location = glGetUniformLocation(id, name));
+	int32_t location = GetLocation(name);
 	if (location != -1)
 	{
-		glCall(glProgramUniformMatrix4fv(id, location, 1, GL_FALSE, glm::value_ptr(mat)));
+		glCall(glProgramUniformMatrix4fv(m_id, location, 1, GL_FALSE, glm::value_ptr(mat)));
 		return true;
 	}
 	std::string msg = "uniform error ";
 	msg += name;
 	Logger::LogError(msg.c_str());
 	return false;
+}
+
+int32_t graphics::Shader::GetLocation(const char* name) const
+{
+	int32_t loc;
+
+	glCall(loc = glGetUniformLocation(m_id, name));
+
+	return loc;
 }
 
 uint32_t CompileShader(const char* source, uint32_t type)
@@ -171,7 +190,7 @@ uint32_t CreateProgramShaderVF(const char* vertexS, const char* fragS)
 	return programid;
 }
 
-uint32_t graphics::CreateProgramShader(const char* filename)
+uint32_t graphics::Shader::CreateProgramShader(const char* filename)
 {
 	assert(filename != nullptr);
 

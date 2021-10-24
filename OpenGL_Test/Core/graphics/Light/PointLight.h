@@ -16,6 +16,6 @@ namespace graphics
 		void Draw();
 		void Imgui(const char* name);
 	private:
-		std::unique_ptr<Mesh> mesh;
+		Mesh mesh;
 	};
 }

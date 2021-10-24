@@ -12,7 +12,6 @@ namespace graphics
 	class Renderer
 	{
 	public:
-		static void Init();
 		static void CleanUp();
 
 		static void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader);

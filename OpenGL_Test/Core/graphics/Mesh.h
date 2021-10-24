@@ -7,13 +7,13 @@ namespace graphics
 	class Mesh
 	{
 	public:
+		Mesh(VertexArray& va, VertexBuffer& vb, IndexBuffer& ib);
 
-		static Mesh* GenarateCube();
+		static Mesh GenarateCube();
+		static Mesh GenarateSphere(uint32_t prec = 48);
+		static Mesh Load(const char* filename);
 
-		static Mesh* GenarateSphere(uint32_t prec = 48);
-
-		static Mesh* Load(const char* filename);
-
+	public:
 		void Bind() const
 		{
 			vertexArray.Bind();		
@@ -21,10 +21,8 @@ namespace graphics
 		}
 
 	public:
-		graphics::VertexArray vertexArray;
-		graphics::VertexBuffer vertexBuffer;
-		graphics::IndexBuffer indexBuffer;
-	public:
-		Mesh() {};
+		VertexArray vertexArray;
+		VertexBuffer vertexBuffer;
+		IndexBuffer indexBuffer;
 	};
 }

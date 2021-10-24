@@ -8,6 +8,13 @@ namespace graphics {
 	{
 	public:
 		VertexArray();
+
+		VertexArray(const VertexArray& other) = delete;
+		VertexArray& operator=(const VertexArray) = delete;
+
+		VertexArray(VertexArray&& other);
+		VertexArray& operator=(VertexArray&& other);
+
 		~VertexArray();
 
 		void Bind() const;

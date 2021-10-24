@@ -20,7 +20,6 @@ bool Core::Application::Init()
 		Logger::LogError("Can't open window for some reson\n");
 		return false;
 	}
-	Renderer::Init();
 	/////////////////////////////////////////////////////////
 
 	tests.push_back(new Light_Test());

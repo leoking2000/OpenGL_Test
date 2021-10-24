@@ -4,13 +4,17 @@
 
 namespace graphics
 {
-	uint32_t CreateProgramShader(const char* filename);
-
 	class Shader
 	{
 	public:
-		Shader();
 		Shader(const char* filename);
+
+		Shader(const Shader& other) = delete;
+		Shader& operator=(const Shader& other) = delete;
+
+		Shader(Shader&& other);
+		Shader& operator=(Shader&& other);
+
 		~Shader();
 
 		void Recreate(const char* filename);
@@ -28,7 +32,10 @@ namespace graphics
 		bool SetUniform(const char* name, const glm::mat4& mat) const;
 
 	private:
-		uint32_t id = 0;
-		// cash uniform location?
+		static uint32_t CreateProgramShader(const char* filename);
+		int32_t GetLocation(const char* name) const;
+	private:
+		uint32_t m_id;
+		//TODO: cash uniform location?
 	};
 }

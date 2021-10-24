@@ -8,18 +8,12 @@ Renderer* Renderer::instance = nullptr;
 
 graphics::Renderer::Renderer()
 	:
-	light(glm::vec3(0.0f), glm::vec3(1.0f))
-{
-}
-
-void graphics::Renderer::Init()
+	light(glm::vec3(0.0f), glm::vec3(1.0f)),
+	basicShader("Shaders/Basic.glsl"),
+	oneColorShader("Shaders/OneColor.glsl"),
+	proj(glm::perspective(glm::radians(45.0f), (float)Platform::GetWidth() / (float)Platform::GetHeight(), 0.1f, 500.0f))
 {
 	glCall(glEnable(GL_DEPTH_TEST));
-
-	Get().proj = glm::perspective(glm::radians(45.0f), (float)Platform::GetWidth() / (float)Platform::GetHeight(), 0.1f, 500.0f);
-
-	Get().basicShader.Recreate("Shaders/Basic.glsl");
-	Get().oneColorShader.Recreate("Shaders/OneColor.glsl");
 }
 
 void graphics::Renderer::CleanUp()

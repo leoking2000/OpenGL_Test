@@ -5,12 +5,17 @@
 
 using namespace graphics;
 
-graphics::Mesh* graphics::Mesh::Load(const char* filename)
+graphics::Mesh::Mesh(VertexArray& va, VertexBuffer& vb, IndexBuffer& ib)
+	:
+	vertexArray(std::move(va)),
+	vertexBuffer(std::move(vb)),
+	indexBuffer(std::move(ib))
 {
-	Mesh* mesh = new Mesh();
-	ObjMesh obj(filename);
+}
 
-	mesh->vertexArray.Bind();
+graphics::Mesh graphics::Mesh::Load(const char* filename)
+{
+	ObjMesh obj(filename);
 
 	std::vector<float> vertex_buffer;
 
@@ -28,23 +33,21 @@ graphics::Mesh* graphics::Mesh::Load(const char* filename)
 		vertex_buffer.emplace_back(v.normal.z);
 	}
 
-	mesh->vertexBuffer.Recreate((const void*)vertex_buffer.data(), vertex_buffer.size() * sizeof(float));
+	VertexBuffer vertexBuffer((const void*)vertex_buffer.data(), vertex_buffer.size() * sizeof(float));
 
 	graphics::ElementType arr[3] = { graphics::FLOAT3, graphics::FLOAT2, graphics::FLOAT3_N };
 	graphics::Layout<3> layout(arr);
-	mesh->vertexArray.AddBuffer(mesh->vertexBuffer, layout);
 
-	mesh->indexBuffer.Recreare(obj.indices.data(), obj.indices.size());
+	VertexArray vertexArray;
+	vertexArray.AddBuffer(vertexBuffer, layout);
 
-	return mesh;
+	IndexBuffer indexBuffer(obj.indices.data(), obj.indices.size());
+
+	return { vertexArray, vertexBuffer, indexBuffer };
 }
 
-graphics::Mesh* graphics::Mesh::GenarateCube()
+graphics::Mesh graphics::Mesh::GenarateCube()
 {
-	Mesh* mesh = new Mesh();
-
-	mesh->vertexArray.Bind();
-
 	float vertexs[] = {
 		// pos                 // tex cord      // normal
 		// Forward
@@ -84,11 +87,13 @@ graphics::Mesh* graphics::Mesh::GenarateCube()
 		-0.5f, -0.5f,  0.5f,     0.0f, 1.0f,    0.0f, -1.0f,  0.0f    //23
 	};
 
-	mesh->vertexBuffer.Recreate(vertexs, sizeof(vertexs));
+	VertexBuffer vertexBuffer(vertexs, sizeof(vertexs));
 
 	graphics::ElementType arr[3] = { graphics::FLOAT3, graphics::FLOAT2, graphics::FLOAT3_N };
 	graphics::Layout<3> layout(arr);
-	mesh->vertexArray.AddBuffer(mesh->vertexBuffer, layout);
+
+	VertexArray vertexArray;
+	vertexArray.AddBuffer(vertexBuffer, layout);
 
 	// index buffer
 	uint32_t indices[] = {
@@ -105,9 +110,9 @@ graphics::Mesh* graphics::Mesh::GenarateCube()
 		// SOUTH
 		22, 23, 20, /**/ 22, 20, 21
 	};
-	mesh->indexBuffer.Recreare(indices, 36);
+	IndexBuffer indexBuffer(indices, 36);
 
-	return mesh;
+	return { vertexArray, vertexBuffer, indexBuffer };
 }
 
 struct Vertex
@@ -120,12 +125,8 @@ struct Vertex
 float toRadians(float degrees) { return (degrees * 2.0f * 3.14159f) / 360.0f; }
 
 // Note latitude east west | longitude North to south
-Mesh* graphics::Mesh::GenarateSphere(uint32_t prec)
+Mesh graphics::Mesh::GenarateSphere(uint32_t prec)
 {
-	Mesh* mesh = new Mesh();
-
-	mesh->vertexArray.Bind();
-
 	const uint32_t numVertices = (prec + 1) * (prec + 1);
 	const uint32_t numIndices = prec * prec * 6;
 
@@ -174,16 +175,18 @@ Mesh* graphics::Mesh::GenarateSphere(uint32_t prec)
 		vertex_buffer.emplace_back(v.normal.z);
 	}
 
-	mesh->vertexBuffer.Recreate((const void*)vertex_buffer.data(), vertex_buffer.size() * sizeof(float) );
+	VertexBuffer vertexBuffer((const void*)vertex_buffer.data(), vertex_buffer.size() * sizeof(float) );
 
 	graphics::ElementType arr[3] = { graphics::FLOAT3, graphics::FLOAT2, graphics::FLOAT3_N };
 	graphics::Layout<3> layout(arr);
-	mesh->vertexArray.AddBuffer(mesh->vertexBuffer, layout);
+
+	VertexArray vertexArray;
+	vertexArray.AddBuffer(vertexBuffer, layout);
 
 
-	mesh->indexBuffer.Recreare(indices.data(), indices.size());
+	IndexBuffer indexBuffer(indices.data(), indices.size());
 
-	return mesh;
+	return { vertexArray, vertexBuffer, indexBuffer };
 }
 
 

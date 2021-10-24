@@ -11,6 +11,19 @@ graphics::VertexArray::VertexArray()
 	glCall(glBindVertexArray(m_id));
 }
 
+graphics::VertexArray::VertexArray(VertexArray&& other)
+	:
+	m_id(other.m_id)
+{
+	other.m_id = 0;
+}
+
+VertexArray& graphics::VertexArray::operator=(VertexArray&& other)
+{
+	m_id = other.m_id;
+	other.m_id = 0;
+}
+
 graphics::VertexArray::~VertexArray()
 {
 	glCall(glDeleteVertexArrays(1, &m_id));

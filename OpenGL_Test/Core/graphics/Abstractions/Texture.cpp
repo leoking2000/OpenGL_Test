@@ -6,13 +6,13 @@
 using namespace graphics;
 
 graphics::Texture::Texture(uint32_t width, uint32_t height)
-    :
-    m_width(width), m_height(height), m_data(new Color[width * height])
+	:
+	m_width(width), m_height(height), m_data(new Color[width * height])
 {
-	if (width * height <= 0) return;
-
 	Clear(Colors::Black);
 	UploadToGPU();
+
+	m_name = std::to_string(m_id);
 }
 
 graphics::Texture::Texture(uint32_t width, uint32_t height, const Color& c)
@@ -21,54 +21,79 @@ graphics::Texture::Texture(uint32_t width, uint32_t height, const Color& c)
 {
 	Clear(c);
 	UploadToGPU();
+
+	m_name = std::to_string(m_id);
 }
 
 graphics::Texture::Texture(const char* file_name)
+	:
+	m_name(file_name)
 {
 	Load(file_name);
 	UploadToGPU();
 }
 
-graphics::Texture::Texture(const Texture& other)
+graphics::Texture::Texture(Texture&& other)
 	:
-	m_width(other.m_width), m_height(other.m_height), m_data(new Color[other.m_width * other.m_height])
+	m_width(other.m_width),
+	m_height(other.m_height),
+	m_data(other.m_data),
+	m_id(other.m_id),
+	m_name(std::move(other.m_name))
 {
-	for (uint32_t y = 0; y < m_height; y++)
-	{
-		for (uint32_t x = 0; x < m_width; x++)
-		{
-			m_data[y * m_width + x] = other.m_data[y * m_width + x];
-		}
-	}
-	UploadToGPU();
+	other.m_width = 0;
+	other.m_height = 0;
+	other.m_id = 0;
+	other.m_data = nullptr;
+}
+
+Texture& graphics::Texture::operator=(Texture&& other)
+{
+	m_width = other.m_width;
+	m_height = other.m_height;
+	m_data = other.m_data;
+	m_id = other.m_id;
+	m_name = std::move(other.m_name);
+
+	other.m_width = 0;
+	other.m_height = 0;
+	other.m_id = 0;
+	other.m_data = nullptr;
+
+	return *this;
 }
 
 graphics::Texture::~Texture()
 {
-    delete m_data;
+    delete[] m_data;
 	glCall(glDeleteTextures(1, &m_id));
-}
-
-int graphics::Texture::GetWidth() const
-{
-    return m_width;
-}
-
-int graphics::Texture::GetHeight() const
-{
-    return m_height;
 }
 
 void graphics::Texture::Load(const char* file_name)
 {
-	delete m_data;
-
 	stbi_set_flip_vertically_on_load(1);
 
-	int m_bpp;
-	m_data = (Color*)stbi_load(file_name, &m_width, &m_height, &m_bpp, 4);
-	assert(m_data);
-	//assert(m_bpp == sizeof(Color));
+	int width;
+	int height;
+	int bpp;
+
+	Color* data = (Color*)stbi_load(file_name, &width, &height, &bpp, 4);
+
+	if (data != nullptr)
+	{
+		delete[] m_data;
+
+		m_width = width;
+		m_height = height;
+
+		m_data = data;
+
+		glCall(glDeleteTextures(1, &m_id));
+		UploadToGPU();
+
+		m_name = file_name;
+	}
+
 }
 
 void graphics::Texture::Clear(const Color& c)
