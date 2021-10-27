@@ -24,6 +24,7 @@ namespace graphics
 		static glm::mat4 Proj();
 
 		static Shader& BasicShader();
+		static Shader& BasicTexShader();
 		static Shader& OneColorShader();
 
 		static PointLight& MainLight();
@@ -36,6 +37,7 @@ namespace graphics
 		Camera cam;
 
 		Shader basicShader;
+		Shader basicTexShader;
 		Shader oneColorShader;
 
 		PointLight light;

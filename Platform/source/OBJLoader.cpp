@@ -28,6 +28,8 @@ void ObjMesh::load(const char* filename)
 		return;
 	}
 
+	//auto matirials = model->mMaterials;
+
 	vertices.clear();
 	indices.clear();
 
@@ -66,6 +68,16 @@ void ObjMesh::load(const char* filename)
 			indices.push_back(face.mIndices[1] + offset);
 			indices.push_back(face.mIndices[2] + offset);
 		}
+
+		//uint32_t matirialIndex = mesh->mMaterialIndex;
+
+		//if (matirialIndex >= 0)
+		//{
+			//auto& material = *matirials[matirialIndex];
+
+			//aiString texFileName;
+			//material.GetTexture(aiTextureType_DIFFUSE, 0, &texFileName);
+		//}
 	}
 
 	std::string msg(filename);

@@ -44,8 +44,9 @@ in vec3 v_world_pos;
 in vec3 v_light_pos;
 
 uniform vec3 u_light_color;
-
 uniform Material mat;
+
+uniform sampler2D texture_diffuse;
 
 out vec4 color;
 
@@ -63,6 +64,7 @@ void main()
     float spec = pow( max(0.0, dot(viewDir, reflectDir)), mat.shininess);
     vec3 specular = (spec * mat.specular)  * u_light_color;
 
-    vec3 result = (ambient + diffuse + specular);
+    vec3 tex_color = vec3(texture(texture_diffuse, v_tex_cord).xyz);
+    vec3 result = (ambient + diffuse + specular) * tex_color;
 	color = vec4(result, 1.0);
 }

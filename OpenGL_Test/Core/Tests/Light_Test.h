@@ -5,12 +5,10 @@
 #include "Core/graphics/Camera.h"
 #include "Core/graphics/GameObject.h"
 #include "Core/graphics/Matirial/MatBasic.h"
+#include "Core/graphics/Matirial/MatBasicTex.h"
 #include <vector>
 
 using namespace graphics;
-
-#define tea_mat glm::vec3(0.19125f, 0.0735f, 0.0225f), glm::vec3(0.7038f, 0.27048f, 0.0828f), glm::vec3(0.256777f, 0.137622f, 0.086014f), 12.8f
-#define monkey_mat glm::vec3(0.24725f, 0.1995f, 0.0745f), glm::vec3(0.75164f, 0.60648f, 0.22648f), glm::vec3(0.628281f, 0.555802f, 0.366065f), 51.2f
 
 namespace Core
 {
@@ -18,7 +16,7 @@ namespace Core
 	{
 	private:
 		float cam_speed = 2.0f;
-		std::vector<graphics::GameObject> GameObjects;
+		std::vector<graphics::GameObject> gameObjects;
 
 
 	public:
@@ -29,24 +27,29 @@ namespace Core
 			auto tea_mesh = std::make_shared<graphics::Mesh>(graphics::Mesh::Load("assets\\tea.obj"));
 			auto monkey_mesh = std::make_shared<graphics::Mesh>(graphics::Mesh::Load("assets\\monkey.obj"));
 			auto shuttle_mesh = std::make_shared<graphics::Mesh>(graphics::Mesh::Load("assets\\shuttle.obj"));
-
 			auto sponza_mesh = std::make_shared<graphics::Mesh>(graphics::Mesh::Load("assets\\Sponza\\Sponza.obj"));
 
-			GameObjects.reserve(50);
-			GameObjects.emplace_back(glm::vec3(-300.0f, -100.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 100.0f, sphere_mesh, std::make_unique<MatBasic>("assets\\earth.jpg"));
-			GameObjects.emplace_back(glm::vec3(-50.0f, 0.0f, 0.0f) , glm::vec3(0.0f, 0.0f, 0.0f), 40.0f, shuttle_mesh, std::make_unique<MatBasic>("assets\\spstob_1.jpg"));
+			MatBasic gold(0.83137255f, 0.68627451f, 0.21568627f);
+			MatBasic darkOrange(1.0f, 0.54263566f, 0.0f);
 
-			GameObjects.emplace_back(glm::vec3( 15.0f,  1.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3( 1.0f, 5.0f, 10.0f),
-				cube_mesh, std::make_unique<MatBasic>(tea_mat));
+			gameObjects.reserve(6);
+			// earth
+			gameObjects.emplace_back(glm::vec3(0.0f,  1.0f, 10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, sphere_mesh, 
+				std::make_unique<MatBasicTex>("assets\\earth.jpg"));
 
-			GameObjects.emplace_back(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 2.0f, monkey_mesh, std::make_unique<MatBasic>(monkey_mat));
+			// space ship
+			gameObjects.emplace_back(glm::vec3(0.0f,  3.0f, 5.0f) , glm::vec3(0.0f, 0.0f, 0.0f), 4.0f, shuttle_mesh,
+				std::make_unique<MatBasicTex>("assets\\spstob_1.jpg"));
 
-			GameObjects.emplace_back(glm::vec3(  0.0f, -6.0f,   0.0f), glm::vec3(0.0f, Math::PI / 2.0f, 0.0f), glm::vec3(0.02f, 0.02f, 0.02f), 
-				sponza_mesh, std::make_unique<MatBasic>(tea_mat));
+			// monkey
+			gameObjects.emplace_back(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 2.0f, monkey_mesh, std::make_unique<MatBasic>(gold));
 
-			GameObjects.emplace_back(glm::vec3(  0.0f, -5.0f,   0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, cube_mesh, std::make_unique<MatBasic>(monkey_mat));
+			// tea
+			gameObjects.emplace_back(glm::vec3(0.0f, -4.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, tea_mesh, std::make_unique<MatBasic>(gold));
 
-			GameObjects.emplace_back(glm::vec3(0.0f, -4.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, tea_mesh, std::make_unique<MatBasic>(tea_mat));
+			// sponza
+			gameObjects.emplace_back(glm::vec3(0.0f, -6.0f, 0.0f), glm::vec3(0.0f, Math::PI / 2.0f, 0.0f), 0.02f,
+				sponza_mesh, std::make_unique<MatBasicTex>("assets\\spnza_bricks.tga"));
 
 			graphics::Renderer::MainCamera().pos = glm::vec3(0.0f, 1.0f, 25.0f);
 		}
@@ -56,15 +59,15 @@ namespace Core
 
 			graphics::Renderer::MainCamera().Update(cam_speed * dt);
 
-			GameObjects[0].rotation.y = Math::wrap_angle(GameObjects[0].rotation.y + dt);
-			GameObjects[3].rotation.y = Math::wrap_angle(GameObjects[3].rotation.y + dt);
+			gameObjects[2].rotation.y = Math::wrap_angle(gameObjects[2].rotation.y + dt);
+			gameObjects[3].rotation.y = Math::wrap_angle(gameObjects[3].rotation.y + dt);
 		}
 
 		void Draw() override
 		{
 			graphics::Renderer::SetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-			for (graphics::GameObject& GameObject : GameObjects)
+			for (graphics::GameObject& GameObject : gameObjects)
 			{
 				GameObject.Draw();
 			}

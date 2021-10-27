@@ -10,6 +10,7 @@ graphics::Renderer::Renderer()
 	:
 	light(glm::vec3(0.0f), glm::vec3(1.0f)),
 	basicShader("Shaders/Basic.glsl"),
+	basicTexShader("Shaders/BasicTex.glsl"),
 	oneColorShader("Shaders/OneColor.glsl"),
 	proj(glm::perspective(glm::radians(45.0f), (float)Platform::GetWidth() / (float)Platform::GetHeight(), 0.1f, 500.0f))
 {
@@ -62,6 +63,11 @@ glm::mat4 graphics::Renderer::Proj()
 Shader& graphics::Renderer::BasicShader()
 {
 	return Get().basicShader;
+}
+
+Shader& graphics::Renderer::BasicTexShader()
+{
+	return Get().basicTexShader;
 }
 
 Shader& graphics::Renderer::OneColorShader()

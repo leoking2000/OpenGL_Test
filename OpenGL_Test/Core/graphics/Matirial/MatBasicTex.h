@@ -1,21 +1,21 @@
 #pragma once
 #include "Material.h"
+#include "Core/graphics/Abstractions/Texture.h"
 
 namespace graphics
 {
-	class MatBasic : public Matirial
+	class MatBasicTex : public Matirial
 	{
 	public:
-		glm::vec3 color;
+		Texture tex;
 		float ambient;
 		float diffuse;
 		float specular;
 		float shininess;
 
 	public:
-		MatBasic(float red, float green, float blue);
-		MatBasic(const glm::vec3& color);
-		MatBasic(const glm::vec3& color,
+		MatBasicTex(const char* name);
+		MatBasicTex(const char* name,
 			float ambient,
 			float diffuse,
 			float specular,
