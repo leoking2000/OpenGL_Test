@@ -33,13 +33,13 @@ namespace Core
 			MatBasic darkOrange(1.0f, 0.54263566f, 0.0f);
 
 			gameObjects.reserve(6);
-			// earth
-			gameObjects.emplace_back(glm::vec3(0.0f,  1.0f, 10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, sphere_mesh, 
-				std::make_unique<MatBasicTex>("assets\\earth.jpg"));
-
 			// space ship
 			gameObjects.emplace_back(glm::vec3(0.0f,  3.0f, 5.0f) , glm::vec3(0.0f, 0.0f, 0.0f), 4.0f, shuttle_mesh,
 				std::make_unique<MatBasicTex>("assets\\spstob_1.jpg"));
+
+			// earth
+			gameObjects.emplace_back(glm::vec3(0.0f, 1.0f, 10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, sphere_mesh,
+				std::make_unique<MatBasicTex>("assets\\earth.jpg"));
 
 			// monkey
 			gameObjects.emplace_back(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 0.0f, 0.0f), 2.0f, monkey_mesh, std::make_unique<MatBasic>(gold));
@@ -59,6 +59,7 @@ namespace Core
 
 			graphics::Renderer::MainCamera().Update(cam_speed * dt);
 
+			gameObjects[1].rotation.y = Math::wrap_angle(gameObjects[1].rotation.y + dt);
 			gameObjects[2].rotation.y = Math::wrap_angle(gameObjects[2].rotation.y + dt);
 			gameObjects[3].rotation.y = Math::wrap_angle(gameObjects[3].rotation.y + dt);
 		}
