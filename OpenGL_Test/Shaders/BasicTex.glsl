@@ -4,6 +4,7 @@
 layout(location = 0) in vec3 pos;
 layout(location = 1) in vec2 tex_cord;
 layout(location = 2) in vec3 normal;
+layout (binding=0) uniform sampler2DShadow shadowTex;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -15,6 +16,8 @@ out vec2 v_tex_cord;
 out vec3 v_normal;
 out vec3 v_world_pos;
 out vec3 v_light_pos;
+
+out vec4 shadow_coord;
 
 void main()
 {
